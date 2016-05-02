@@ -19,3 +19,5 @@ github_username:  jekyll
 
 # Build settings
 markdown: kramdown
+source: src
+destination: public
