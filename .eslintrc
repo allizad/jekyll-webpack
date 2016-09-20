@@ -1,0 +1,16 @@
+{
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "rules": {
+        "one-var": [0],
+        "no-var": [1],
+        "comma-dangle": [0],
+        "indent": [2, 4],
+        "react/jsx-indent": [2, 4],
+        "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
+        "react/jsx-indent-props": [2, 4]
+    },
+    "env": {
+        "jasmine": true
+    }
+}
