@@ -21,4 +21,3 @@ github_username:  jekyll
 markdown: kramdown
 source: src
 destination: public
-exclude: ['node_modules', 'webpack']
