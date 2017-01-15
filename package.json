@@ -6,15 +6,11 @@
   "scripts": {
     "test": "NODE_ENV=test mocha javascripts/ --recursive --glob *-spec.js --require ./test/helpers/browser.js --require ignore-styles --colors",
     "test:watch": "npm run test -- --watch",
-    "predev:hot": "rm -rf index.html && cp -fR ./DEV/index.html ./index.html",
-    "dev:hot": "webpack --config webpack.config.js --inline --progress --colors --watch --display-error-details --display-cached",
-    "bundle": "webpack --config webpack.config.js",
-    "jekyll:dev": "jekyll build --watch --incremental",
-    "jekyll:svr": "jekyll serve --watch",
-    "prebuild": "npm test",
-    "build": "NODE_ENV=production npm run bundle",
-    "start:dev": "NODE_ENV=dev npm run dev:hot",
-    "start": "NODE_ENV=prod npm run dev:hot"
+    "bundle": "webpack --config webpack.config.js --inline --progress --colors --display-error-details --display-cached",
+    "bundle:hot": "NODE_ENV=dev npm run bundle -- --watch",
+    "jekyll:live": "bundle exec jekyll serve -- --watch",
+    "build:prod": "NODE_ENV=production npm run bundle",
+    "build:dev": "NODE_ENV=production npm run bundle"
   },
   "repository": {
     "type": "git",

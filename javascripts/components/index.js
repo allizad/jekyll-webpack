@@ -13,7 +13,7 @@ const Wrapper = (({ children }) => (
 ));
 
 const Blank = (() => (
-    <i></i>
+    <i />
 ));
 
 Wrapper.propTypes = {
