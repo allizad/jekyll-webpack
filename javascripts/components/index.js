@@ -1,7 +1,10 @@
 import React, {
     PropTypes
 } from 'react';
-import { Route, Redirect } from 'react-router';
+import { Router, Route, Redirect, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 import HelloWorld from './hello-world';
 import Github from './github';
@@ -29,15 +32,19 @@ Wrapper.propTypes = {
     ])
 };
 
-const Routes = (() => (
-    <Route path="/" component={Wrapper}>
-        <Route component={HelloWorld} path="never-page" />
-        <Route component={Github} path="portifolio" />
-        <Route component={About} path="about" />
+const Components = (() => (
+    <Provider store={store}>
+        <Router history={browserHistory}>
+            <Route path="/" component={Wrapper}>
+                <Route component={HelloWorld} path="never-page" />
+                <Route component={Github} path="portifolio" />
+                <Route component={About} path="about" />
 
-        <Route component={Blank} path="blank" />
-        <Redirect from="*" to="blank" />
-    </Route>
+                <Route component={Blank} path="blank" />
+                <Redirect from="*" to="blank" />
+            </Route>
+        </Router>
+    </Provider>
 ));
 
-export default Routes;
+export default Components;

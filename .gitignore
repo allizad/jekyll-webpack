@@ -3,6 +3,7 @@ _site
 .sass-cache
 .jekyll-metadata
 .tmp
+npm-debug.log
 index.html
 dist
 public
