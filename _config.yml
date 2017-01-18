@@ -23,5 +23,6 @@ github_username:  daniloster
 markdown: kramdown
 source: src
 destination: public
+sass_dir: _sass
 permalink: /blog/:year/:month/:day/:title
 exclude: ['node_modules', 'test', 'javascript']
