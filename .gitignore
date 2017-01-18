@@ -3,6 +3,8 @@ _site
 .sass-cache
 .jekyll-metadata
 .tmp
+Gemfile
+Gemfile.lock
 npm-debug.log
 public
 node_modules

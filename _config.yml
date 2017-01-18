@@ -18,11 +18,13 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://daniloster.github.io" # the base hostname & protocol for your site
 twitter_username: daniloster
 github_username:  daniloster
+theme: minima
 
 # Build settings
 markdown: kramdown
+sass:
+    compressed: true
 source: src
 destination: public
-sass_dir: _sass
 permalink: /blog/:year/:month/:day/:title
-exclude: ['node_modules', 'test', 'javascript']
+include: [_sass]
