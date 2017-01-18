@@ -4,7 +4,5 @@ _site
 .jekyll-metadata
 .tmp
 npm-debug.log
-index.html
-dist
 public
 node_modules

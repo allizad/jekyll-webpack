@@ -10,7 +10,8 @@
     "bundle:hot": "NODE_ENV=dev npm run bundle -- --watch",
     "jekyll:live": "bundle exec jekyll serve -- --watch",
     "build:prod": "NODE_ENV=production npm run bundle",
-    "build:dev": "NODE_ENV=production npm run bundle"
+    "build:dev": "NODE_ENV=production npm run bundle",
+    "build": "npm run build:prod"
   },
   "repository": {
     "type": "git",

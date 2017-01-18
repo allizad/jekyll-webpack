@@ -4,6 +4,8 @@
 # which you are expected to set up once and rarely need to edit after that.
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'jekyll serve'. If you change this file, please restart the server process.
+# Use 'bundle exec jekyll serve -- --watch' to keep up and running watching changes
+# that may happen in the folder src while you are developing.
 
 # Site settings
 title: Danilo Castro
@@ -22,4 +24,4 @@ markdown: kramdown
 source: src
 destination: public
 permalink: /blog/:year/:month/:day/:title
-exclude: ['node_modules', 'test']
+exclude: ['node_modules', 'test', 'javascript']
