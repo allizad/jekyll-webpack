@@ -1,4 +1,6 @@
 ---
+sass:
+    sass_dir: ./_sass
 ---
 @charset "utf-8";
 
@@ -32,4 +34,4 @@ $on-laptop:        800px;
 }
 
 // Import partials from `sass_dir` (defaults to `_sass`)
-@import "minima";
+@import "theme";

@@ -149,7 +149,7 @@ if (isTest) {
     };
 } else {
     webpackConfig.output = {
-        path: path.resolve(__dirname, 'src/assets/javascripts'),
+        path: path.resolve(__dirname, 'assets/javascripts'),
         libraryTarget: 'umd',
         filename: 'bundle.js'
     };

@@ -8,6 +8,7 @@
     "test:watch": "npm run test -- --watch",
     "bundle": "webpack --config webpack.config.js --inline --progress --colors --display-error-details --display-cached",
     "bundle:hot": "NODE_ENV=dev npm run bundle -- --watch",
+    "prejekyll:live": "rm -rf public/",
     "jekyll:live": "bundle exec jekyll serve -- --watch",
     "build:prod": "NODE_ENV=production npm run bundle",
     "build:dev": "NODE_ENV=production npm run bundle",
