@@ -10,27 +10,33 @@ var path = require('path'),
     isProd = process.env.NODE_ENV === 'production',
     isDev = process.env.NODE_ENV === 'dev',
 
-    styleLoader = ['style'].concat(isProd ? [] : ['?sourceMap']).join(''),
+    styleLoader = ['style-loader'].concat(isProd ? [] : ['?sourceMap']).join(''),
     cssLoader = [
-        'css?minimaze&camelCase&modules&importLoaders=1'
+        'css-loader?minimize&camelCase&modules&importLoaders=1'
     ].concat(
         isProd
             ? ['&localIdentName=[hash:base64:32]']
             : ['&sourceMap', '&localIdentName=[name]--[local]']
     ).join(''),
+    pureCssLoader = [
+        'css-loader?minimize&modules&importLoaders=1',
+        '&sourceMap',
+        '&localIdentName=[local]'
+    ].join(''),
     sassLoader = [
-        'sass'
+        'sass-loader'
     ].concat(
         isProd
             ? []
             : ['?sourceMap']
     ).join(''),
-    postcssLoader = ['postcss'].concat(isProd ? [] : ['?sourceMap']).join(''),
-    resolveUrlLoader = ['resolve-url'].concat(isProd ? [] : ['?sourceMap']).join(''),
+    sassResourcesLoader = 'sass-resources-loader',
+    postcssLoader = ['postcss-loader'].concat(isProd ? [] : ['?sourceMap']).join(''),
+    resolveUrlLoader = ['resolve-url-loader'].concat(isProd ? [] : ['?sourceMap']).join(''),
 
-    urlLoader = 'url?limit=10000',
-    fileLoader = 'file',
-    imgLoader = 'img',
+    urlLoader = 'url-loader?limit=10000',
+    fileLoader = 'file-loader',
+    imgLoader = 'img-loader',
 
     webpackConfig = {
         entry: {
@@ -41,12 +47,19 @@ var path = require('path'),
         },
         sassLoader: {
             includePaths: [
-                path.resolve(__dirname, 'src'),
-                path.resolve(__dirname, 'node_modules'),
-                path.resolve(__dirname, 'node_modules', 'font-awesome', 'fonts')
-            ],
-            data: '$fa-font-path: "font-awesome/fonts";'
+                path.resolve(__dirname, 'javascripts'),
+                path.resolve(__dirname, 'node_modules')
+                // path.resolve(__dirname, 'node_modules', 'font-awesome', 'scss'),
+                // path.resolve(__dirname, 'node_modules', 'font-awesome'),
+                // path.resolve(__dirname, 'node_modules', 'font-awesome', 'fonts')
+            ]//,
+            // data: '$fa-font-path: "font-awesome/fonts";'
         },
+        sassResources: [
+            './javascripts/resources/scss/variables.scss',
+            './javascripts/resources/scss/media-query.scss',
+            './javascripts/resources/scss/resources.scss'
+        ],
         module: {
             preLoaders: [
                 {
@@ -65,24 +78,14 @@ var path = require('path'),
                     }
                 },
                 {
-                    test: /\.css$/,
-                    include: /\/(src|javascripts|DEV)\//,
-                    loaders: [styleLoader, cssLoader, resolveUrlLoader, postcssLoader]
+                    test: /\.(s)?css$/,
+                    include: /(javascripts|DEV)\//,
+                    loaders: [styleLoader, cssLoader, resolveUrlLoader, sassLoader, postcssLoader, sassResourcesLoader]
                 },
                 {
-                    test: /\.scss$/,
-                    include: /\/(src|javascripts|DEV)\//,
-                    loaders: [styleLoader, cssLoader, resolveUrlLoader, sassLoader, postcssLoader]
-                },
-                {
-                    test: /\.scss$/,
+                    test: /\.(s)?css$/,
                     include: /node_modules/,
-                    loaders: [ styleLoader, cssLoader, resolveUrlLoader, sassLoader ]
-                },
-                {
-                    test: /\.css$/,
-                    include: /node_modules/,
-                    loaders: [ styleLoader, cssLoader, resolveUrlLoader, sassLoader ]
+                    loaders: [ styleLoader, pureCssLoader, resolveUrlLoader, sassLoader ]
                 },
                 {
                     test: /\.(jpe?g|png|gif)$/,
@@ -150,8 +153,8 @@ if (isTest) {
 } else {
     webpackConfig.output = {
         path: path.resolve(__dirname, 'assets/javascripts'),
-        libraryTarget: 'umd',
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: 'http://localhost:4000/'
     };
 }
 

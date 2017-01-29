@@ -2,39 +2,34 @@ import React, {
     PropTypes,
     Component
 } from 'react';
-import Repo from './repo';
+
+import Repos from './repos';
 import styles from './github.scss';
 
-// https://api.github.com/users/daniloster
-// https://api.github.com/users/daniloster/repos
 
-class Repos extends Component {
-    componentWillMount() {
-        this.props.onLoadRepos(this.props.owners);
-    }
-
+class Github extends Component {
     render() {
-        const { repos } = this.props.repos;
+        const { owners, repos } = this.props;
         return (
-            <div className={styles.repos}>
-                {repos.map(repo => (
-                    <Repo {...repo} key={`repo-${repo.id}`} />
-                ))}
+            <div className={styles.github}>
+                <Repos
+                    owners={owners.map(owner => owner.username)}
+                    repos={repos}
+                />
             </div>
         );
     }
 }
 
-Repos.propTypes = {
-    owners: PropTypes.arrayOf(PropTypes.string),
-    repos: PropTypes.arrayOf(PropTypes.shape(Repo.propTypes)),
-    onLoadRepos: PropTypes.func
+Github.propTypes = {
+    owners: PropTypes.arrayOf(PropTypes.object),
+    repos: PropTypes.arrayOf(PropTypes.object)
 };
 
-Repos.defaultProps = {
+Github.defaultProps = {
     owners: [],
-    repos: [],
-    onLoadRepos: () => {}
+    repos: []
 };
 
-export default Repos;
+export { Github };
+export default Github;

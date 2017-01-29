@@ -1,0 +1,26 @@
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */ 
+@include min-media-query(320px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@include min-media-query(480px) {
+
+}
+
+/* Small Devices, Tablets */
+@include min-media-query(768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@include min-media-query(992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@include min-media-query(1200px) {
+
+}

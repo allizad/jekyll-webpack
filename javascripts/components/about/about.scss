@@ -8,5 +8,10 @@
         display: flex;
         flex-flow: row;
         flex: 1;
+
+        .member {
+            flex-flow: column;
+            max-width: 50%; 
+        }
     }
 }

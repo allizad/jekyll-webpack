@@ -40,8 +40,7 @@ const Components = (() => (
                 <Route component={Github} path="portifolio" />
                 <Route component={About} path="about" />
 
-                <Route component={Blank} path="blank" />
-                <Redirect from="*" to="blank" />
+                <Route component={Blank} path="*" />
             </Route>
         </Router>
     </Provider>

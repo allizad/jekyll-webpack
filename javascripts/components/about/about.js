@@ -1,16 +1,30 @@
-import React from 'react';
-import Member from '../member';
+import React, {
+    PropTypes
+} from 'react';
+import { Member } from '../github';
+import Card from '../card';
 
 import styles from './about.scss';
 
-const About = (() => (
+const About = (({ owners }) => (
     <div className={styles.about}>
-        <h3>Learn a little bit more about us...</h3>
+        <div className={'wrapper'}>
+            <h3>Learn a little bit more about us...</h3>
+        </div>
         <div className={styles.members}>
-            <Member githubAccount="daniloster" />
-            <Member githubAccount="leticiacalmon" />
+            {owners.map(owner => (
+                <div key={`member-${owner.username}`} className={styles.member}>
+                    <Card uniform={true}>
+                        <Member {...owner} />
+                    </Card>
+                </div>
+            ))}
         </div>
     </div>
 ));
+
+About.propTypes = {
+    owners: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default About;

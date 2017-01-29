@@ -7,24 +7,24 @@
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li>{{ site.title }}</li>
-          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          {% for email in site.email %}
+            <li><a href="mailto:{{ site.email }}">{{ email }}</a></li>
+          {% endfor %}
         </ul>
       </div>
 
       <div class="footer-col footer-col-2">
         <ul class="social-media-list">
-          {% if site.github_username %}
-          <li>
-            {% include icon-github.html username=site.github_username %}
-          </li>
-          {% endif %}
-
-          {% if site.twitter_username %}
-          <li>
-            {% include icon-twitter.html username=site.twitter_username %}
-          </li>
-          {% endif %}
+        {% for github_username in site.github_username %}
+            <li>
+                {% include icon-github.html username=github_username %}
+            </li>
+        {% endfor %}
+        {% for twitter_username in site.twitter_username %}
+            <li>
+                {% include icon-twitter.html username=twitter_username %}
+            </li>
+        {% endfor %}
         </ul>
       </div>
 

@@ -2,7 +2,7 @@ import React, {
     PropTypes,
     Component
 } from 'react';
-import styles from './github.scss';
+import styles from './repos.scss';
 
 const FontAwesome = (() => (<i />));
 

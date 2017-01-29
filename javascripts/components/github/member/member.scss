@@ -1,0 +1,82 @@
+.member {
+    --paddingGeneral: .8rem;
+    display: flex;
+    flex-flow: wrap row;
+    width: 100%;
+    padding: var(--paddingGeneral);
+    
+    --defaultColor: $brand-color;
+    --headerHeight: 40px;
+    --textHeight: 28px;
+    * {
+        flex-flow: nowrap row;
+    }
+    .name {
+        --expandMargin: calc(var(--paddingGeneral) * -1);
+        width: calc(100% - 2*var(--paddingGeneral));
+        height: var(--headerHeight);
+        line-height: var(--headerHeight);
+        margin: var(--expandMargin);
+        padding: 0 var(--paddingGeneral) var(--paddingGeneral) var(--paddingGeneral);
+
+        background-color: var(--defaultColor);
+        text-transform: uppercase;
+        a, a:visited, a:link, a:active {
+            color: #ffffff;
+        }
+    }
+
+    --avatarDimension: 150px;
+    .avatar {
+        display: inline-flex;
+        img {
+            max-width: var(--avatarDimension);
+            max-height: var(--avatarDimension);
+            border-bottom: calc(var(--paddingGeneral)) solid var(--defaultColor);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
+        }
+    }
+
+    .details {
+        flex-flow: column;
+        padding: var(--paddingGeneral) 0 0 var(--paddingGeneral);
+        width: calc(100% - var(--avatarDimension) - 3*var(--paddingGeneral));
+        font-size: 0.9em;
+
+        a, a:visited, a:link, a:active {
+            color: lighten($brand-color, 15%);
+        }
+
+        .info {
+            min-width: 100%;
+            height: var(--textHeight);
+            line-height: var(--textHeight);
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+            text-rendering: optimizeLegibility;
+
+            :global(.fa) {
+                color: $grey-color;
+                width: 30px;
+                text-align: center;
+            }
+            
+            span.label {
+                text-transform: capitalize;
+
+                &:after {
+                    content: ": ";
+                }
+            }
+        }
+    }
+
+    .bio {
+        margin-top: 15px;
+        width: calc(100% - 2*var(--paddingGeneral));
+
+        :global(.fa) {
+            color: $grey-color;
+        }
+    }
+}
