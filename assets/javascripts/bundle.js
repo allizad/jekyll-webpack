@@ -38943,8 +38943,6 @@
 	function factoryAuthenticationSaga(storeSection) {
 	    var _marked = [onAuthenticate, watchAuthenticate].map(regeneratorRuntime.mark);
 	
-	    // const { handler: onFetchUsers } = factoryFetchUsersSaga(storeSection);
-	    // const { handler: onFetchRepos } = factoryFetchReposSaga(storeSection);
 	    var getState = _sagas2.default.getter(storeSection);
 	
 	    function onAuthenticate(action) {
@@ -39022,8 +39020,7 @@
 	        handler: onAuthenticate
 	    };
 	}
-	// import factoryFetchUsersSaga from './github-fetch-users-saga';
-	// import factoryFetchReposSaga from './github-fetch-repos-saga';
+	
 	exports.default = factoryAuthenticationSaga;
 
 /***/ },
