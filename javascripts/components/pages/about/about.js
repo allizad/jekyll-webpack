@@ -1,8 +1,8 @@
 import React, {
     PropTypes
 } from 'react';
-import { Member } from '../github';
-import Card from '../card';
+import { Member } from '../../github';
+import Card from '../../card';
 
 import styles from './about.scss';
 

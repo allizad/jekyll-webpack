@@ -6,13 +6,28 @@
   <body>
 
     {% include header.html %}
-    <div id="root"></div>
+
+    {% if page.is_react_at_bottom != true %}
+    <div class="page-content">
+        <div class="wrapper">
+            <div id="root"></div>
+        </div>
+    </div>
+    {% endif %}
 
     <div class="page-content">
       <div class="wrapper">
         {{ content }}
       </div>
     </div>
+
+    {% if page.is_react_at_bottom == true %}
+    <div class="page-content">
+        <div class="wrapper">
+            <div id="root"></div>
+        </div>
+    </div>
+    {% endif %}
 
     {% include footer.html %}
     <script type="text/javascript" src="{{ '/assets/javascripts/bundle.js' | prepend: site.baseurl }}" charset="utf-8"></script>

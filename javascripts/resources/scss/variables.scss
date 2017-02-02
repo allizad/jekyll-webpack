@@ -17,10 +17,11 @@ $grey-color-light: lighten($grey-color, 40%) !default;
 $grey-color-dark:  darken($grey-color, 25%) !default;
 
 // Width of the content area
-$content-width:    800px !default;
+$content-width:    1024px !default;
 
+$on-phone:         320px !default;
 $on-palm:          600px !default;
-$on-laptop:        800px !default;
+$on-laptop:        1024px !default;
 
 /*
 // Use media queries like this:
@@ -39,6 +40,12 @@ $on-laptop:        800px !default;
 
 @mixin min-media-query($device) {
   @media screen and (min-width: $device) {
+    @content;
+  }
+}
+
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
     @content;
   }
 }

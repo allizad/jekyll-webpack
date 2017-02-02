@@ -1,14 +1,14 @@
 import React, {
     PropTypes
 } from 'react';
-import { Router, Route, Redirect, browserHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 
 import store from './store';
 
 import HelloWorld from './hello-world';
-import Github from './github';
-import About from './about';
+import About from './pages/about';
+import Portifolio from './pages/portifolio';
 
 
 const Wrapper = (({ children }) => (
@@ -37,7 +37,7 @@ const Components = (() => (
         <Router history={browserHistory}>
             <Route path="/" component={Wrapper}>
                 <Route component={HelloWorld} path="never-page" />
-                <Route component={Github} path="portifolio" />
+                <Route component={Portifolio} path="portifolio" />
                 <Route component={About} path="about" />
 
                 <Route component={Blank} path="*" />

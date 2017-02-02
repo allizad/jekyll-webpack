@@ -34,7 +34,7 @@ function parseRepoData(repo) {
         ssh: repo.ssh_url,
         language: repo.language,
         size: repo.size,
-        fork: repo.fork,
+        forks: repo.forks,
         stars: repo.stargazers_count,
         watchers: repo.watchers_count
     };

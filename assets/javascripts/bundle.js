@@ -29475,17 +29475,17 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _helloWorld = __webpack_require__(617);
+	var _helloWorld = __webpack_require__(618);
 	
 	var _helloWorld2 = _interopRequireDefault(_helloWorld);
 	
-	var _github = __webpack_require__(622);
-	
-	var _github2 = _interopRequireDefault(_github);
-	
-	var _about = __webpack_require__(639);
+	var _about = __webpack_require__(624);
 	
 	var _about2 = _interopRequireDefault(_about);
+	
+	var _portifolio = __webpack_require__(646);
+	
+	var _portifolio2 = _interopRequireDefault(_portifolio);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29517,7 +29517,7 @@
 	                _reactRouter.Route,
 	                { path: '/', component: Wrapper },
 	                _react2.default.createElement(_reactRouter.Route, { component: _helloWorld2.default, path: 'never-page' }),
-	                _react2.default.createElement(_reactRouter.Route, { component: _github2.default, path: 'portifolio' }),
+	                _react2.default.createElement(_reactRouter.Route, { component: _portifolio2.default, path: 'portifolio' }),
 	                _react2.default.createElement(_reactRouter.Route, { component: _about2.default, path: 'about' }),
 	                _react2.default.createElement(_reactRouter.Route, { component: Blank, path: '*' })
 	            )
@@ -36518,7 +36518,7 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _actions = __webpack_require__(616);
+	var _actions = __webpack_require__(617);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -36549,7 +36549,7 @@
 	
 	var _sagas2 = _interopRequireDefault(_sagas);
 	
-	var _reducers = __webpack_require__(613);
+	var _reducers = __webpack_require__(614);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
@@ -38891,11 +38891,11 @@
 	
 	var _githubAuthenticationSaga2 = _interopRequireDefault(_githubAuthenticationSaga);
 	
-	var _githubFetchReposSaga = __webpack_require__(610);
+	var _githubFetchReposSaga = __webpack_require__(611);
 	
 	var _githubFetchReposSaga2 = _interopRequireDefault(_githubFetchReposSaga);
 	
-	var _githubFetchUsersSaga = __webpack_require__(612);
+	var _githubFetchUsersSaga = __webpack_require__(613);
 	
 	var _githubFetchUsersSaga2 = _interopRequireDefault(_githubFetchUsersSaga);
 	
@@ -38932,9 +38932,9 @@
 	
 	var _githubUserApi2 = _interopRequireDefault(_githubUserApi);
 	
-	var _githubUtils = __webpack_require__(608);
+	var _githubUtils = __webpack_require__(609);
 	
-	var _sagas = __webpack_require__(609);
+	var _sagas = __webpack_require__(610);
 	
 	var _sagas2 = _interopRequireDefault(_sagas);
 	
@@ -39163,7 +39163,7 @@
 	
 	var _api2 = _interopRequireDefault(_api);
 	
-	var _githubHeaders = __webpack_require__(648);
+	var _githubHeaders = __webpack_require__(608);
 	
 	var _githubHeaders2 = _interopRequireDefault(_githubHeaders);
 	
@@ -40804,6 +40804,22 @@
 
 /***/ },
 /* 608 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var Headers = {
+	    'Content-Type': 'application/json; charset=utf-8',
+	    Accept: 'application/vnd.github.v3+json'
+	};
+	
+	exports.default = Headers;
+
+/***/ },
+/* 609 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40858,7 +40874,7 @@
 	        ssh: repo.ssh_url,
 	        language: repo.language,
 	        size: repo.size,
-	        fork: repo.fork,
+	        forks: repo.forks,
 	        stars: repo.stargazers_count,
 	        watchers: repo.watchers_count
 	    };
@@ -40889,7 +40905,7 @@
 	};
 
 /***/ },
-/* 609 */
+/* 610 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40928,7 +40944,7 @@
 	exports.default = SagasUtils;
 
 /***/ },
-/* 610 */
+/* 611 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40949,13 +40965,13 @@
 	
 	var _githubActions2 = _interopRequireDefault(_githubActions);
 	
-	var _githubRepoApi = __webpack_require__(611);
+	var _githubRepoApi = __webpack_require__(612);
 	
 	var _githubRepoApi2 = _interopRequireDefault(_githubRepoApi);
 	
-	var _githubUtils = __webpack_require__(608);
+	var _githubUtils = __webpack_require__(609);
 	
-	var _sagas = __webpack_require__(609);
+	var _sagas = __webpack_require__(610);
 	
 	var _sagas2 = _interopRequireDefault(_sagas);
 	
@@ -41066,7 +41082,7 @@
 	exports.default = factoryFetchReposSaga;
 
 /***/ },
-/* 611 */
+/* 612 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41081,7 +41097,7 @@
 	
 	var _api2 = _interopRequireDefault(_api);
 	
-	var _githubHeaders = __webpack_require__(648);
+	var _githubHeaders = __webpack_require__(608);
 	
 	var _githubHeaders2 = _interopRequireDefault(_githubHeaders);
 	
@@ -41113,7 +41129,7 @@
 	exports.default = GihubRepoApi;
 
 /***/ },
-/* 612 */
+/* 613 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41138,9 +41154,9 @@
 	
 	var _githubUserApi2 = _interopRequireDefault(_githubUserApi);
 	
-	var _githubUtils = __webpack_require__(608);
+	var _githubUtils = __webpack_require__(609);
 	
-	var _sagas = __webpack_require__(609);
+	var _sagas = __webpack_require__(610);
 	
 	var _sagas2 = _interopRequireDefault(_sagas);
 	
@@ -41247,7 +41263,7 @@
 	exports.default = factoryFetchUsersSaga;
 
 /***/ },
-/* 613 */
+/* 614 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41256,7 +41272,7 @@
 	    value: true
 	});
 	
-	var _githubReducers = __webpack_require__(614);
+	var _githubReducers = __webpack_require__(615);
 	
 	var _githubReducers2 = _interopRequireDefault(_githubReducers);
 	
@@ -41267,7 +41283,7 @@
 	};
 
 /***/ },
-/* 614 */
+/* 615 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41282,9 +41298,9 @@
 	
 	var _githubConstants2 = _interopRequireDefault(_githubConstants);
 	
-	var _githubUtils = __webpack_require__(608);
+	var _githubUtils = __webpack_require__(609);
 	
-	var _reducers = __webpack_require__(615);
+	var _reducers = __webpack_require__(616);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
@@ -41379,7 +41395,7 @@
 	exports.default = (0, _reducers2.default)(initialState, mapping);
 
 /***/ },
-/* 615 */
+/* 616 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41408,7 +41424,7 @@
 	exports.default = createReducers;
 
 /***/ },
-/* 616 */
+/* 617 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41428,7 +41444,7 @@
 	};
 
 /***/ },
-/* 617 */
+/* 618 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41437,7 +41453,7 @@
 	  value: true
 	});
 	
-	var _helloWorld = __webpack_require__(618);
+	var _helloWorld = __webpack_require__(619);
 	
 	var _helloWorld2 = _interopRequireDefault(_helloWorld);
 
@@ -41446,7 +41462,7 @@
 	exports.default = _helloWorld2.default;
 
 /***/ },
-/* 618 */
+/* 619 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41459,7 +41475,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _helloWorld = __webpack_require__(619);
+	var _helloWorld = __webpack_require__(620);
 	
 	var _helloWorld2 = _interopRequireDefault(_helloWorld);
 	
@@ -41476,16 +41492,16 @@
 	exports.default = HelloWorld;
 
 /***/ },
-/* 619 */
+/* 620 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(620);
+	var content = __webpack_require__(621);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(621)(content, {"sourceMap":true});
+	var update = __webpack_require__(623)(content, {"sourceMap":true});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -41502,28 +41518,80 @@
 	}
 
 /***/ },
-/* 620 */
+/* 621 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(647)();
+	exports = module.exports = __webpack_require__(622)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".hello-world--wrapper{max-width:740px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:800px){.hello-world--wrapper{max-width:770px;padding-right:15px;padding-left:15px}}.hello-world--footer-col-wrapper:after,.hello-world--wrapper:after{content:\"\";display:table;clear:both}.hello-world--title{text-transform:capitalize}", "", {"version":3,"sources":["/./javascripts/components/hello-world/hello-world.scss"],"names":[],"mappings":"AAuEA,sBAAW,gBAAA,AAAqC,kBAAA,AAAqB,iBAAA,AAAoB,mBAAA,AAAsB,iBAAA,CAzC9G,AA0CD,oCAAuC,sBAAW,gBAAA,AAAiC,mBAAA,AAAsB,iBAAA,CAnCtG,CACF,AAoCD,mEAA4C,WAAA,AAAc,cAAA,AAAiB,UAAA,CA3B1E,AA4BD,oBACI,yBAAA,CAzBH","file":"hello-world.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    800px !default;\n\n$on-palm:          600px !default;\n$on-laptop:        800px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/** Wrapper */\n.wrapper { max-width: calc(800px - (30px * 2)); margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 30px; }\n@media screen and (max-width: 800px) { .wrapper { max-width: calc(800px - (30px)); padding-right: 15px; padding-left: 15px; } }\n/** Clearfix */\n.wrapper:after, .footer-col-wrapper:after { content: \"\"; display: table; clear: both; }\n.title {\n    text-transform: capitalize; \n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.hello-world--title{text-transform:capitalize}", "", {"version":3,"sources":["/./javascripts/components/hello-world/hello-world.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,oBACG,yBAAA,CAtDH","file":"hello-world.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.title {\n    text-transform: capitalize; \n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
-		"wrapper": "hello-world--wrapper",
-		"wrapper": "hello-world--wrapper",
-		"footer-col-wrapper": "hello-world--footer-col-wrapper",
-		"footerColWrapper": "hello-world--footer-col-wrapper",
 		"title": "hello-world--title",
 		"title": "hello-world--title"
 	};
 
 /***/ },
-/* 621 */
+/* 622 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+	
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+	
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 623 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -41775,7 +41843,7 @@
 
 
 /***/ },
-/* 622 */
+/* 624 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41783,49 +41851,117 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.Github = exports.Member = exports.Repo = exports.Repos = undefined;
+	exports.About = undefined;
 	
 	var _reactRedux = __webpack_require__(531);
 	
-	var _repos = __webpack_require__(623);
+	var _about = __webpack_require__(625);
 	
-	var _repos2 = _interopRequireDefault(_repos);
-	
-	var _member = __webpack_require__(628);
-	
-	var _member2 = _interopRequireDefault(_member);
-	
-	var _github = __webpack_require__(636);
-	
-	var _github2 = _interopRequireDefault(_github);
-	
-	var _githubActions = __webpack_require__(579);
-	
-	var _githubActions2 = _interopRequireDefault(_githubActions);
+	var _about2 = _interopRequireDefault(_about);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.Repos = _repos2.default;
-	exports.Repo = _repos.Repo;
-	exports.Member = _member2.default;
-	exports.Github = _github2.default;
+	exports.About = _about2.default;
 	
 	
 	function mapStateToProps(state) {
 	    return {
-	        owners: state.github.users.map(function (user) {
-	            return user.username;
-	        }),
-	        repos: state.github.repos,
-	        reposStatus: state.github.reposStatus,
-	        usersStatus: state.github.usersStatus
+	        owners: state.github.users
 	    };
 	}
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, _githubActions2.default)(_github2.default);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_about2.default);
 
 /***/ },
-/* 623 */
+/* 625 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(299);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _github = __webpack_require__(626);
+	
+	var _card = __webpack_require__(640);
+	
+	var _card2 = _interopRequireDefault(_card);
+	
+	var _about = __webpack_require__(644);
+	
+	var _about2 = _interopRequireDefault(_about);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var About = function About(_ref) {
+	    var owners = _ref.owners;
+	    return _react2.default.createElement(
+	        'div',
+	        { className: _about2.default.about },
+	        _react2.default.createElement(
+	            'div',
+	            { className: 'wrapper' },
+	            _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Learn a little bit more about us...'
+	            )
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { className: _about2.default.members },
+	            owners.map(function (owner) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { key: 'member-' + owner.username, className: _about2.default.member },
+	                    _react2.default.createElement(
+	                        _card2.default,
+	                        { uniform: true },
+	                        _react2.default.createElement(_github.Member, owner)
+	                    )
+	                );
+	            })
+	        )
+	    );
+	};
+	
+	About.propTypes = {
+	    owners: _react.PropTypes.arrayOf(_react.PropTypes.object)
+	};
+	
+	exports.default = About;
+
+/***/ },
+/* 626 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.Member = exports.Repo = exports.Repos = undefined;
+	
+	var _repos = __webpack_require__(627);
+	
+	var _member = __webpack_require__(636);
+	
+	var _member2 = _interopRequireDefault(_member);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.Repos = _repos.Repos;
+	exports.Repo = _repos.Repo;
+	exports.Member = _member2.default;
+	exports.default = _repos.Repos;
+
+/***/ },
+/* 627 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41835,11 +41971,11 @@
 	});
 	exports.Repo = exports.Repos = undefined;
 	
-	var _repos = __webpack_require__(624);
+	var _repos = __webpack_require__(628);
 	
 	var _repos2 = _interopRequireDefault(_repos);
 	
-	var _repo = __webpack_require__(625);
+	var _repo = __webpack_require__(629);
 	
 	var _repo2 = _interopRequireDefault(_repo);
 	
@@ -41850,7 +41986,7 @@
 	exports.default = _repos2.default;
 
 /***/ },
-/* 624 */
+/* 628 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41867,11 +42003,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _repo = __webpack_require__(625);
+	var _repo = __webpack_require__(629);
 	
 	var _repo2 = _interopRequireDefault(_repo);
 	
-	var _repos = __webpack_require__(626);
+	var _repos = __webpack_require__(634);
 	
 	var _repos2 = _interopRequireDefault(_repos);
 	
@@ -41923,7 +42059,7 @@
 	exports.default = Repos;
 
 /***/ },
-/* 625 */
+/* 629 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41932,139 +42068,121 @@
 	    value: true
 	});
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _react = __webpack_require__(299);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _repos = __webpack_require__(626);
+	var _fontAwesome = __webpack_require__(630);
+	
+	var _fontAwesome2 = _interopRequireDefault(_fontAwesome);
+	
+	var _repos = __webpack_require__(634);
 	
 	var _repos2 = _interopRequireDefault(_repos);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var Repo = function Repo(props) {
+	    var id = props.id,
+	        name = props.name,
+	        description = props.description,
+	        owner = props.owner,
+	        pictureUrl = props.pictureUrl,
+	        gitUrl = props.gitUrl,
+	        sshUrl = props.sshUrl,
+	        language = props.language,
+	        forks = props.forks,
+	        stars = props.stars,
+	        watchers = props.watchers;
+	    var username = owner.username;
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var FontAwesome = function FontAwesome() {
-	    return _react2.default.createElement('i', null);
+	    return _react2.default.createElement(
+	        'div',
+	        { id: 'repo-id-' + id, className: _repos2.default.repo },
+	        _react2.default.createElement(
+	            'div',
+	            { className: _repos2.default.repoName },
+	            _react2.default.createElement(
+	                'a',
+	                { href: 'http://github.com/' + username + '/' + name },
+	                name
+	            )
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { className: _repos2.default.ownerName },
+	            _react2.default.createElement(
+	                'a',
+	                { href: 'http://github.com/' + username },
+	                username
+	            )
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { className: _repos2.default.details },
+	            _react2.default.createElement(
+	                'span',
+	                { className: _repos2.default.language },
+	                language
+	            ),
+	            _react2.default.createElement(
+	                'span',
+	                { className: _repos2.default.imageCounters },
+	                _react2.default.createElement(_fontAwesome2.default, { name: 'code-fork' }),
+	                ' ',
+	                forks
+	            ),
+	            _react2.default.createElement(
+	                'span',
+	                { className: _repos2.default.imageCounters },
+	                _react2.default.createElement(_fontAwesome2.default, { name: stars === 0 ? 'star-o' : 'star' }),
+	                ' ',
+	                stars
+	            ),
+	            _react2.default.createElement(
+	                'span',
+	                { className: _repos2.default.imageCounters },
+	                _react2.default.createElement(_fontAwesome2.default, { name: 'binoculars' }),
+	                ' ',
+	                watchers
+	            ),
+	            _react2.default.createElement(
+	                'span',
+	                { className: _repos2.default.gitUrl },
+	                gitUrl
+	            ),
+	            _react2.default.createElement(
+	                'span',
+	                { className: _repos2.default.sshUrl },
+	                sshUrl
+	            )
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { className: _repos2.default.avatar },
+	            _react2.default.createElement('picture', {
+	                alt: 'Github profile picture',
+	                src: pictureUrl
+	            })
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { className: _repos2.default.descritpion },
+	            description
+	        )
+	    );
 	};
-	
-	var Repo = function (_Component) {
-	    _inherits(Repo, _Component);
-	
-	    function Repo() {
-	        _classCallCheck(this, Repo);
-	
-	        return _possibleConstructorReturn(this, (Repo.__proto__ || Object.getPrototypeOf(Repo)).apply(this, arguments));
-	    }
-	
-	    _createClass(Repo, [{
-	        key: 'render',
-	        value: function render() {
-	            var _props = this.props,
-	                id = _props.id,
-	                name = _props.name,
-	                description = _props.description,
-	                owner = _props.owner,
-	                pictureUrl = _props.pictureUrl,
-	                gitUrl = _props.gitUrl,
-	                sshUrl = _props.sshUrl,
-	                language = _props.language,
-	                forks = _props.forks,
-	                stars = _props.stars,
-	                watchers = _props.watchers;
-	
-	            return _react2.default.createElement(
-	                'div',
-	                { id: 'repo-id-' + id, className: _repos2.default.repo },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: _repos2.default.repoName },
-	                    _react2.default.createElement(
-	                        'a',
-	                        { href: 'http://github.com/' + owner + '/' + name },
-	                        name
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: _repos2.default.ownerName },
-	                    _react2.default.createElement(
-	                        'a',
-	                        { href: 'http://github.com/' + owner },
-	                        owner
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: _repos2.default.details },
-	                    _react2.default.createElement(
-	                        'span',
-	                        { className: _repos2.default.language },
-	                        language
-	                    ),
-	                    _react2.default.createElement(
-	                        'span',
-	                        { className: _repos2.default.imageCounters },
-	                        _react2.default.createElement(FontAwesome, null),
-	                        ' ',
-	                        forks
-	                    ),
-	                    _react2.default.createElement(
-	                        'span',
-	                        { className: _repos2.default.imageCounters },
-	                        _react2.default.createElement(FontAwesome, null),
-	                        ' ',
-	                        stars
-	                    ),
-	                    _react2.default.createElement(
-	                        'span',
-	                        { className: _repos2.default.imageCounters },
-	                        _react2.default.createElement(FontAwesome, null),
-	                        ' ',
-	                        watchers
-	                    ),
-	                    _react2.default.createElement(
-	                        'span',
-	                        { className: _repos2.default.gitUrl },
-	                        gitUrl
-	                    ),
-	                    _react2.default.createElement(
-	                        'span',
-	                        { className: _repos2.default.sshUrl },
-	                        sshUrl
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: _repos2.default.avatar },
-	                    _react2.default.createElement('picture', {
-	                        alt: 'Github profile picture',
-	                        src: pictureUrl
-	                    })
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: _repos2.default.descritpion },
-	                    description
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Repo;
-	}(_react.Component);
 	
 	Repo.propTypes = {
 	    id: _react.PropTypes.number,
 	    name: _react.PropTypes.string,
 	    description: _react.PropTypes.string,
-	    owner: _react.PropTypes.string,
+	    owner: _react.PropTypes.shape({
+	        id: _react.PropTypes.string,
+	        username: _react.PropTypes.string,
+	        name: _react.PropTypes.string,
+	        avatar: _react.PropTypes.string
+	    }),
 	    pictureUrl: _react.PropTypes.string,
 	    gitUrl: _react.PropTypes.string,
 	    sshUrl: _react.PropTypes.string,
@@ -42075,251 +42193,6 @@
 	};
 	
 	exports.default = Repo;
-
-/***/ },
-/* 626 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(627);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(621)(content, {"sourceMap":true});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./../../../../node_modules/postcss-loader/index.js?sourceMap!./../../../../node_modules/sass-resources-loader/lib/loader.js!./repos.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./../../../../node_modules/postcss-loader/index.js?sourceMap!./../../../../node_modules/sass-resources-loader/lib/loader.js!./repos.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 627 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(647)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, ".repos--wrapper{max-width:740px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:800px){.repos--wrapper{max-width:770px;padding-right:15px;padding-left:15px}}.repos--footer-col-wrapper:after,.repos--wrapper:after{content:\"\";display:table;clear:both}.repos--repos{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-ms-flex:1;flex:1;-ms-flex-flow:wrap row;flex-flow:row wrap}.repos--repos .repos--repo{-ms-flex-flow:nowrap row;flex-flow:row nowrap}@media only screen and (min-width:320px){.repos--repos .repos--repo{min-width:100%}.repos--repos .repos--repo .repos--avatar{max-width:60px;max-height:60px}}@media only screen and (min-width:480px){.repos--repos .repos--repo{min-width:100%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:768px){.repos--repos .repos--repo{min-width:50%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:992px){.repos--repos .repos--repo{min-width:33.33%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:1200px){.repos--repos .repos--repo{min-width:25%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}", "", {"version":3,"sources":["/./javascripts/components/github/repos/repos.scss"],"names":[],"mappings":"AAuEA,gBAAW,gBAAA,AAAqC,kBAAA,AAAqB,iBAAA,AAAoB,mBAAA,AAAsB,iBAAA,CAzC9G,AA0CD,oCAAuC,gBAAW,gBAAA,AAAiC,mBAAA,AAAsB,iBAAA,CAnCtG,CACF,AAoCD,uDAA4C,WAAA,AAAc,cAAA,AAAiB,UAAA,CA3B1E,AA4BD,cACI,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,mBAAA,AACI,WAAA,AACI,OAAA,AACR,uBAAA,AACI,kBAAA,CAzBP,AAiBD,2BAWQ,yBAAA,AACI,oBAAA,CAnBX,AAqBO,yCAJJ,2BAKQ,cAAA,CAjBT,AAEH,0CAiBgB,eAAA,AACA,eAAA,CAfb,CACF,AAkBO,yCAZJ,2BAaQ,cAAA,CAdT,AAeS,0CACI,eAAA,AACA,eAAA,CAZb,CACF,AAeO,yCA9BR,2BA+BY,aAAA,CAXT,AApBH,0CAiCgB,eAAA,AACA,eAAA,CATb,CACF,AAYO,yCA5BJ,2BA6BQ,gBAAA,CART,AA/BH,0CAyCgB,eAAA,AACA,eAAA,CANb,CACF,AASO,0CApCJ,2BAqCQ,aAAA,CALT,AAMS,0CACI,eAAA,AACA,eAAA,CAHb,CACF","file":"repos.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    800px !default;\n\n$on-palm:          600px !default;\n$on-laptop:        800px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/** Wrapper */\n.wrapper { max-width: calc(800px - (30px * 2)); margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 30px; }\n@media screen and (max-width: 800px) { .wrapper { max-width: calc(800px - (30px)); padding-right: 15px; padding-left: 15px; } }\n/** Clearfix */\n.wrapper:after, .footer-col-wrapper:after { content: \"\"; display: table; clear: both; }\n.repos {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n    \n    .repo {\n        -ms-flex-flow: nowrap row;\n            flex-flow: nowrap row;\n        /* Custom, iPhone Retina */ \n        @media only screen and (min-width : 320px) {\n            min-width: 100%; \n            .avatar {\n                max-width: 60px;\n                max-height: 60px;\n            }\n        }\n        /* Extra Small Devices, Phones */ \n        @media only screen and (min-width : 480px) {\n            min-width: 100%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Small Devices, Tablets */\n        @media only screen and (min-width : 768px) {\n            min-width: 50%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Medium Devices, Desktops */\n        @media only screen and (min-width : 992px) {\n            min-width: 33.33%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Large Devices, Wide Screens */\n        @media only screen and (min-width : 1200px) {\n            min-width: 25%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n    }\n}\n"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-	exports.locals = {
-		"wrapper": "repos--wrapper",
-		"wrapper": "repos--wrapper",
-		"footer-col-wrapper": "repos--footer-col-wrapper",
-		"footerColWrapper": "repos--footer-col-wrapper",
-		"repos": "repos--repos",
-		"repos": "repos--repos",
-		"repo": "repos--repo",
-		"repo": "repos--repo",
-		"avatar": "repos--avatar",
-		"avatar": "repos--avatar"
-	};
-
-/***/ },
-/* 628 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _member = __webpack_require__(629);
-	
-	var _member2 = _interopRequireDefault(_member);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _member2.default;
-
-/***/ },
-/* 629 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(299);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _fontAwesome = __webpack_require__(630);
-	
-	var _fontAwesome2 = _interopRequireDefault(_fontAwesome);
-	
-	var _member = __webpack_require__(634);
-	
-	var _member2 = _interopRequireDefault(_member);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Member = function (_Component) {
-	    _inherits(Member, _Component);
-	
-	    function Member() {
-	        _classCallCheck(this, Member);
-	
-	        return _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
-	    }
-	
-	    _createClass(Member, [{
-	        key: 'render',
-	        value: function render() {
-	            var _props = this.props,
-	                id = _props.id,
-	                username = _props.username,
-	                avatar = _props.avatar,
-	                email = _props.email,
-	                name = _props.name,
-	                location = _props.location,
-	                bio = _props.bio,
-	                blog = _props.blog;
-	
-	            return _react2.default.createElement(
-	                'div',
-	                { 'data-reference': 'git-' + id, className: _member2.default.member },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: _member2.default.name },
-	                    _react2.default.createElement(
-	                        'a',
-	                        { href: 'https://github.com/' + username },
-	                        name
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: _member2.default.avatar },
-	                    _react2.default.createElement('img', { src: avatar, alt: 'Github avatar' })
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: _member2.default.details },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: _member2.default.info },
-	                        _react2.default.createElement(_fontAwesome2.default, { name: 'github' }),
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: _member2.default.label },
-	                            'git username'
-	                        ),
-	                        _react2.default.createElement(
-	                            'span',
-	                            null,
-	                            _react2.default.createElement(
-	                                'a',
-	                                { href: 'https://github.com/' + username },
-	                                username
-	                            )
-	                        )
-	                    ),
-	                    email && _react2.default.createElement(
-	                        'div',
-	                        { className: _member2.default.info },
-	                        _react2.default.createElement(_fontAwesome2.default, { name: 'envelope' }),
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: _member2.default.label },
-	                            'email'
-	                        ),
-	                        _react2.default.createElement(
-	                            'span',
-	                            null,
-	                            _react2.default.createElement(
-	                                'a',
-	                                { href: 'mailto:' + email },
-	                                email
-	                            )
-	                        )
-	                    ),
-	                    location && _react2.default.createElement(
-	                        'div',
-	                        { className: _member2.default.info },
-	                        _react2.default.createElement(_fontAwesome2.default, { name: 'map-marker' }),
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: _member2.default.label },
-	                            'location'
-	                        ),
-	                        _react2.default.createElement(
-	                            'span',
-	                            null,
-	                            location
-	                        )
-	                    ),
-	                    blog && _react2.default.createElement(
-	                        'div',
-	                        { className: _member2.default.info },
-	                        _react2.default.createElement(_fontAwesome2.default, { name: 'rss-square' }),
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: _member2.default.label },
-	                            'blog'
-	                        ),
-	                        _react2.default.createElement(
-	                            'span',
-	                            null,
-	                            _react2.default.createElement(
-	                                'a',
-	                                { href: blog },
-	                                blog
-	                            )
-	                        )
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: _member2.default.bio },
-	                    _react2.default.createElement(_fontAwesome2.default, { name: 'quote-left', size: '3x' }),
-	                    ' ',
-	                    bio
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Member;
-	}(_react.Component);
-	
-	Member.propTypes = {
-	    id: _react.PropTypes.number,
-	    username: _react.PropTypes.string.isRequired,
-	    avatar: _react.PropTypes.string,
-	    email: _react.PropTypes.string,
-	    name: _react.PropTypes.string,
-	    location: _react.PropTypes.string,
-	    bio: _react.PropTypes.string,
-	    blog: _react.PropTypes.string
-	};
-	
-	Member.defaultProps = {};
-	
-	exports.default = Member;
 
 /***/ },
 /* 630 */
@@ -42517,7 +42390,248 @@
 	var content = __webpack_require__(635);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(621)(content, {"sourceMap":true});
+	var update = __webpack_require__(623)(content, {"sourceMap":true});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./../../../../node_modules/postcss-loader/index.js?sourceMap!./../../../../node_modules/sass-resources-loader/lib/loader.js!./repos.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./../../../../node_modules/postcss-loader/index.js?sourceMap!./../../../../node_modules/sass-resources-loader/lib/loader.js!./repos.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 635 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(622)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.repos--repos{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-ms-flex:1;flex:1;-ms-flex-flow:wrap row;flex-flow:row wrap}.repos--repos .repos--repo{-ms-flex-flow:nowrap row;flex-flow:row nowrap}@media only screen and (min-width:320px){.repos--repos .repos--repo{min-width:100%}.repos--repos .repos--repo .repos--avatar{max-width:60px;max-height:60px}}@media only screen and (min-width:480px){.repos--repos .repos--repo{min-width:100%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:768px){.repos--repos .repos--repo{min-width:50%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:992px){.repos--repos .repos--repo{min-width:33.33%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:1200px){.repos--repos .repos--repo{min-width:25%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}", "", {"version":3,"sources":["/./javascripts/components/github/repos/repos.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,cACG,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,mBAAA,AACI,WAAA,AACI,OAAA,AACR,uBAAA,AACI,kBAAA,CAtDP,AA8CA,2BAWO,yBAAA,AACI,oBAAA,CAhDX,AAkDO,yCAdP,2BAeW,cAAA,CA9CT,AA+CS,0CACI,eAAA,AACA,eAAA,CA5Cb,CACF,AA+CO,yCAtBP,2BAuBW,cAAA,CA3CT,AAoBF,0CAyBe,eAAA,AACA,eAAA,CAzCb,CACF,AA4CO,yCApBJ,2BAqBQ,aAAA,CAxCT,AAyCS,0CACI,eAAA,AACA,eAAA,CAtCb,CACF,AAyCO,yCAtCP,2BAuCW,gBAAA,CArCT,AAsCS,0CACI,eAAA,AACA,eAAA,CAnCb,CACF,AAsCO,0CA9CP,2BA+CW,aAAA,CAlCT,AAbF,0CAiDe,eAAA,AACA,eAAA,CAhCb,CACF","file":"repos.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.repos {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n    \n    .repo {\n        -ms-flex-flow: nowrap row;\n            flex-flow: nowrap row;\n        /* Custom, iPhone Retina */ \n        @media only screen and (min-width : 320px) {\n            min-width: 100%; \n            .avatar {\n                max-width: 60px;\n                max-height: 60px;\n            }\n        }\n        /* Extra Small Devices, Phones */ \n        @media only screen and (min-width : 480px) {\n            min-width: 100%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Small Devices, Tablets */\n        @media only screen and (min-width : 768px) {\n            min-width: 50%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Medium Devices, Desktops */\n        @media only screen and (min-width : 992px) {\n            min-width: 33.33%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Large Devices, Wide Screens */\n        @media only screen and (min-width : 1200px) {\n            min-width: 25%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n    }\n}\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+	exports.locals = {
+		"repos": "repos--repos",
+		"repos": "repos--repos",
+		"repo": "repos--repo",
+		"repo": "repos--repo",
+		"avatar": "repos--avatar",
+		"avatar": "repos--avatar"
+	};
+
+/***/ },
+/* 636 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _member = __webpack_require__(637);
+	
+	var _member2 = _interopRequireDefault(_member);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _member2.default;
+
+/***/ },
+/* 637 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(299);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _fontAwesome = __webpack_require__(630);
+	
+	var _fontAwesome2 = _interopRequireDefault(_fontAwesome);
+	
+	var _member = __webpack_require__(638);
+	
+	var _member2 = _interopRequireDefault(_member);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Member = function (_Component) {
+	    _inherits(Member, _Component);
+	
+	    function Member() {
+	        _classCallCheck(this, Member);
+	
+	        return _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
+	    }
+	
+	    _createClass(Member, [{
+	        key: 'render',
+	        value: function render() {
+	            var _props = this.props,
+	                id = _props.id,
+	                username = _props.username,
+	                avatar = _props.avatar,
+	                email = _props.email,
+	                name = _props.name,
+	                location = _props.location,
+	                bio = _props.bio,
+	                blog = _props.blog;
+	
+	            return _react2.default.createElement(
+	                'div',
+	                { 'data-reference': 'git-' + id, className: _member2.default.member },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: _member2.default.name },
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: 'https://github.com/' + username },
+	                        name
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: _member2.default.avatar },
+	                    _react2.default.createElement('img', { src: avatar, alt: 'Github avatar' })
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: _member2.default.details },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: _member2.default.info },
+	                        _react2.default.createElement(_fontAwesome2.default, { name: 'github' }),
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: _member2.default.label },
+	                            'git username'
+	                        ),
+	                        _react2.default.createElement(
+	                            'span',
+	                            null,
+	                            _react2.default.createElement(
+	                                'a',
+	                                { href: 'https://github.com/' + username },
+	                                username
+	                            )
+	                        )
+	                    ),
+	                    email && _react2.default.createElement(
+	                        'div',
+	                        { className: _member2.default.info },
+	                        _react2.default.createElement(_fontAwesome2.default, { name: 'envelope' }),
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: _member2.default.label },
+	                            'email'
+	                        ),
+	                        _react2.default.createElement(
+	                            'span',
+	                            null,
+	                            _react2.default.createElement(
+	                                'a',
+	                                { href: 'mailto:' + email },
+	                                email
+	                            )
+	                        )
+	                    ),
+	                    location && _react2.default.createElement(
+	                        'div',
+	                        { className: _member2.default.info },
+	                        _react2.default.createElement(_fontAwesome2.default, { name: 'map-marker' }),
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: _member2.default.label },
+	                            'location'
+	                        ),
+	                        _react2.default.createElement(
+	                            'span',
+	                            null,
+	                            location
+	                        )
+	                    ),
+	                    blog && _react2.default.createElement(
+	                        'div',
+	                        { className: _member2.default.info },
+	                        _react2.default.createElement(_fontAwesome2.default, { name: 'rss-square' }),
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: _member2.default.label },
+	                            'blog'
+	                        ),
+	                        _react2.default.createElement(
+	                            'span',
+	                            null,
+	                            _react2.default.createElement(
+	                                'a',
+	                                { href: blog },
+	                                blog
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: _member2.default.bio },
+	                    _react2.default.createElement(_fontAwesome2.default, { name: 'quote-left', size: '3x' }),
+	                    ' ',
+	                    bio
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Member;
+	}(_react.Component);
+	
+	Member.propTypes = {
+	    id: _react.PropTypes.number,
+	    username: _react.PropTypes.string.isRequired,
+	    avatar: _react.PropTypes.string,
+	    email: _react.PropTypes.string,
+	    name: _react.PropTypes.string,
+	    location: _react.PropTypes.string,
+	    bio: _react.PropTypes.string,
+	    blog: _react.PropTypes.string
+	};
+	
+	Member.defaultProps = {};
+	
+	exports.default = Member;
+
+/***/ },
+/* 638 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(639);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(623)(content, {"sourceMap":true});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -42534,22 +42648,18 @@
 	}
 
 /***/ },
-/* 635 */
+/* 639 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(647)();
+	exports = module.exports = __webpack_require__(622)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".member--wrapper{max-width:740px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:800px){.member--wrapper{max-width:770px;padding-right:15px;padding-left:15px}}.member--footer-col-wrapper:after,.member--wrapper:after{content:\"\";display:table;clear:both}.member--member{--paddingGeneral:.8rem;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:wrap row;flex-flow:row wrap;width:100%;padding:var(--paddingGeneral);--defaultColor:#0866c4;--headerHeight:40px;--textHeight:28px;--avatarDimension:150px}.member--member *{-ms-flex-flow:nowrap row;flex-flow:row nowrap}.member--member .member--name{--expandMargin:calc(var(--paddingGeneral) * -1);width:calc(100% - 2*var(--paddingGeneral));height:var(--headerHeight);line-height:var(--headerHeight);margin:var(--expandMargin);padding:0 var(--paddingGeneral) var(--paddingGeneral);background-color:var(--defaultColor);text-transform:uppercase}.member--member .member--name a,.member--member .member--name a:active,.member--member .member--name a:link,.member--member .member--name a:visited{color:#fff}.member--member .member--avatar{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex}.member--member .member--avatar img{max-width:var(--avatarDimension);max-height:var(--avatarDimension);border-bottom:calc(var(--paddingGeneral)) solid var(--defaultColor);box-shadow:0 2px 5px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24)}.member--member .member--details{-ms-flex-flow:column;flex-flow:column;padding:var(--paddingGeneral) 0 0 var(--paddingGeneral);width:calc(100% - var(--avatarDimension) - 3*var(--paddingGeneral));font-size:.9em}.member--member .member--details a,.member--member .member--details a:active,.member--member .member--details a:link,.member--member .member--details a:visited{color:#228cf6}.member--member .member--details .member--info{min-width:100%;height:var(--textHeight);line-height:var(--textHeight);overflow-x:hidden;text-overflow:ellipsis;text-rendering:optimizeLegibility}.member--member .member--details .member--info .fa{color:#828282;width:30px;text-align:center}.member--member .member--details .member--info span.member--label{text-transform:capitalize}.member--member .member--details .member--info span.member--label:after{content:\": \"}.member--member .member--bio{margin-top:15px;width:calc(100% - 2*var(--paddingGeneral))}.member--member .member--bio .fa{color:#828282}", "", {"version":3,"sources":["/./javascripts/components/github/member/member.scss"],"names":[],"mappings":"AAuEA,iBAAW,gBAAA,AAAqC,kBAAA,AAAqB,iBAAA,AAAoB,mBAAA,AAAsB,iBAAA,CAzC9G,AA0CD,oCAAuC,iBAAW,gBAAA,AAAiC,mBAAA,AAAsB,iBAAA,CAnCtG,CACF,AAoCD,yDAA4C,WAAA,AAAc,cAAA,AAAiB,UAAA,CA3B1E,AA4BD,gBACI,uBAAA,AACA,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,mBAAA,AACJ,WAAA,AACA,8BAAA,AAEA,uBAAA,AACA,oBAAA,AACA,kBAAA,AAoBA,uBAAA,CA7CH,AA0BG,kBACI,yBAAA,AACI,oBAAA,CAvBX,AAQD,8BAkBQ,gDAAA,AACA,2CAAA,AACA,2BAAA,AACA,gCAAA,AACA,2BAAA,AACA,sDAAA,AAEA,qCAAA,AACA,wBAAA,CAvBP,AAwBO,oJACI,UAAA,CAlBX,AAuBG,gCACI,2BAAA,AACA,2BAAA,AACA,mBAAA,CApBP,AAqBO,oCACI,iCAAA,AACA,kCAAA,AACA,oEAAA,AACA,8DAAA,CAlBX,AAvBD,iCA8CQ,qBAAA,AACI,iBAAA,AACJ,wDAAA,AACA,oEAAA,AACA,cAAA,CAnBP,AAqBO,gKACI,aAAA,CAfX,AAtCD,+CAyDY,eAAA,AACA,yBAAA,AACA,8BAAA,AACA,kBAAA,AACA,uBAAA,AACA,iCAAA,CAfX,AAiBW,mDACI,cAAA,AACA,WAAA,AACA,iBAAA,CAdf,AAiBW,kEACI,yBAAA,CAdf,AAzDD,wEA0EoB,YAAA,CAbnB,AAmBG,6BACI,gBAAA,AACA,0CAAA,CAhBP,AAlED,iCAqFY,aAAA,CAfX","file":"member.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    800px !default;\n\n$on-palm:          600px !default;\n$on-laptop:        800px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/** Wrapper */\n.wrapper { max-width: calc(800px - (30px * 2)); margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 30px; }\n@media screen and (max-width: 800px) { .wrapper { max-width: calc(800px - (30px)); padding-right: 15px; padding-left: 15px; } }\n/** Clearfix */\n.wrapper:after, .footer-col-wrapper:after { content: \"\"; display: table; clear: both; }\n.member {\n    --paddingGeneral: .8rem;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n    width: 100%;\n    padding: var(--paddingGeneral);\n    \n    --defaultColor: $brand-color;\n    --headerHeight: 40px;\n    --textHeight: 28px;\n    * {\n        -ms-flex-flow: nowrap row;\n            flex-flow: nowrap row;\n    }\n    .name {\n        --expandMargin: calc(var(--paddingGeneral) * -1);\n        width: calc(100% - 2*var(--paddingGeneral));\n        height: var(--headerHeight);\n        line-height: var(--headerHeight);\n        margin: var(--expandMargin);\n        padding: 0 var(--paddingGeneral) var(--paddingGeneral) var(--paddingGeneral);\n\n        background-color: var(--defaultColor);\n        text-transform: uppercase;\n        a, a:visited, a:link, a:active {\n            color: #ffffff;\n        }\n    }\n\n    --avatarDimension: 150px;\n    .avatar {\n        display: -webkit-inline-box;\n        display: -ms-inline-flexbox;\n        display: inline-flex;\n        img {\n            max-width: var(--avatarDimension);\n            max-height: var(--avatarDimension);\n            border-bottom: calc(var(--paddingGeneral)) solid var(--defaultColor);\n            box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);\n        }\n    }\n\n    .details {\n        -ms-flex-flow: column;\n            flex-flow: column;\n        padding: var(--paddingGeneral) 0 0 var(--paddingGeneral);\n        width: calc(100% - var(--avatarDimension) - 3*var(--paddingGeneral));\n        font-size: 0.9em;\n\n        a, a:visited, a:link, a:active {\n            color: lighten($brand-color, 15%);\n        }\n\n        .info {\n            min-width: 100%;\n            height: var(--textHeight);\n            line-height: var(--textHeight);\n            overflow-x: hidden;\n            text-overflow: ellipsis;\n            text-rendering: optimizeLegibility;\n\n            :global(.fa) {\n                color: $grey-color;\n                width: 30px;\n                text-align: center;\n            }\n            \n            span.label {\n                text-transform: capitalize;\n\n                &:after {\n                    content: \": \";\n                }\n            }\n        }\n    }\n\n    .bio {\n        margin-top: 15px;\n        width: calc(100% - 2*var(--paddingGeneral));\n\n        :global(.fa) {\n            color: $grey-color;\n        }\n    }\n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.member--member{--paddingGeneral:.8rem;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:wrap row;flex-flow:row wrap;width:100%;padding:var(--paddingGeneral);--defaultColor:#0866c4;--headerHeight:40px;--textHeight:28px;--avatarDimension:150px}.member--member *{-ms-flex-flow:nowrap row;flex-flow:row nowrap}.member--member .member--name{--expandMargin:calc(var(--paddingGeneral) * -1);width:calc(100% - 2*var(--paddingGeneral));height:var(--headerHeight);line-height:var(--headerHeight);margin:var(--expandMargin);padding:0 var(--paddingGeneral) var(--paddingGeneral);background-color:var(--defaultColor);text-transform:uppercase}.member--member .member--name a,.member--member .member--name a:active,.member--member .member--name a:link,.member--member .member--name a:visited{color:#fff}.member--member .member--avatar{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex}.member--member .member--avatar img{max-width:var(--avatarDimension);max-height:var(--avatarDimension);border-bottom:calc(var(--paddingGeneral)) solid var(--defaultColor);box-shadow:0 2px 5px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24)}.member--member .member--details{-ms-flex-flow:column;flex-flow:column;padding:var(--paddingGeneral) 0 0 var(--paddingGeneral);width:calc(100% - var(--avatarDimension) - 3*var(--paddingGeneral));font-size:.9em}.member--member .member--details a,.member--member .member--details a:active,.member--member .member--details a:link,.member--member .member--details a:visited{color:#228cf6}.member--member .member--details .member--info{min-width:100%;height:var(--textHeight);line-height:var(--textHeight);overflow-x:hidden;text-overflow:ellipsis;text-rendering:optimizeLegibility}.member--member .member--details .member--info .fa{color:#828282;width:30px;text-align:center}.member--member .member--details .member--info span.member--label{text-transform:capitalize}.member--member .member--details .member--info span.member--label:after{content:\": \"}.member--member .member--bio{margin-top:15px;width:calc(100% - 2*var(--paddingGeneral))}.member--member .member--bio .fa{color:#828282}", "", {"version":3,"sources":["/./javascripts/components/github/member/member.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,gBACG,uBAAA,AACA,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,mBAAA,AACJ,WAAA,AACA,8BAAA,AAEA,uBAAA,AACA,oBAAA,AACA,kBAAA,AAoBA,uBAAA,CA1EH,AAuDG,kBACI,yBAAA,AACI,oBAAA,CApDX,AAqCA,8BAkBO,gDAAA,AACA,2CAAA,AACA,2BAAA,AACA,gCAAA,AACA,2BAAA,AACA,sDAAA,AAEA,qCAAA,AACA,wBAAA,CApDP,AAqDO,oJACI,UAAA,CA/CX,AAoDG,gCACI,2BAAA,AACA,2BAAA,AACA,mBAAA,CAjDP,AAaA,oCAsCW,iCAAA,AACA,kCAAA,AACA,oEAAA,AACA,8DAAA,CA/CX,AAmDG,iCACI,qBAAA,AACI,iBAAA,AACJ,wDAAA,AACA,oEAAA,AACA,cAAA,CAhDP,AAFA,gKAqDW,aAAA,CA5CX,AATA,+CAyDW,eAAA,AACA,yBAAA,AACA,8BAAA,AACA,kBAAA,AACA,uBAAA,AACA,iCAAA,CA5CX,AA8CW,mDACI,cAAA,AACA,WAAA,AACA,iBAAA,CA3Cf,AA8CW,kEACI,yBAAA,CA3Cf,AA5BA,wEA0EmB,YAAA,CA1CnB,AAgDG,6BACI,gBAAA,AACA,0CAAA,CA7CP,AArCA,iCAqFW,aAAA,CA5CX","file":"member.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.member {\n    --paddingGeneral: .8rem;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n    width: 100%;\n    padding: var(--paddingGeneral);\n    \n    --defaultColor: $brand-color;\n    --headerHeight: 40px;\n    --textHeight: 28px;\n    * {\n        -ms-flex-flow: nowrap row;\n            flex-flow: nowrap row;\n    }\n    .name {\n        --expandMargin: calc(var(--paddingGeneral) * -1);\n        width: calc(100% - 2*var(--paddingGeneral));\n        height: var(--headerHeight);\n        line-height: var(--headerHeight);\n        margin: var(--expandMargin);\n        padding: 0 var(--paddingGeneral) var(--paddingGeneral) var(--paddingGeneral);\n\n        background-color: var(--defaultColor);\n        text-transform: uppercase;\n        a, a:visited, a:link, a:active {\n            color: #ffffff;\n        }\n    }\n\n    --avatarDimension: 150px;\n    .avatar {\n        display: -webkit-inline-box;\n        display: -ms-inline-flexbox;\n        display: inline-flex;\n        img {\n            max-width: var(--avatarDimension);\n            max-height: var(--avatarDimension);\n            border-bottom: calc(var(--paddingGeneral)) solid var(--defaultColor);\n            box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);\n        }\n    }\n\n    .details {\n        -ms-flex-flow: column;\n            flex-flow: column;\n        padding: var(--paddingGeneral) 0 0 var(--paddingGeneral);\n        width: calc(100% - var(--avatarDimension) - 3*var(--paddingGeneral));\n        font-size: 0.9em;\n\n        a, a:visited, a:link, a:active {\n            color: lighten($brand-color, 15%);\n        }\n\n        .info {\n            min-width: 100%;\n            height: var(--textHeight);\n            line-height: var(--textHeight);\n            overflow-x: hidden;\n            text-overflow: ellipsis;\n            text-rendering: optimizeLegibility;\n\n            :global(.fa) {\n                color: $grey-color;\n                width: 30px;\n                text-align: center;\n            }\n            \n            span.label {\n                text-transform: capitalize;\n\n                &:after {\n                    content: \": \";\n                }\n            }\n        }\n    }\n\n    .bio {\n        margin-top: 15px;\n        width: calc(100% - 2*var(--paddingGeneral));\n\n        :global(.fa) {\n            color: $grey-color;\n        }\n    }\n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
-		"wrapper": "member--wrapper",
-		"wrapper": "member--wrapper",
-		"footer-col-wrapper": "member--footer-col-wrapper",
-		"footerColWrapper": "member--footer-col-wrapper",
 		"member": "member--member",
 		"member": "member--member",
 		"name": "member--name",
@@ -42567,226 +42677,7 @@
 	};
 
 /***/ },
-/* 636 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.Github = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(299);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _repos = __webpack_require__(623);
-	
-	var _repos2 = _interopRequireDefault(_repos);
-	
-	var _github = __webpack_require__(637);
-	
-	var _github2 = _interopRequireDefault(_github);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Github = function (_Component) {
-	    _inherits(Github, _Component);
-	
-	    function Github() {
-	        _classCallCheck(this, Github);
-	
-	        return _possibleConstructorReturn(this, (Github.__proto__ || Object.getPrototypeOf(Github)).apply(this, arguments));
-	    }
-	
-	    _createClass(Github, [{
-	        key: 'render',
-	        value: function render() {
-	            var _props = this.props,
-	                owners = _props.owners,
-	                repos = _props.repos;
-	
-	            return _react2.default.createElement(
-	                'div',
-	                { className: _github2.default.github },
-	                _react2.default.createElement(_repos2.default, {
-	                    owners: owners.map(function (owner) {
-	                        return owner.username;
-	                    }),
-	                    repos: repos
-	                })
-	            );
-	        }
-	    }]);
-	
-	    return Github;
-	}(_react.Component);
-	
-	Github.propTypes = {
-	    owners: _react.PropTypes.arrayOf(_react.PropTypes.object),
-	    repos: _react.PropTypes.arrayOf(_react.PropTypes.object)
-	};
-	
-	Github.defaultProps = {
-	    owners: [],
-	    repos: []
-	};
-	
-	exports.Github = Github;
-	exports.default = Github;
-
-/***/ },
-/* 637 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(638);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(621)(content, {"sourceMap":true});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./../../../node_modules/postcss-loader/index.js?sourceMap!./../../../node_modules/sass-resources-loader/lib/loader.js!./github.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./../../../node_modules/postcss-loader/index.js?sourceMap!./../../../node_modules/sass-resources-loader/lib/loader.js!./github.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 638 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(647)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, ".github--wrapper{max-width:740px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:800px){.github--wrapper{max-width:770px;padding-right:15px;padding-left:15px}}.github--footer-col-wrapper:after,.github--wrapper:after{content:\"\";display:table;clear:both}.github--github{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:wrap row;flex-flow:row wrap}", "", {"version":3,"sources":["/./javascripts/components/github/github.scss"],"names":[],"mappings":"AAuEA,iBAAW,gBAAA,AAAqC,kBAAA,AAAqB,iBAAA,AAAoB,mBAAA,AAAsB,iBAAA,CAzC9G,AA0CD,oCAAuC,iBAAW,gBAAA,AAAiC,mBAAA,AAAsB,iBAAA,CAnCtG,CACF,AAoCD,yDAA4C,WAAA,AAAc,cAAA,AAAiB,UAAA,CA3B1E,AA4BD,gBACI,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,kBAAA,CAzBP","file":"github.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    800px !default;\n\n$on-palm:          600px !default;\n$on-laptop:        800px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/** Wrapper */\n.wrapper { max-width: calc(800px - (30px * 2)); margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 30px; }\n@media screen and (max-width: 800px) { .wrapper { max-width: calc(800px - (30px)); padding-right: 15px; padding-left: 15px; } }\n/** Clearfix */\n.wrapper:after, .footer-col-wrapper:after { content: \"\"; display: table; clear: both; }\n.github {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n}"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-	exports.locals = {
-		"wrapper": "github--wrapper",
-		"wrapper": "github--wrapper",
-		"footer-col-wrapper": "github--footer-col-wrapper",
-		"footerColWrapper": "github--footer-col-wrapper",
-		"github": "github--github",
-		"github": "github--github"
-	};
-
-/***/ },
-/* 639 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.About = undefined;
-	
-	var _reactRedux = __webpack_require__(531);
-	
-	var _about = __webpack_require__(640);
-	
-	var _about2 = _interopRequireDefault(_about);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.About = _about2.default;
-	
-	
-	function mapStateToProps(state) {
-	    return {
-	        owners: state.github.users
-	    };
-	}
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_about2.default);
-
-/***/ },
 /* 640 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _react = __webpack_require__(299);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _github = __webpack_require__(622);
-	
-	var _card = __webpack_require__(641);
-	
-	var _card2 = _interopRequireDefault(_card);
-	
-	var _about = __webpack_require__(645);
-	
-	var _about2 = _interopRequireDefault(_about);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var About = function About(_ref) {
-	    var owners = _ref.owners;
-	    return _react2.default.createElement(
-	        'div',
-	        { className: _about2.default.about },
-	        _react2.default.createElement(
-	            'div',
-	            { className: 'wrapper' },
-	            _react2.default.createElement(
-	                'h3',
-	                null,
-	                'Learn a little bit more about us...'
-	            )
-	        ),
-	        _react2.default.createElement(
-	            'div',
-	            { className: _about2.default.members },
-	            owners.map(function (owner) {
-	                return _react2.default.createElement(
-	                    'div',
-	                    { key: 'member-' + owner.username, className: _about2.default.member },
-	                    _react2.default.createElement(
-	                        _card2.default,
-	                        { uniform: true },
-	                        _react2.default.createElement(_github.Member, owner)
-	                    )
-	                );
-	            })
-	        )
-	    );
-	};
-	
-	About.propTypes = {
-	    owners: _react.PropTypes.arrayOf(_react.PropTypes.object)
-	};
-	
-	exports.default = About;
-
-/***/ },
-/* 641 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42795,7 +42686,7 @@
 	  value: true
 	});
 	
-	var _card = __webpack_require__(642);
+	var _card = __webpack_require__(641);
 	
 	var _card2 = _interopRequireDefault(_card);
 
@@ -42804,7 +42695,7 @@
 	exports.default = _card2.default;
 
 /***/ },
-/* 642 */
+/* 641 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42817,7 +42708,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _card = __webpack_require__(643);
+	var _card = __webpack_require__(642);
 	
 	var _card2 = _interopRequireDefault(_card);
 	
@@ -42845,16 +42736,16 @@
 	exports.default = Card;
 
 /***/ },
-/* 643 */
+/* 642 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(644);
+	var content = __webpack_require__(643);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(621)(content, {"sourceMap":true});
+	var update = __webpack_require__(623)(content, {"sourceMap":true});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -42871,22 +42762,18 @@
 	}
 
 /***/ },
-/* 644 */
+/* 643 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(647)();
+	exports = module.exports = __webpack_require__(622)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".card--wrapper{max-width:740px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:800px){.card--wrapper{max-width:770px;padding-right:15px;padding-left:15px}}.card--footer-col-wrapper:after,.card--wrapper:after{content:\"\";display:table;clear:both}.card--card{position:relative;box-sizing:border-box;background:#fff;border-radius:2px;width:calc(100% - 2rem - 10px);margin:1rem;box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);-webkit-transition:all .3s cubic-bezier(.25,.8,.25,1);transition:all .3s cubic-bezier(.25,.8,.25,1)}.card--card.card--strict{height:calc(100% - 2rem)}.card--card:hover{box-shadow:0 14px 28px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.22)}", "", {"version":3,"sources":["/./javascripts/components/card/card.scss"],"names":[],"mappings":"AAuEA,eAAW,gBAAA,AAAqC,kBAAA,AAAqB,iBAAA,AAAoB,mBAAA,AAAsB,iBAAA,CAzC9G,AA0CD,oCAAuC,eAAW,gBAAA,AAAiC,mBAAA,AAAsB,iBAAA,CAnCtG,CACF,AAoCD,qDAA4C,WAAA,AAAc,cAAA,AAAiB,UAAA,CA3B1E,AA4BD,YACI,kBAAA,AACA,sBAAA,AACA,gBAAA,AACA,kBAAA,AACA,+BAAA,AACA,YAAA,AACA,+DAAA,AACA,sDAAA,AACA,6CAAA,CAzBH,AA4BD,yBACI,wBAAA,CAzBH,AA4BD,kBACE,kEAAA,CAzBD","file":"card.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    800px !default;\n\n$on-palm:          600px !default;\n$on-laptop:        800px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/** Wrapper */\n.wrapper { max-width: calc(800px - (30px * 2)); margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 30px; }\n@media screen and (max-width: 800px) { .wrapper { max-width: calc(800px - (30px)); padding-right: 15px; padding-left: 15px; } }\n/** Clearfix */\n.wrapper:after, .footer-col-wrapper:after { content: \"\"; display: table; clear: both; }\n.card {\n    position: relative;\n    box-sizing: border-box;\n    background: #fff;\n    border-radius: 2px;\n    width: calc(100% - 2rem - 10px);\n    margin: 1rem;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n    -webkit-transition: all 0.3s cubic-bezier(.25,.8,.25,1);\n    transition: all 0.3s cubic-bezier(.25,.8,.25,1);\n}\n\n.card.strict {\n    height: calc(100% - 2rem);\n}\n\n.card:hover {\n  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);\n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.card--card{position:relative;box-sizing:border-box;background:#fff;border-radius:2px;width:calc(100% - 2rem - 10px);margin:1rem;box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);-webkit-transition:all .3s cubic-bezier(.25,.8,.25,1);transition:all .3s cubic-bezier(.25,.8,.25,1)}.card--card.card--strict{height:calc(100% - 2rem)}.card--card:hover{box-shadow:0 14px 28px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.22)}", "", {"version":3,"sources":["/./javascripts/components/card/card.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AA4DD,eAGQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,YACG,kBAAA,AACA,sBAAA,AACA,gBAAA,AACA,kBAAA,AACA,+BAAA,AACA,YAAA,AACA,+DAAA,AACA,sDAAA,AACA,6CAAA,CAtDH,AAyDD,yBACI,wBAAA,CAtDH,AAyDD,kBACE,kEAAA,CAtDD","file":"card.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.card {\n    position: relative;\n    box-sizing: border-box;\n    background: #fff;\n    border-radius: 2px;\n    width: calc(100% - 2rem - 10px);\n    margin: 1rem;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n    -webkit-transition: all 0.3s cubic-bezier(.25,.8,.25,1);\n    transition: all 0.3s cubic-bezier(.25,.8,.25,1);\n}\n\n.card.strict {\n    height: calc(100% - 2rem);\n}\n\n.card:hover {\n  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);\n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
-		"wrapper": "card--wrapper",
-		"wrapper": "card--wrapper",
-		"footer-col-wrapper": "card--footer-col-wrapper",
-		"footerColWrapper": "card--footer-col-wrapper",
 		"card": "card--card",
 		"card": "card--card",
 		"strict": "card--strict",
@@ -42894,23 +42781,23 @@
 	};
 
 /***/ },
-/* 645 */
+/* 644 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(646);
+	var content = __webpack_require__(645);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(621)(content, {"sourceMap":true});
+	var update = __webpack_require__(623)(content, {"sourceMap":true});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./../../../node_modules/postcss-loader/index.js?sourceMap!./../../../node_modules/sass-resources-loader/lib/loader.js!./about.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./../../../node_modules/postcss-loader/index.js?sourceMap!./../../../node_modules/sass-resources-loader/lib/loader.js!./about.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./../../../../node_modules/postcss-loader/index.js?sourceMap!./../../../../node_modules/sass-resources-loader/lib/loader.js!./about.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./../../../../node_modules/postcss-loader/index.js?sourceMap!./../../../../node_modules/sass-resources-loader/lib/loader.js!./about.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -42920,22 +42807,18 @@
 	}
 
 /***/ },
-/* 646 */
+/* 645 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(647)();
+	exports = module.exports = __webpack_require__(622)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".about--wrapper{max-width:740px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:800px){.about--wrapper{max-width:770px;padding-right:15px;padding-left:15px}}.about--footer-col-wrapper:after,.about--wrapper:after{content:\"\";display:table;clear:both}.about--about h3{display:block;margin:10px 0;line-height:28px}.about--about .about--members{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row;flex-flow:row;-webkit-box-flex:1;-ms-flex:1;flex:1}.about--about .about--members .about--member{-ms-flex-flow:column;flex-flow:column;max-width:50%}", "", {"version":3,"sources":["/./javascripts/components/about/about.scss"],"names":[],"mappings":"AAuEA,gBAAW,gBAAA,AAAqC,kBAAA,AAAqB,iBAAA,AAAoB,mBAAA,AAAsB,iBAAA,CAzC9G,AA0CD,oCAAuC,gBAAW,gBAAA,AAAiC,mBAAA,AAAsB,iBAAA,CAnCtG,CACF,AAoCD,uDAA4C,WAAA,AAAc,cAAA,AAAiB,UAAA,CA3B1E,AA4BD,iBAEQ,cAAA,AACA,cAAA,AACA,gBAAA,CA1BP,AAsBD,8BAOQ,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,kBAAA,AACI,cAAA,AACJ,mBAAA,AACI,WAAA,AACI,MAAA,CAzBf,AA2BO,6CACI,qBAAA,AACI,iBAAA,AACJ,aAAA,CAxBX","file":"about.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    800px !default;\n\n$on-palm:          600px !default;\n$on-laptop:        800px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/** Wrapper */\n.wrapper { max-width: calc(800px - (30px * 2)); margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 30px; }\n@media screen and (max-width: 800px) { .wrapper { max-width: calc(800px - (30px)); padding-right: 15px; padding-left: 15px; } }\n/** Clearfix */\n.wrapper:after, .footer-col-wrapper:after { content: \"\"; display: table; clear: both; }\n.about {\n    h3 {\n        display: block;\n        margin: 10px 0;\n        line-height: 28px;\n    }\n    .members {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -ms-flex-flow: row;\n            flex-flow: row;\n        -webkit-box-flex: 1;\n            -ms-flex: 1;\n                flex: 1;\n\n        .member {\n            -ms-flex-flow: column;\n                flex-flow: column;\n            max-width: 50%; \n        }\n    }\n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.about--about h3{display:block;margin:10px 0;line-height:28px}.about--about .about--members{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row;flex-flow:row;-webkit-box-flex:1;-ms-flex:1;flex:1}.about--about .about--members .about--member{-ms-flex-flow:column;flex-flow:column;max-width:50%}", "", {"version":3,"sources":["/./javascripts/components/pages/about/about.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,iBAEO,cAAA,AACA,cAAA,AACA,gBAAA,CAvDP,AAmDA,8BAOO,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,kBAAA,AACI,cAAA,AACJ,mBAAA,AACI,WAAA,AACI,MAAA,CAtDf,AAwDO,6CACI,qBAAA,AACI,iBAAA,AACJ,aAAA,CArDX","file":"about.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.about {\n    h3 {\n        display: block;\n        margin: 10px 0;\n        line-height: 28px;\n    }\n    .members {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -ms-flex-flow: row;\n            flex-flow: row;\n        -webkit-box-flex: 1;\n            -ms-flex: 1;\n                flex: 1;\n\n        .member {\n            -ms-flex-flow: column;\n                flex-flow: column;\n            max-width: 50%; \n        }\n    }\n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
-		"wrapper": "about--wrapper",
-		"wrapper": "about--wrapper",
-		"footer-col-wrapper": "about--footer-col-wrapper",
-		"footerColWrapper": "about--footer-col-wrapper",
 		"about": "about--about",
 		"about": "about--about",
 		"members": "about--members",
@@ -42945,76 +42828,131 @@
 	};
 
 /***/ },
-/* 647 */
-/***/ function(module, exports) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	// css base code, injected by the css-loader
-	module.exports = function() {
-		var list = [];
-	
-		// return the list of modules as css string
-		list.toString = function toString() {
-			var result = [];
-			for(var i = 0; i < this.length; i++) {
-				var item = this[i];
-				if(item[2]) {
-					result.push("@media " + item[2] + "{" + item[1] + "}");
-				} else {
-					result.push(item[1]);
-				}
-			}
-			return result.join("");
-		};
-	
-		// import a list of modules into the list
-		list.i = function(modules, mediaQuery) {
-			if(typeof modules === "string")
-				modules = [[null, modules, ""]];
-			var alreadyImportedModules = {};
-			for(var i = 0; i < this.length; i++) {
-				var id = this[i][0];
-				if(typeof id === "number")
-					alreadyImportedModules[id] = true;
-			}
-			for(i = 0; i < modules.length; i++) {
-				var item = modules[i];
-				// skip already imported module
-				// this implementation is not 100% perfect for weird media query combinations
-				//  when a module is imported multiple times with different media queries.
-				//  I hope this will never occur (Hey this way we have smaller bundles)
-				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-					if(mediaQuery && !item[2]) {
-						item[2] = mediaQuery;
-					} else if(mediaQuery) {
-						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-					}
-					list.push(item);
-				}
-			}
-		};
-		return list;
-	};
-
-
-/***/ },
-/* 648 */
-/***/ function(module, exports) {
+/* 646 */
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	var Headers = {
-	    'Content-Type': 'application/json; charset=utf-8',
-	    Accept: 'application/vnd.github.v3+json'
+	
+	var _reactRedux = __webpack_require__(531);
+	
+	var _githubActions = __webpack_require__(579);
+	
+	var _githubActions2 = _interopRequireDefault(_githubActions);
+	
+	var _portifolio = __webpack_require__(647);
+	
+	var _portifolio2 = _interopRequireDefault(_portifolio);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function mapStateToProps(state) {
+	    return {
+	        owners: state.github.users.map(function (user) {
+	            return user.username;
+	        }),
+	        repos: state.github.repos,
+	        reposStatus: state.github.reposStatus,
+	        usersStatus: state.github.usersStatus
+	    };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, _githubActions2.default)(_portifolio2.default);
+
+/***/ },
+/* 647 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.Portifolio = undefined;
+	
+	var _react = __webpack_require__(299);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _github = __webpack_require__(626);
+	
+	var _portifolio = __webpack_require__(648);
+	
+	var _portifolio2 = _interopRequireDefault(_portifolio);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Portifolio = function Portifolio(_ref) {
+	    var owners = _ref.owners,
+	        repos = _ref.repos;
+	    return _react2.default.createElement(
+	        'div',
+	        { className: _portifolio2.default.github },
+	        _react2.default.createElement(_github.Repos, {
+	            owners: owners,
+	            repos: repos
+	        })
+	    );
 	};
 	
-	exports.default = Headers;
+	Portifolio.propTypes = {
+	    owners: _react.PropTypes.arrayOf(_react.PropTypes.string),
+	    repos: _react.PropTypes.arrayOf(_react.PropTypes.object)
+	};
+	
+	Portifolio.defaultProps = {
+	    owners: [],
+	    repos: []
+	};
+	
+	exports.Portifolio = Portifolio;
+	exports.default = Portifolio;
+
+/***/ },
+/* 648 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(649);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(623)(content, {"sourceMap":true});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./../../../../node_modules/postcss-loader/index.js?sourceMap!./../../../../node_modules/sass-resources-loader/lib/loader.js!./portifolio.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./../../../../node_modules/postcss-loader/index.js?sourceMap!./../../../../node_modules/sass-resources-loader/lib/loader.js!./portifolio.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 649 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(622)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.portifolio--github{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:wrap row;flex-flow:row wrap}", "", {"version":3,"sources":["/./javascripts/components/pages/portifolio/portifolio.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AA4DD,eAGQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,oBACG,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,kBAAA,CAtDP","file":"portifolio.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.github {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n}"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+	exports.locals = {
+		"github": "portifolio--github",
+		"github": "portifolio--github"
+	};
 
 /***/ }
 /******/ ]);
