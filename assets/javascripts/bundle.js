@@ -8202,15 +8202,20 @@
 	
 	var _components = __webpack_require__(475);
 	
-	var _components2 = _interopRequireDefault(_components);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var root = document.getElementById('root'); /* global document */
+	var container = document.getElementById('root'); /* global document, window */
 	
-	if (root) {
-	    (0, _reactDom.render)(_react2.default.createElement(_components2.default, null), root);
+	if (container) {
+	  (0, _reactDom.render)(_react2.default.createElement(_components.Components, null), container);
 	}
+	
+	var _window$$blogConfig$n = window.$blogConfig.navigation,
+	    root = _window$$blogConfig$n.root,
+	    pages = _window$$blogConfig$n.pages,
+	    target = _window$$blogConfig$n.target;
+	
+	(0, _reactDom.render)(_react2.default.createElement(_components.Header, { root: root, pages: pages }), target);
 
 /***/ },
 /* 299 */
@@ -29460,8 +29465,9 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
+	exports.Components = exports.Header = undefined;
 	
 	var _react = __webpack_require__(299);
 	
@@ -29479,6 +29485,10 @@
 	
 	var _helloWorld2 = _interopRequireDefault(_helloWorld);
 	
+	var _header = __webpack_require__(657);
+	
+	var _header2 = _interopRequireDefault(_header);
+	
 	var _about = __webpack_require__(624);
 	
 	var _about2 = _interopRequireDefault(_about);
@@ -29490,41 +29500,43 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Wrapper = function Wrapper(_ref) {
-	    var children = _ref.children;
-	    return _react2.default.createElement(
-	        'div',
-	        null,
-	        children
-	    );
+	  var children = _ref.children;
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    children
+	  );
 	};
 	
 	var Blank = function Blank() {
-	    return _react2.default.createElement('i', null);
+	  return _react2.default.createElement('i', null);
 	};
 	
 	Wrapper.propTypes = {
-	    children: _react.PropTypes.oneOfType([_react.PropTypes.arrayOf([_react.PropTypes.string, _react.PropTypes.node, _react.PropTypes.element]), _react.PropTypes.string, _react.PropTypes.node, _react.PropTypes.element])
+	  children: _react.PropTypes.oneOfType([_react.PropTypes.arrayOf([_react.PropTypes.string, _react.PropTypes.node, _react.PropTypes.element]), _react.PropTypes.string, _react.PropTypes.node, _react.PropTypes.element])
 	};
 	
 	var Components = function Components() {
-	    return _react2.default.createElement(
-	        _reactRedux.Provider,
-	        { store: _store2.default },
-	        _react2.default.createElement(
-	            _reactRouter.Router,
-	            { history: _reactRouter.browserHistory },
-	            _react2.default.createElement(
-	                _reactRouter.Route,
-	                { path: '/', component: Wrapper },
-	                _react2.default.createElement(_reactRouter.Route, { component: _helloWorld2.default, path: 'never-page' }),
-	                _react2.default.createElement(_reactRouter.Route, { component: _portifolio2.default, path: 'portifolio' }),
-	                _react2.default.createElement(_reactRouter.Route, { component: _about2.default, path: 'about' }),
-	                _react2.default.createElement(_reactRouter.Route, { component: Blank, path: '*' })
-	            )
-	        )
-	    );
+	  return _react2.default.createElement(
+	    _reactRedux.Provider,
+	    { store: _store2.default },
+	    _react2.default.createElement(
+	      _reactRouter.Router,
+	      { history: _reactRouter.browserHistory },
+	      _react2.default.createElement(
+	        _reactRouter.Route,
+	        { path: '/', component: Wrapper },
+	        _react2.default.createElement(_reactRouter.Route, { component: _helloWorld2.default, path: 'never-page' }),
+	        _react2.default.createElement(_reactRouter.Route, { component: _portifolio2.default, path: 'portifolio' }),
+	        _react2.default.createElement(_reactRouter.Route, { component: _about2.default, path: 'about' }),
+	        _react2.default.createElement(_reactRouter.Route, { component: Blank, path: '*' })
+	      )
+	    )
+	  );
 	};
 	
+	exports.Header = _header2.default;
+	exports.Components = Components;
 	exports.default = Components;
 
 /***/ },
@@ -41526,7 +41538,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.hello-world--title{text-transform:capitalize}", "", {"version":3,"sources":["/./javascripts/components/hello-world/hello-world.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,oBACG,yBAAA,CAtDH","file":"hello-world.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.title {\n    text-transform: capitalize; \n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.hello-world--title{text-transform:capitalize}", "", {"version":3,"sources":["/./javascripts/components/hello-world/hello-world.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,oBACG,yBAAA,CAtDH","file":"hello-world.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         500px !default;\n$on-tablet:        940px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.title {\n    text-transform: capitalize; \n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -42415,7 +42427,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.repos--repos{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-ms-flex:1;flex:1;-ms-flex-flow:wrap row;flex-flow:row wrap}.repos--repos .repos--repo{-ms-flex-flow:nowrap row;flex-flow:row nowrap}@media only screen and (min-width:320px){.repos--repos .repos--repo{min-width:100%}.repos--repos .repos--repo .repos--avatar{max-width:60px;max-height:60px}}@media only screen and (min-width:480px){.repos--repos .repos--repo{min-width:100%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:768px){.repos--repos .repos--repo{min-width:50%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:992px){.repos--repos .repos--repo{min-width:33.33%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:1200px){.repos--repos .repos--repo{min-width:25%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}", "", {"version":3,"sources":["/./javascripts/components/github/repos/repos.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,cACG,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,mBAAA,AACI,WAAA,AACI,OAAA,AACR,uBAAA,AACI,kBAAA,CAtDP,AA8CA,2BAWO,yBAAA,AACI,oBAAA,CAhDX,AAkDO,yCAdP,2BAeW,cAAA,CA9CT,AA+CS,0CACI,eAAA,AACA,eAAA,CA5Cb,CACF,AA+CO,yCAtBP,2BAuBW,cAAA,CA3CT,AAoBF,0CAyBe,eAAA,AACA,eAAA,CAzCb,CACF,AA4CO,yCApBJ,2BAqBQ,aAAA,CAxCT,AAyCS,0CACI,eAAA,AACA,eAAA,CAtCb,CACF,AAyCO,yCAtCP,2BAuCW,gBAAA,CArCT,AAsCS,0CACI,eAAA,AACA,eAAA,CAnCb,CACF,AAsCO,0CA9CP,2BA+CW,aAAA,CAlCT,AAbF,0CAiDe,eAAA,AACA,eAAA,CAhCb,CACF","file":"repos.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.repos {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n    \n    .repo {\n        -ms-flex-flow: nowrap row;\n            flex-flow: nowrap row;\n        /* Custom, iPhone Retina */ \n        @media only screen and (min-width : 320px) {\n            min-width: 100%; \n            .avatar {\n                max-width: 60px;\n                max-height: 60px;\n            }\n        }\n        /* Extra Small Devices, Phones */ \n        @media only screen and (min-width : 480px) {\n            min-width: 100%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Small Devices, Tablets */\n        @media only screen and (min-width : 768px) {\n            min-width: 50%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Medium Devices, Desktops */\n        @media only screen and (min-width : 992px) {\n            min-width: 33.33%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Large Devices, Wide Screens */\n        @media only screen and (min-width : 1200px) {\n            min-width: 25%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n    }\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.repos--repos{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-ms-flex:1;flex:1;-ms-flex-flow:wrap row;flex-flow:row wrap}.repos--repos .repos--repo{-ms-flex-flow:nowrap row;flex-flow:row nowrap}@media only screen and (min-width:320px){.repos--repos .repos--repo{min-width:100%}.repos--repos .repos--repo .repos--avatar{max-width:60px;max-height:60px}}@media only screen and (min-width:480px){.repos--repos .repos--repo{min-width:100%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:768px){.repos--repos .repos--repo{min-width:50%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:992px){.repos--repos .repos--repo{min-width:33.33%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:1200px){.repos--repos .repos--repo{min-width:25%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}", "", {"version":3,"sources":["/./javascripts/components/github/repos/repos.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,cACG,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,mBAAA,AACI,WAAA,AACI,OAAA,AACR,uBAAA,AACI,kBAAA,CAtDP,AA8CA,2BAWO,yBAAA,AACI,oBAAA,CAhDX,AAkDO,yCAdP,2BAeW,cAAA,CA9CT,AA+CS,0CACI,eAAA,AACA,eAAA,CA5Cb,CACF,AA+CO,yCAtBP,2BAuBW,cAAA,CA3CT,AAoBF,0CAyBe,eAAA,AACA,eAAA,CAzCb,CACF,AA4CO,yCApBJ,2BAqBQ,aAAA,CAxCT,AAyCS,0CACI,eAAA,AACA,eAAA,CAtCb,CACF,AAyCO,yCAtCP,2BAuCW,gBAAA,CArCT,AAsCS,0CACI,eAAA,AACA,eAAA,CAnCb,CACF,AAsCO,0CA9CP,2BA+CW,aAAA,CAlCT,AAbF,0CAiDe,eAAA,AACA,eAAA,CAhCb,CACF","file":"repos.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         500px !default;\n$on-tablet:        940px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.repos {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n    \n    .repo {\n        -ms-flex-flow: nowrap row;\n            flex-flow: nowrap row;\n        /* Custom, iPhone Retina */ \n        @media only screen and (min-width : 320px) {\n            min-width: 100%; \n            .avatar {\n                max-width: 60px;\n                max-height: 60px;\n            }\n        }\n        /* Extra Small Devices, Phones */ \n        @media only screen and (min-width : 480px) {\n            min-width: 100%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Small Devices, Tablets */\n        @media only screen and (min-width : 768px) {\n            min-width: 50%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Medium Devices, Desktops */\n        @media only screen and (min-width : 992px) {\n            min-width: 33.33%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Large Devices, Wide Screens */\n        @media only screen and (min-width : 1200px) {\n            min-width: 25%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n    }\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -42656,7 +42668,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.member--member{--paddingGeneral:.8rem;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:wrap row;flex-flow:row wrap;width:100%;padding:var(--paddingGeneral);--defaultColor:#0866c4;--headerHeight:40px;--textHeight:28px;--avatarDimension:150px}.member--member *{-ms-flex-flow:nowrap row;flex-flow:row nowrap}.member--member .member--name{--expandMargin:calc(var(--paddingGeneral) * -1);width:calc(100% - 2*var(--paddingGeneral));height:var(--headerHeight);line-height:var(--headerHeight);margin:var(--expandMargin);padding:0 var(--paddingGeneral) var(--paddingGeneral);background-color:var(--defaultColor);text-transform:uppercase}.member--member .member--name a,.member--member .member--name a:active,.member--member .member--name a:link,.member--member .member--name a:visited{color:#fff}.member--member .member--avatar{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex}.member--member .member--avatar img{max-width:var(--avatarDimension);max-height:var(--avatarDimension);border-bottom:calc(var(--paddingGeneral)) solid var(--defaultColor);box-shadow:0 2px 5px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24)}.member--member .member--details{-ms-flex-flow:column;flex-flow:column;padding:var(--paddingGeneral) 0 0 var(--paddingGeneral);width:calc(100% - var(--avatarDimension) - 3*var(--paddingGeneral));font-size:.9em}.member--member .member--details a,.member--member .member--details a:active,.member--member .member--details a:link,.member--member .member--details a:visited{color:#228cf6}.member--member .member--details .member--info{min-width:100%;height:var(--textHeight);line-height:var(--textHeight);overflow-x:hidden;text-overflow:ellipsis;text-rendering:optimizeLegibility}.member--member .member--details .member--info .fa{color:#828282;width:30px;text-align:center}.member--member .member--details .member--info span.member--label{text-transform:capitalize}.member--member .member--details .member--info span.member--label:after{content:\": \"}.member--member .member--bio{margin-top:15px;width:calc(100% - 2*var(--paddingGeneral))}.member--member .member--bio .fa{color:#828282}", "", {"version":3,"sources":["/./javascripts/components/github/member/member.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,gBACG,uBAAA,AACA,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,mBAAA,AACJ,WAAA,AACA,8BAAA,AAEA,uBAAA,AACA,oBAAA,AACA,kBAAA,AAoBA,uBAAA,CA1EH,AAuDG,kBACI,yBAAA,AACI,oBAAA,CApDX,AAqCA,8BAkBO,gDAAA,AACA,2CAAA,AACA,2BAAA,AACA,gCAAA,AACA,2BAAA,AACA,sDAAA,AAEA,qCAAA,AACA,wBAAA,CApDP,AAqDO,oJACI,UAAA,CA/CX,AAoDG,gCACI,2BAAA,AACA,2BAAA,AACA,mBAAA,CAjDP,AAaA,oCAsCW,iCAAA,AACA,kCAAA,AACA,oEAAA,AACA,8DAAA,CA/CX,AAmDG,iCACI,qBAAA,AACI,iBAAA,AACJ,wDAAA,AACA,oEAAA,AACA,cAAA,CAhDP,AAFA,gKAqDW,aAAA,CA5CX,AATA,+CAyDW,eAAA,AACA,yBAAA,AACA,8BAAA,AACA,kBAAA,AACA,uBAAA,AACA,iCAAA,CA5CX,AA8CW,mDACI,cAAA,AACA,WAAA,AACA,iBAAA,CA3Cf,AA8CW,kEACI,yBAAA,CA3Cf,AA5BA,wEA0EmB,YAAA,CA1CnB,AAgDG,6BACI,gBAAA,AACA,0CAAA,CA7CP,AArCA,iCAqFW,aAAA,CA5CX","file":"member.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.member {\n    --paddingGeneral: .8rem;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n    width: 100%;\n    padding: var(--paddingGeneral);\n    \n    --defaultColor: $brand-color;\n    --headerHeight: 40px;\n    --textHeight: 28px;\n    * {\n        -ms-flex-flow: nowrap row;\n            flex-flow: nowrap row;\n    }\n    .name {\n        --expandMargin: calc(var(--paddingGeneral) * -1);\n        width: calc(100% - 2*var(--paddingGeneral));\n        height: var(--headerHeight);\n        line-height: var(--headerHeight);\n        margin: var(--expandMargin);\n        padding: 0 var(--paddingGeneral) var(--paddingGeneral) var(--paddingGeneral);\n\n        background-color: var(--defaultColor);\n        text-transform: uppercase;\n        a, a:visited, a:link, a:active {\n            color: #ffffff;\n        }\n    }\n\n    --avatarDimension: 150px;\n    .avatar {\n        display: -webkit-inline-box;\n        display: -ms-inline-flexbox;\n        display: inline-flex;\n        img {\n            max-width: var(--avatarDimension);\n            max-height: var(--avatarDimension);\n            border-bottom: calc(var(--paddingGeneral)) solid var(--defaultColor);\n            box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);\n        }\n    }\n\n    .details {\n        -ms-flex-flow: column;\n            flex-flow: column;\n        padding: var(--paddingGeneral) 0 0 var(--paddingGeneral);\n        width: calc(100% - var(--avatarDimension) - 3*var(--paddingGeneral));\n        font-size: 0.9em;\n\n        a, a:visited, a:link, a:active {\n            color: lighten($brand-color, 15%);\n        }\n\n        .info {\n            min-width: 100%;\n            height: var(--textHeight);\n            line-height: var(--textHeight);\n            overflow-x: hidden;\n            text-overflow: ellipsis;\n            text-rendering: optimizeLegibility;\n\n            :global(.fa) {\n                color: $grey-color;\n                width: 30px;\n                text-align: center;\n            }\n            \n            span.label {\n                text-transform: capitalize;\n\n                &:after {\n                    content: \": \";\n                }\n            }\n        }\n    }\n\n    .bio {\n        margin-top: 15px;\n        width: calc(100% - 2*var(--paddingGeneral));\n\n        :global(.fa) {\n            color: $grey-color;\n        }\n    }\n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.member--member{--paddingGeneral:.8rem;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:wrap row;flex-flow:row wrap;width:100%;padding:var(--paddingGeneral);--defaultColor:#0866c4;--headerHeight:40px;--textHeight:28px;--avatarDimension:150px}.member--member *{-ms-flex-flow:nowrap row;flex-flow:row nowrap}.member--member .member--name{--expandMargin:calc(var(--paddingGeneral) * -1);width:calc(100% - 2*var(--paddingGeneral));height:var(--headerHeight);line-height:var(--headerHeight);margin:var(--expandMargin);padding:0 var(--paddingGeneral) var(--paddingGeneral);background-color:var(--defaultColor);text-transform:uppercase}@media screen and (max-width:500px){.member--member .member--name{text-align:center}}.member--member .member--name a,.member--member .member--name a:active,.member--member .member--name a:link,.member--member .member--name a:visited{color:#fff}@media screen and (max-width:500px){.member--member .member--avatar{width:calc(100% - 2*var(--paddingGeneral))}.member--member .member--avatar img{display:block;border-radius:90px;margin:0 auto}}.member--member .member--avatar{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex}.member--member .member--avatar img{max-width:var(--avatarDimension);max-height:var(--avatarDimension);border-bottom:calc(var(--paddingGeneral)) solid var(--defaultColor);box-shadow:0 2px 5px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24)}.member--member .member--details{-ms-flex-flow:column;flex-flow:column;padding:var(--paddingGeneral) 0 0 var(--paddingGeneral);width:calc(100% - var(--avatarDimension) - 3*var(--paddingGeneral));font-size:.9em}@media screen and (max-width:500px){.member--member .member--details{padding:var(--paddingGeneral) var(--paddingGeneral) 0;width:calc(100% - 4*var(--paddingGeneral))}}.member--member .member--details a,.member--member .member--details a:active,.member--member .member--details a:link,.member--member .member--details a:visited{color:#228cf6}.member--member .member--details .member--info{min-width:100%;line-height:var(--textHeight);overflow-x:hidden;text-overflow:ellipsis;text-rendering:optimizeLegibility}.member--member .member--details .member--info .fa{color:#828282;width:25px;text-align:center}.member--member .member--details .member--info span.member--label{text-transform:capitalize}.member--member .member--details .member--info span.member--label:after{content:\": \"}@media screen and (max-width:500px){.member--member .member--details .member--info{position:relative}.member--member .member--details .member--info .fa{position:absolute;left:7px;top:7px}.member--member .member--details .member--info span.member--label{display:block;text-align:center;background-color:#e8e8e8}.member--member .member--details .member--info span.member--label:after{content:\"\"}.member--member .member--details .member--info span:last-child{display:block;text-align:center}}.member--member .member--bio{margin-top:15px;width:calc(100% - 2*var(--paddingGeneral))}.member--member .member--bio .fa{color:#828282}", "", {"version":3,"sources":["/./javascripts/components/github/member/member.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,gBACG,uBAAA,AACA,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,mBAAA,AACJ,WAAA,AACA,8BAAA,AAEA,uBAAA,AACA,oBAAA,AACA,kBAAA,AAwBA,uBAAA,CA9EH,AAuDG,kBACI,yBAAA,AACI,oBAAA,CApDX,AAqCA,8BAkBO,gDAAA,AACA,2CAAA,AACA,2BAAA,AACA,gCAAA,AACA,2BAAA,AACA,sDAAA,AAEA,qCAAA,AACA,wBAAA,CApDP,AA9CC,oCAwED,8BA6BW,iBAAA,CAlDT,CACF,AAoBA,oJAgCW,UAAA,CA7CX,AA3DC,oCAwED,gCAwCW,0CAAA,CAhDT,AAQF,oCA2Ce,cAAA,AACA,mBAAA,AACA,aAAA,CA/Cb,CACF,AAmDG,gCACI,2BAAA,AACA,2BAAA,AACA,mBAAA,CAhDP,AALA,oCAwDW,iCAAA,AACA,kCAAA,AACA,oEAAA,AACA,8DAAA,CA/CX,AAmDG,iCACI,qBAAA,AACI,iBAAA,AACJ,wDAAA,AACA,oEAAA,AACA,cAAA,CAhDP,AA5FC,oCAuIE,iCAQQ,sDAAA,AACA,0CAAA,CA9CT,CACF,AA3BA,gKA4EW,aAAA,CA1CX,AA6CO,+CACI,eAAA,AACA,8BAAA,AACA,kBAAA,AACA,uBAAA,AACA,iCAAA,CA1CX,AA1CA,mDAuFe,cAAA,AACA,WAAA,AACA,iBAAA,CAzCf,AAhDA,kEA6Fe,yBAAA,CAzCf,AAwCW,wEAIQ,YAAA,CAxCnB,AAhIC,oCAwED,+CAqGe,iBAAA,CAxCb,AA7DF,mDAwGmB,kBAAA,AACA,SAAA,AACA,OAAA,CAvCjB,AA0Ca,kEACI,cAAA,AACA,kBAAA,AACA,wBAAA,CAvCjB,AAoCa,wEAMQ,UAAA,CAtCrB,AAyCa,+DACI,cAAA,AACA,iBAAA,CAtCjB,CACF,AAnFA,6BA+HO,gBAAA,AACA,0CAAA,CAxCP,AA0CO,iCACI,aAAA,CAvCX","file":"member.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         500px !default;\n$on-tablet:        940px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.member {\n    --paddingGeneral: .8rem;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n    width: 100%;\n    padding: var(--paddingGeneral);\n    \n    --defaultColor: $brand-color;\n    --headerHeight: 40px;\n    --textHeight: 28px;\n    * {\n        -ms-flex-flow: nowrap row;\n            flex-flow: nowrap row;\n    }\n    .name {\n        --expandMargin: calc(var(--paddingGeneral) * -1);\n        width: calc(100% - 2*var(--paddingGeneral));\n        height: var(--headerHeight);\n        line-height: var(--headerHeight);\n        margin: var(--expandMargin);\n        padding: 0 var(--paddingGeneral) var(--paddingGeneral) var(--paddingGeneral);\n\n        background-color: var(--defaultColor);\n        text-transform: uppercase;\n        \n        @include max-media-query($on-phone) {\n            text-align: center;\n        }\n        a, a:visited, a:link, a:active {\n            color: #ffffff;\n        }\n    }\n\n    --avatarDimension: 150px;\n\n    @include max-media-query($on-phone) {\n        .avatar {\n            width: calc(100% - 2*var(--paddingGeneral));\n\n            img {\n                display: block;\n                border-radius: 90px;\n                margin: 0 auto;\n            }\n        }\n    }\n\n    .avatar {\n        display: -webkit-inline-box;\n        display: -ms-inline-flexbox;\n        display: inline-flex;\n\n        img {\n            max-width: var(--avatarDimension);\n            max-height: var(--avatarDimension);\n            border-bottom: calc(var(--paddingGeneral)) solid var(--defaultColor);\n            box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);\n        }\n    }\n\n    .details {\n        -ms-flex-flow: column;\n            flex-flow: column;\n        padding: var(--paddingGeneral) 0 0 var(--paddingGeneral);\n        width: calc(100% - var(--avatarDimension) - 3*var(--paddingGeneral));\n        font-size: 0.9em;\n\n        @include max-media-query($on-phone) {\n            padding: var(--paddingGeneral) var(--paddingGeneral) 0 var(--paddingGeneral);\n            width: calc(100% - 4*var(--paddingGeneral));\n        }\n\n        a, a:visited, a:link, a:active {\n            color: lighten($brand-color, 15%);\n        }\n\n        .info {\n            min-width: 100%;\n            line-height: var(--textHeight);\n            overflow-x: hidden;\n            text-overflow: ellipsis;\n            text-rendering: optimizeLegibility;\n\n            :global(.fa) {\n                color: $grey-color;\n                width: 25px;\n                text-align: center;\n            }\n            \n            span.label {\n                text-transform: capitalize;\n\n                &:after {\n                    content: \": \";\n                }\n            }\n\n            @include max-media-query($on-phone) {\n                position: relative;\n\n                :global(.fa) {\n                    position: absolute;\n                    left: 7px;\n                    top: 7px;\n                }\n\n                span.label {\n                    display: block;\n                    text-align: center;\n                    background-color: $grey-color-light;\n\n                    &:after {\n                        content: \"\";\n                    }\n                }\n                span:last-child {\n                    display: block;\n                    text-align: center;\n                }\n            }\n        }\n    }\n\n    .bio {\n        margin-top: 15px;\n        width: calc(100% - 2*var(--paddingGeneral));\n\n        :global(.fa) {\n            color: $grey-color;\n        }\n    }\n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -42770,7 +42782,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.card--card{position:relative;box-sizing:border-box;background:#fff;border-radius:2px;width:calc(100% - 2rem - 10px);margin:1rem;box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);-webkit-transition:all .3s cubic-bezier(.25,.8,.25,1);transition:all .3s cubic-bezier(.25,.8,.25,1)}.card--card.card--strict{height:calc(100% - 2rem)}.card--card:hover{box-shadow:0 14px 28px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.22)}", "", {"version":3,"sources":["/./javascripts/components/card/card.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AA4DD,eAGQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,YACG,kBAAA,AACA,sBAAA,AACA,gBAAA,AACA,kBAAA,AACA,+BAAA,AACA,YAAA,AACA,+DAAA,AACA,sDAAA,AACA,6CAAA,CAtDH,AAyDD,yBACI,wBAAA,CAtDH,AAyDD,kBACE,kEAAA,CAtDD","file":"card.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.card {\n    position: relative;\n    box-sizing: border-box;\n    background: #fff;\n    border-radius: 2px;\n    width: calc(100% - 2rem - 10px);\n    margin: 1rem;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n    -webkit-transition: all 0.3s cubic-bezier(.25,.8,.25,1);\n    transition: all 0.3s cubic-bezier(.25,.8,.25,1);\n}\n\n.card.strict {\n    height: calc(100% - 2rem);\n}\n\n.card:hover {\n  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);\n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.card--card{position:relative;box-sizing:border-box;background:#fff;border-radius:2px;width:calc(100% - 2rem - 10px);margin:1rem;box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);-webkit-transition:all .3s cubic-bezier(.25,.8,.25,1);transition:all .3s cubic-bezier(.25,.8,.25,1)}.card--card.card--strict{height:calc(100% - 2rem)}.card--card:hover{box-shadow:0 14px 28px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.22)}", "", {"version":3,"sources":["/./javascripts/components/card/card.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AA4DD,eAGQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,YACG,kBAAA,AACA,sBAAA,AACA,gBAAA,AACA,kBAAA,AACA,+BAAA,AACA,YAAA,AACA,+DAAA,AACA,sDAAA,AACA,6CAAA,CAtDH,AAyDD,yBACI,wBAAA,CAtDH,AAyDD,kBACE,kEAAA,CAtDD","file":"card.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         500px !default;\n$on-tablet:        940px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.card {\n    position: relative;\n    box-sizing: border-box;\n    background: #fff;\n    border-radius: 2px;\n    width: calc(100% - 2rem - 10px);\n    margin: 1rem;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n    -webkit-transition: all 0.3s cubic-bezier(.25,.8,.25,1);\n    transition: all 0.3s cubic-bezier(.25,.8,.25,1);\n}\n\n.card.strict {\n    height: calc(100% - 2rem);\n}\n\n.card:hover {\n  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);\n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -42815,7 +42827,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.about--about h3{display:block;margin:10px 0;line-height:28px}.about--about .about--members{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row;flex-flow:row;-webkit-box-flex:1;-ms-flex:1;flex:1}.about--about .about--members .about--member{-ms-flex-flow:column;flex-flow:column;max-width:50%}", "", {"version":3,"sources":["/./javascripts/components/pages/about/about.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,iBAEO,cAAA,AACA,cAAA,AACA,gBAAA,CAvDP,AAmDA,8BAOO,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,kBAAA,AACI,cAAA,AACJ,mBAAA,AACI,WAAA,AACI,MAAA,CAtDf,AAwDO,6CACI,qBAAA,AACI,iBAAA,AACJ,aAAA,CArDX","file":"about.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.about {\n    h3 {\n        display: block;\n        margin: 10px 0;\n        line-height: 28px;\n    }\n    .members {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -ms-flex-flow: row;\n            flex-flow: row;\n        -webkit-box-flex: 1;\n            -ms-flex: 1;\n                flex: 1;\n\n        .member {\n            -ms-flex-flow: column;\n                flex-flow: column;\n            max-width: 50%; \n        }\n    }\n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.about--about h3{display:block;margin:10px 0;line-height:28px}.about--about .about--members{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;-webkit-box-flex:1;-ms-flex:1;flex:1}.about--about .about--members .about--member{-ms-flex-flow:column;flex-flow:column;max-width:50%}@media screen and (max-width:940px){.about--about .about--members .about--member{max-width:100%;min-width:100%;-ms-flex-flow:row wrap;flex-flow:row wrap}}", "", {"version":3,"sources":["/./javascripts/components/pages/about/about.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AA4DD,eAGQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,iBAEO,cAAA,AACA,cAAA,AACA,gBAAA,CAvDP,AAyDG,8BACI,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,mBAAA,AACJ,mBAAA,AACI,WAAA,AACI,MAAA,CAtDf,AAwDO,6CACI,qBAAA,AACI,iBAAA,AACJ,aAAA,CArDX,AAtCC,oCAwFM,6CAMQ,eAAA,AACA,eAAA,AACA,uBAAA,AACI,kBAAA,CAnDjB,CACF","file":"about.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         500px !default;\n$on-tablet:        940px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.about {\n    h3 {\n        display: block;\n        margin: 10px 0;\n        line-height: 28px;\n    }\n    .members {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -ms-flex-flow: row wrap;\n            flex-flow: row wrap;\n        -webkit-box-flex: 1;\n            -ms-flex: 1;\n                flex: 1;\n\n        .member {\n            -ms-flex-flow: column;\n                flex-flow: column;\n            max-width: 50%;\n\n            @include max-media-query($on-tablet) {\n                max-width: 100%;\n                min-width: 100%;\n                -ms-flex-flow: row wrap;\n                    flex-flow: row wrap;\n            }\n        }\n    }\n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -42946,13 +42958,298 @@
 	
 	
 	// module
-	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.portifolio--github{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:wrap row;flex-flow:row wrap}", "", {"version":3,"sources":["/./javascripts/components/pages/portifolio/portifolio.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AA4DD,eAGQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,oBACG,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,kBAAA,CAtDP","file":"portifolio.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         320px !default;\n$on-palm:          600px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.github {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.portifolio--github{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:wrap row;flex-flow:row wrap}", "", {"version":3,"sources":["/./javascripts/components/pages/portifolio/portifolio.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AA4DD,eAGQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,oBACG,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,kBAAA,CAtDP","file":"portifolio.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         500px !default;\n$on-tablet:        940px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.github {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
 		"github": "portifolio--github",
 		"github": "portifolio--github"
 	};
+
+/***/ },
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _header = __webpack_require__(658);
+	
+	var _header2 = _interopRequireDefault(_header);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _header2.default;
+
+/***/ },
+/* 658 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(299);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _title = __webpack_require__(661);
+	
+	var _title2 = _interopRequireDefault(_title);
+	
+	var _navigationItem = __webpack_require__(662);
+	
+	var _navigationItem2 = _interopRequireDefault(_navigationItem);
+	
+	var _header = __webpack_require__(659);
+	
+	var _header2 = _interopRequireDefault(_header);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Header = function (_Component) {
+	  _inherits(Header, _Component);
+	
+	  function Header() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, Header);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Header.__proto__ || Object.getPrototypeOf(Header)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	      isMenuCollapsed: true
+	    }, _this.onToggleMenu = function (e) {
+	      e.preventDefault();
+	      _this.setState({
+	        isMenuCollapsed: !_this.state.isMenuCollapsed
+	      });
+	    }.bind(_this), _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  _createClass(Header, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props,
+	          root = _props.root,
+	          pages = _props.pages;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { className: _header2.default.header },
+	        _react2.default.createElement(_title2.default, root),
+	        _react2.default.createElement(
+	          'div',
+	          { className: _header2.default.menuArea },
+	          _react2.default.createElement(
+	            'div',
+	            { className: _header2.default.menuIcon, onClick: this.onToggleMenu },
+	            _react2.default.createElement(
+	              'svg',
+	              { viewBox: '0 0 18 15' },
+	              _react2.default.createElement('path', { fill: '#424242', d: 'M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z' }),
+	              _react2.default.createElement('path', { fill: '#424242', d: 'M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z' }),
+	              _react2.default.createElement('path', { fill: '#424242', d: 'M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z' })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: _header2.default.pages + ' ' + (this.state.isMenuCollapsed ? _header2.default.forceHide : '') },
+	            pages.map(function (page, idx) {
+	              return _react2.default.createElement(_navigationItem2.default, _extends({ key: 'nagivation-item-' + idx }, page));
+	            })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Header;
+	}(_react.Component);
+	
+	var navigationItemPropTypes = _react.PropTypes.shape(_navigationItem2.default.propTypes);
+	
+	Header.propTypes = {
+	  root: _react.PropTypes.shape(_title2.default.propTypes),
+	  pages: _react.PropTypes.arrayOf(navigationItemPropTypes)
+	};
+	
+	exports.default = Header;
+
+/***/ },
+/* 659 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(660);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(623)(content, {"sourceMap":true});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./../../../node_modules/postcss-loader/index.js?sourceMap!./../../../node_modules/sass-resources-loader/lib/loader.js!./header.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?minimize&camelCase&modules&importLoaders=1&sourceMap&localIdentName=[name]--[local]!./../../../node_modules/resolve-url-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./../../../node_modules/postcss-loader/index.js?sourceMap!./../../../node_modules/sass-resources-loader/lib/loader.js!./header.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 660 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(622)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.header--header{border-bottom:1px solid #e8e8e8;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row nowrap;flex-flow:row nowrap}.header--header .header--title{font-size:26px;font-weight:300;line-height:56px;max-width:140px}.header--header .header--menu-area,.header--header .header--title{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-ms-flex-flow:column nowrap;flex-flow:column nowrap}.header--header .header--menu-area{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;overflow:auto}.header--header .header--menu-area .header--menu-icon{display:none;text-align:center;cursor:pointer}.header--header .header--menu-area .header--menu-icon svg{width:18px;height:15px}.header--header .header--menu-area .header--pages{-ms-flex-flow:row nowrap;flex-flow:row nowrap}.header--header .header--menu-area .header--pages:before{content:\"\";width:calc(100% - 138px)}.header--header .header--menu-area .header--pages .header--navigation-item,.header--header .header--menu-area .header--pages:before{-ms-flex-flow:column nowrap;flex-flow:column nowrap;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;min-width:10px;min-height:1px}.header--header .header--menu-area .header--pages .header--navigation-item{overflow-x:auto;white-space:nowrap;margin:0 0 0 15px}@media screen and (max-width:500px){.header--header{-ms-flex-flow:row wrap;flex-flow:row wrap}.header--header .header--title{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row nowrap;flex-flow:row nowrap;width:100%;font-size:26px;font-weight:300;line-height:56px}.header--header .header--menu-area{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;width:100%;text-align:center}.header--header .header--menu-area .header--menu-icon{display:block;width:30px;position:absolute;right:15px;top:0}.header--header .header--menu-area .header--menu-icon svg{width:18px;height:15px}.header--header .header--menu-area .header--pages{width:100%}.header--header .header--menu-area .header--pages.header--force-hide,.header--header .header--menu-area .header--pages:before{display:none}.header--header .header--menu-area .header--pages .header--navigation-item{-ms-flex-flow:row nowrap;flex-flow:row nowrap;width:100%;margin:0}.header--header .header--menu-area .header--pages .header--navigation-item a{margin:0 auto;width:100%}.header--header .header--menu-area .header--pages .header--navigation-item a:hover{background-color:#0866c4;color:#fff}}", "", {"version":3,"sources":["/./javascripts/components/header/header.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AA4DD,eAGQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,gBAEC,gCAAA,AACA,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,yBAAA,AACI,oBAAA,CAvDL,AAgDA,+BAYG,eAAA,AACA,gBAAA,AACA,iBAAA,AACA,eAAA,CAnDH,AAuDC,kEAVE,2BAAA,AACA,2BAAA,AACA,oBAAA,AAKA,4BAAA,AACI,uBAAA,CAzCP,AA2CC,mCAME,mBAAA,AACI,oBAAA,AACI,YAAA,AACR,aAAA,CApDH,AAqDG,sDACE,aAAA,AACA,kBAAA,AACA,cAAA,CAlDL,AAkBA,0DAkCO,WAAA,AACA,WAAA,CAhDP,AAaA,kDAuCK,yBAAA,AACI,oBAAA,CAhDT,AAQA,yDA0CO,WAAA,AAMA,wBAAA,CA5CP,AAJA,oIA2CO,4BAAA,AACI,wBAAA,AACJ,2BAAA,AACA,2BAAA,AACA,oBAAA,AAEA,eAAA,AACA,cAAA,CAjCP,AAjBA,2EA6DO,gBAAA,AACA,mBAAA,AAGA,iBAAA,CAhDP,AAzFC,oCAgJA,gBACE,uBAAA,AACI,kBAAA,CAnDL,AAiDD,+BAII,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,yBAAA,AACI,qBAAA,AACJ,WAAA,AACA,eAAA,AACA,gBAAA,AACA,gBAAA,CAjDH,AAmDC,mCACE,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,mBAAA,AACJ,WAAA,AACA,iBAAA,CAhDH,AAiDG,sDACE,cAAA,AACA,WAAA,AACA,kBAAA,AACA,WAAA,AACA,KAAA,CA9CL,AA+CK,0DACE,WAAA,AACA,WAAA,CA5CP,AAcD,kDAkCM,UAAA,CA5CL,AAUD,8HAuCQ,YAAA,CAzCP,AA2CK,2EACE,yBAAA,AACI,qBAAA,AACJ,WAAA,AACA,QAAA,CAxCP,AAyCO,6EACE,cAAA,AACA,UAAA,CAtCT,AAVD,mFAmDU,yBAAA,AACA,UAAA,CArCT,CACF","file":"header.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         500px !default;\n$on-tablet:        940px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.header {\n  // border-top: 5px solid $grey-color-dark;\n  border-bottom: 1px solid $grey-color-light;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-flow: row nowrap;\n      flex-flow: row nowrap;\n  .title {\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    font-size: 26px;\n    font-weight: 300;\n    line-height: 56px;\n    max-width: 140px;\n    -ms-flex-flow: column nowrap;\n        flex-flow: column nowrap;\n  }\n  .menu-area {\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -ms-flex-flow: column nowrap;\n        flex-flow: column nowrap;\n    -webkit-box-flex: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n    overflow: auto;\n    .menu-icon {\n      display: none;\n      text-align: center;\n      cursor: pointer;\n      svg { \n        width: 18px;\n        height: 15px;\n      }\n    }\n    .pages {\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n      &:before {\n        content: '';\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n        display: -webkit-inline-box;\n        display: -ms-inline-flexbox;\n        display: inline-flex;\n        width: calc(100% - 138px);\n        min-width: 10px;\n        min-height: 1px;\n      }\n      &.force-hide {\n        \n      }\n      .navigation-item {\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n        display: -webkit-inline-box;\n        display: -ms-inline-flexbox;\n        display: inline-flex;\n        overflow-x: auto;\n        white-space: nowrap;\n        min-width: 10px;\n        min-height: 1px;\n        margin: 0 0 0 15px;\n      }\n    }\n  }\n}\n\n@include max-media-query($on-phone) {\n  .header {\n    -ms-flex-flow: row wrap;\n        flex-flow: row wrap;\n    .title {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n      width: 100%;\n      font-size: 26px;\n      font-weight: 300;\n      line-height: 56px;\n    }\n    .menu-area {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -ms-flex-flow: row wrap;\n          flex-flow: row wrap;\n      width: 100%;\n      text-align: center;\n      .menu-icon {\n        display: block;\n        width: 30px;\n        position: absolute;\n        right: 15px;\n        top: 0;\n        svg { \n          width: 18px;\n          height: 15px;\n        }\n      }\n      .pages {\n        width: 100%;\n        &:before {\n          display: none;\n        }\n        &.force-hide {\n          display: none;\n        }\n        .navigation-item {\n          -ms-flex-flow: row nowrap;\n              flex-flow: row nowrap;\n          width: 100%;\n          margin: 0;\n          a {\n            margin: 0 auto;\n            width: 100%;\n          }\n          a:hover {\n            background-color: $brand-color;\n            color: #ffffff;\n          }\n        }\n      }\n    }\n  }\n}"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+	exports.locals = {
+		"header": "header--header",
+		"header": "header--header",
+		"title": "header--title",
+		"title": "header--title",
+		"menu-area": "header--menu-area",
+		"menuArea": "header--menu-area",
+		"menu-icon": "header--menu-icon",
+		"menuIcon": "header--menu-icon",
+		"pages": "header--pages",
+		"pages": "header--pages",
+		"navigation-item": "header--navigation-item",
+		"navigationItem": "header--navigation-item",
+		"force-hide": "header--force-hide",
+		"forceHide": "header--force-hide"
+	};
+
+/***/ },
+/* 661 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(299);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _header = __webpack_require__(659);
+	
+	var _header2 = _interopRequireDefault(_header);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Title = function Title(_ref) {
+	  var title = _ref.title,
+	      link = _ref.link,
+	      className = _ref.className;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: _header2.default.title + ' ' + className },
+	    _react2.default.createElement(
+	      'a',
+	      { href: link },
+	      title
+	    )
+	  );
+	};
+	
+	Title.propTypes = {
+	  className: _react.PropTypes.string,
+	  title: _react.PropTypes.string.isRequired,
+	  link: _react.PropTypes.string.isRequired
+	};
+	
+	Title.defaultProps = {
+	  className: ''
+	};
+	
+	exports.default = Title;
+
+/***/ },
+/* 662 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(299);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _header = __webpack_require__(659);
+	
+	var _header2 = _interopRequireDefault(_header);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var NavigationItem = function NavigationItem(_ref) {
+	  var title = _ref.title,
+	      link = _ref.link,
+	      className = _ref.className;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: _header2.default.navigationItem + ' ' + className },
+	    _react2.default.createElement(
+	      'a',
+	      { href: link },
+	      title
+	    )
+	  );
+	};
+	
+	NavigationItem.propTypes = {
+	  className: _react.PropTypes.string,
+	  title: _react.PropTypes.string.isRequired,
+	  link: _react.PropTypes.string.isRequired
+	};
+	
+	NavigationItem.defaultProps = {
+	  className: ''
+	};
+	
+	exports.default = NavigationItem;
 
 /***/ }
 /******/ ]);

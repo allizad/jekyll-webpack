@@ -17,11 +17,35 @@ $grey-color-light: lighten($grey-color, 40%) !default;
 $grey-color-dark:  darken($grey-color, 25%) !default;
 
 // Width of the content area
-$content-width:    1024px !default;
+$custom-content-width:    1024px !default;
 
-$on-phone:         320px !default;
-$on-palm:          600px !default;
-$on-laptop:        1024px !default;
+$custom-on-phone:         320px !default;
+$custom-on-palm:          600px !default;
+$custom-on-laptop:        1024px !default;
+
+@mixin max-media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
+
+@mixin min-media-query($device) {
+  @media screen and (min-width: $device) {
+    @content;
+  }
+}
+
+@mixin border-box() {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+@mixin flex-flow($value) {
+  flex-flow: $value;
+  -ms-flex-flow: $value;
+  -webkit-flex-flow: $value;
+}
 
 @import "custom-theme/base";
 @import "custom-theme/layout";
