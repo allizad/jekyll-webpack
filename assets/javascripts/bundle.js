@@ -40837,9 +40837,9 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-	exports.parseUserData = exports.parseRepoData = exports.isValidStatus = exports.RemoteDataWorkflow = undefined;
+	exports.reposSortComparator = exports.parseUserData = exports.parseRepoData = exports.isValidStatus = exports.RemoteDataWorkflow = undefined;
 	
 	var _Immutable;
 	
@@ -40852,68 +40852,93 @@
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	var RemoteDataWorkflow = (0, _immutable2.default)({
-	    NotLoaded: 'NotLoaded',
-	    Loading: 'Loading',
-	    LoadingError: 'LoadingError',
-	    Loaded: 'Loaded'
+	  NotLoaded: 'NotLoaded',
+	  Loading: 'Loading',
+	  LoadingError: 'LoadingError',
+	  Loaded: 'Loaded'
 	});
 	
 	var StatusMachineState = (0, _immutable2.default)((_Immutable = {}, _defineProperty(_Immutable, RemoteDataWorkflow.NotLoaded, function (status) {
-	    return [RemoteDataWorkflow.Loading].indexOf(status) > -1;
+	  return [RemoteDataWorkflow.Loading].indexOf(status) > -1;
 	}), _defineProperty(_Immutable, RemoteDataWorkflow.Loading, function (status) {
-	    return [RemoteDataWorkflow.LoadingError, RemoteDataWorkflow.Loaded].indexOf(status) > -1;
+	  return [RemoteDataWorkflow.LoadingError, RemoteDataWorkflow.Loaded].indexOf(status) > -1;
 	}), _defineProperty(_Immutable, RemoteDataWorkflow.LoadingError, function (status) {
-	    return [RemoteDataWorkflow.Loading, RemoteDataWorkflow.NotLoaded].indexOf(status) > -1;
+	  return [RemoteDataWorkflow.Loading, RemoteDataWorkflow.NotLoaded].indexOf(status) > -1;
 	}), _defineProperty(_Immutable, RemoteDataWorkflow.Loaded, function (status) {
-	    return [].indexOf(status) > -1;
+	  return [].indexOf(status) > -1;
 	}), _Immutable));
 	
 	function isValidStatus(status, nextStatus) {
-	    return (StatusMachineState[status] || function () {
-	        return false;
-	    })(nextStatus);
+	  return (StatusMachineState[status] || function () {
+	    return false;
+	  })(nextStatus);
 	}
 	
 	function parseRepoData(repo) {
-	    return {
-	        id: repo.id,
-	        name: repo.name,
-	        owner: {
-	            username: repo.owner.login,
-	            avatar: repo.owner.avatar_url
-	        },
-	        git: repo.git_url,
-	        ssh: repo.ssh_url,
-	        language: repo.language,
-	        size: repo.size,
-	        forks: repo.forks,
-	        stars: repo.stargazers_count,
-	        watchers: repo.watchers_count
-	    };
+	  return {
+	    id: repo.id,
+	    name: repo.name,
+	    owner: {
+	      username: repo.owner.login,
+	      avatar: repo.owner.avatar_url
+	    },
+	    git: repo.git_url,
+	    ssh: repo.ssh_url,
+	    language: repo.language,
+	    size: Number(repo.size),
+	    forks: Number(repo.forks),
+	    stars: Number(repo.stargazers_count),
+	    watchers: Number(repo.watchers_count)
+	  };
 	}
 	
 	function parseUserData(user) {
-	    return {
-	        id: user.id,
-	        username: user.login,
-	        avatar: user.avatar_url,
-	        name: user.name,
-	        email: user.email,
-	        location: user.location,
-	        blog: user.blog,
-	        bio: user.bio
-	    };
+	  return {
+	    id: user.id,
+	    username: user.login,
+	    avatar: user.avatar_url,
+	    name: user.name,
+	    email: user.email,
+	    location: user.location,
+	    blog: user.blog,
+	    bio: user.bio
+	  };
+	}
+	
+	function reposSortComparator(a, b) {
+	  var forks = b.forks - a.forks;
+	  if (forks !== 0) {
+	    return forks;
+	  }
+	  var stars = b.stars - a.stars;
+	  if (stars !== 0) {
+	    return stars;
+	  }
+	  var watchers = b.watchers - a.watchers;
+	  if (watchers !== 0) {
+	    return watchers;
+	  }
+	  if (a.name === b.name) {
+	    if (a.owner.name === b.owner.name) {
+	      return 0;
+	    }
+	
+	    return a.owner.username.toLowerCase() < b.owner.username.toLowerCase() ? -1 : 1;
+	  }
+	  return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
 	}
 	
 	exports.RemoteDataWorkflow = RemoteDataWorkflow;
 	exports.isValidStatus = isValidStatus;
 	exports.parseRepoData = parseRepoData;
 	exports.parseUserData = parseUserData;
+	exports.reposSortComparator = reposSortComparator;
 	exports.default = {
-	    RemoteDataWorkflow: RemoteDataWorkflow,
-	    isValidStatus: isValidStatus,
-	    parseRepoData: parseRepoData,
-	    parseUserData: parseUserData
+	  RemoteDataWorkflow: RemoteDataWorkflow,
+	  isValidStatus: isValidStatus,
+	  parseRepoData: parseRepoData,
+	  parseUserData: parseUserData,
+	  reposSortComparator: reposSortComparator
 	};
 
 /***/ },
@@ -40962,7 +40987,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _effects = __webpack_require__(577);
@@ -40992,103 +41017,103 @@
 	var MAX_ATTEMPTS = 5;
 	
 	function factoryFetchReposSaga(storeSection) {
-	    var _marked = [onFetchRepos, watchFetchRepos].map(regeneratorRuntime.mark);
+	  var _marked = [onFetchRepos, watchFetchRepos].map(regeneratorRuntime.mark);
 	
-	    var getState = _sagas2.default.getter(storeSection);
+	  var getState = _sagas2.default.getter(storeSection);
 	
-	    function onFetchRepos(action) {
-	        var owners, attempt, state, metadata, api, apiResponse, hasError, repos;
-	        return regeneratorRuntime.wrap(function onFetchRepos$(_context) {
-	            while (1) {
-	                switch (_context.prev = _context.next) {
-	                    case 0:
-	                        owners = action.owners, attempt = action.attempt;
-	                        _context.next = 3;
-	                        return (0, _effects.select)(getState);
+	  function onFetchRepos(action) {
+	    var owners, attempt, state, metadata, api, apiResponse, hasError, repos;
+	    return regeneratorRuntime.wrap(function onFetchRepos$(_context) {
+	      while (1) {
+	        switch (_context.prev = _context.next) {
+	          case 0:
+	            owners = action.owners, attempt = action.attempt;
+	            _context.next = 3;
+	            return (0, _effects.select)(getState);
 	
-	                    case 3:
-	                        state = _context.sent;
-	                        metadata = state.metadata;
-	                        api = new _githubRepoApi2.default(metadata);
-	                        _context.next = 8;
-	                        return owners.map(function (owner) {
-	                            return (0, _effects.call)(api.get, { owner: owner });
-	                        });
+	          case 3:
+	            state = _context.sent;
+	            metadata = state.metadata;
+	            api = new _githubRepoApi2.default(metadata);
+	            _context.next = 8;
+	            return owners.map(function (owner) {
+	              return (0, _effects.call)(api.get, { owner: owner });
+	            });
 	
-	                    case 8:
-	                        apiResponse = _context.sent;
-	                        hasError = Boolean(apiResponse.filter(function (response) {
-	                            return response.error;
-	                        }).length);
+	          case 8:
+	            apiResponse = _context.sent;
+	            hasError = Boolean(apiResponse.filter(function (response) {
+	              return response.error;
+	            }).length);
 	
-	                        if (!hasError) {
-	                            _context.next = 20;
-	                            break;
-	                        }
-	
-	                        _context.next = 13;
-	                        return (0, _effects.put)(_githubActions2.default.onSetReposStatus(_githubUtils.RemoteDataWorkflow.LoadingError));
-	
-	                    case 13:
-	                        if (MAX_ATTEMPTS < attempt) {
-	                            _context.next = 18;
-	                            break;
-	                        }
-	
-	                        _context.next = 16;
-	                        return (0, _effects.call)(_reduxSaga.delay, 1000);
-	
-	                    case 16:
-	                        _context.next = 18;
-	                        return (0, _effects.call)(onFetchRepos, { owners: owners, attempt: (attempt || 0) + 1 });
-	
-	                    case 18:
-	                        _context.next = 25;
-	                        break;
-	
-	                    case 20:
-	                        repos = apiResponse.map(function (response) {
-	                            return response.data.map(function (repo) {
-	                                return (0, _githubUtils.parseRepoData)(repo);
-	                            });
-	                        }).reduce(function (list, next) {
-	                            return list.concat(next);
-	                        }, []);
-	                        _context.next = 23;
-	                        return (0, _effects.put)(_githubActions2.default.onSetReposStatus(_githubUtils.RemoteDataWorkflow.Loaded));
-	
-	                    case 23:
-	                        _context.next = 25;
-	                        return (0, _effects.put)(_githubActions2.default.onSetRepos(repos));
-	
-	                    case 25:
-	                    case 'end':
-	                        return _context.stop();
-	                }
+	            if (!hasError) {
+	              _context.next = 20;
+	              break;
 	            }
-	        }, _marked[0], this);
-	    }
 	
-	    function watchFetchRepos() {
-	        return regeneratorRuntime.wrap(function watchFetchRepos$(_context2) {
-	            while (1) {
-	                switch (_context2.prev = _context2.next) {
-	                    case 0:
-	                        _context2.next = 2;
-	                        return (0, _effects.takeLatest)(_githubConstants2.default.FETCH_REPOS, onFetchRepos);
+	            _context.next = 13;
+	            return (0, _effects.put)(_githubActions2.default.onSetReposStatus(_githubUtils.RemoteDataWorkflow.LoadingError));
 	
-	                    case 2:
-	                    case 'end':
-	                        return _context2.stop();
-	                }
+	          case 13:
+	            if (MAX_ATTEMPTS < attempt) {
+	              _context.next = 18;
+	              break;
 	            }
-	        }, _marked[1], this);
-	    }
 	
-	    return {
-	        watcher: watchFetchRepos,
-	        handler: onFetchRepos
-	    };
+	            _context.next = 16;
+	            return (0, _effects.call)(_reduxSaga.delay, 1000);
+	
+	          case 16:
+	            _context.next = 18;
+	            return (0, _effects.call)(onFetchRepos, { owners: owners, attempt: (attempt || 0) + 1 });
+	
+	          case 18:
+	            _context.next = 25;
+	            break;
+	
+	          case 20:
+	            repos = apiResponse.map(function (response) {
+	              return response.data.map(function (repo) {
+	                return (0, _githubUtils.parseRepoData)(repo);
+	              });
+	            }).reduce(function (list, next) {
+	              return list.concat(next);
+	            }, []).sort(_githubUtils.reposSortComparator);
+	            _context.next = 23;
+	            return (0, _effects.put)(_githubActions2.default.onSetReposStatus(_githubUtils.RemoteDataWorkflow.Loaded));
+	
+	          case 23:
+	            _context.next = 25;
+	            return (0, _effects.put)(_githubActions2.default.onSetRepos(repos));
+	
+	          case 25:
+	          case 'end':
+	            return _context.stop();
+	        }
+	      }
+	    }, _marked[0], this);
+	  }
+	
+	  function watchFetchRepos() {
+	    return regeneratorRuntime.wrap(function watchFetchRepos$(_context2) {
+	      while (1) {
+	        switch (_context2.prev = _context2.next) {
+	          case 0:
+	            _context2.next = 2;
+	            return (0, _effects.takeLatest)(_githubConstants2.default.FETCH_REPOS, onFetchRepos);
+	
+	          case 2:
+	          case 'end':
+	            return _context2.stop();
+	        }
+	      }
+	    }, _marked[1], this);
+	  }
+	
+	  return {
+	    watcher: watchFetchRepos,
+	    handler: onFetchRepos
+	  };
 	}
 	
 	exports.default = factoryFetchReposSaga;
@@ -42004,16 +42029,16 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(299);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _card = __webpack_require__(640);
+	
+	var _card2 = _interopRequireDefault(_card);
 	
 	var _repo = __webpack_require__(629);
 	
@@ -42025,47 +42050,28 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Repos = function (_Component) {
-	    _inherits(Repos, _Component);
-	
-	    function Repos() {
-	        _classCallCheck(this, Repos);
-	
-	        return _possibleConstructorReturn(this, (Repos.__proto__ || Object.getPrototypeOf(Repos)).apply(this, arguments));
-	    }
-	
-	    _createClass(Repos, [{
-	        key: 'render',
-	        value: function render() {
-	            var repos = this.props.repos;
-	
-	            return _react2.default.createElement(
-	                'div',
-	                { className: _repos2.default.repos },
-	                repos.map(function (repo) {
-	                    return _react2.default.createElement(_repo2.default, _extends({}, repo, { key: 'repo-' + repo.id }));
-	                })
-	            );
-	        }
-	    }]);
-	
-	    return Repos;
-	}(_react.Component);
+	var Repos = function Repos(_ref) {
+	  var repos = _ref.repos;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: _repos2.default.repos },
+	    repos.map(function (repo) {
+	      return _react2.default.createElement(
+	        _card2.default,
+	        { key: 'repo-' + repo.id },
+	        _react2.default.createElement(_repo2.default, repo)
+	      );
+	    })
+	  );
+	};
 	
 	Repos.propTypes = {
-	    owners: _react.PropTypes.arrayOf(_react.PropTypes.string),
-	    repos: _react.PropTypes.arrayOf(_react.PropTypes.shape(_repo2.default.propTypes))
+	  repos: _react.PropTypes.arrayOf(_react.PropTypes.shape(_repo2.default.propTypes))
 	};
 	
 	Repos.defaultProps = {
-	    owners: [],
-	    repos: []
+	  owners: [],
+	  repos: []
 	};
 	
 	exports.default = Repos;
@@ -42135,7 +42141,7 @@
 	            _react2.default.createElement(
 	                'span',
 	                { className: _repos2.default.language },
-	                language
+	                language || '[No defined]'
 	            ),
 	            _react2.default.createElement(
 	                'span',
@@ -42427,7 +42433,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.repos--repos{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-ms-flex:1;flex:1;-ms-flex-flow:wrap row;flex-flow:row wrap}.repos--repos .repos--repo{-ms-flex-flow:nowrap row;flex-flow:row nowrap}@media only screen and (min-width:320px){.repos--repos .repos--repo{min-width:100%}.repos--repos .repos--repo .repos--avatar{max-width:60px;max-height:60px}}@media only screen and (min-width:480px){.repos--repos .repos--repo{min-width:100%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:768px){.repos--repos .repos--repo{min-width:50%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:992px){.repos--repos .repos--repo{min-width:33.33%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}@media only screen and (min-width:1200px){.repos--repos .repos--repo{min-width:25%}.repos--repos .repos--repo .repos--avatar{max-width:80px;max-height:80px}}", "", {"version":3,"sources":["/./javascripts/components/github/repos/repos.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,cACG,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,mBAAA,AACI,WAAA,AACI,OAAA,AACR,uBAAA,AACI,kBAAA,CAtDP,AA8CA,2BAWO,yBAAA,AACI,oBAAA,CAhDX,AAkDO,yCAdP,2BAeW,cAAA,CA9CT,AA+CS,0CACI,eAAA,AACA,eAAA,CA5Cb,CACF,AA+CO,yCAtBP,2BAuBW,cAAA,CA3CT,AAoBF,0CAyBe,eAAA,AACA,eAAA,CAzCb,CACF,AA4CO,yCApBJ,2BAqBQ,aAAA,CAxCT,AAyCS,0CACI,eAAA,AACA,eAAA,CAtCb,CACF,AAyCO,yCAtCP,2BAuCW,gBAAA,CArCT,AAsCS,0CACI,eAAA,AACA,eAAA,CAnCb,CACF,AAsCO,0CA9CP,2BA+CW,aAAA,CAlCT,AAbF,0CAiDe,eAAA,AACA,eAAA,CAhCb,CACF","file":"repos.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         500px !default;\n$on-tablet:        940px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.repos {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    -ms-flex-flow: wrap row;\n        flex-flow: wrap row;\n    \n    .repo {\n        -ms-flex-flow: nowrap row;\n            flex-flow: nowrap row;\n        /* Custom, iPhone Retina */ \n        @media only screen and (min-width : 320px) {\n            min-width: 100%; \n            .avatar {\n                max-width: 60px;\n                max-height: 60px;\n            }\n        }\n        /* Extra Small Devices, Phones */ \n        @media only screen and (min-width : 480px) {\n            min-width: 100%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Small Devices, Tablets */\n        @media only screen and (min-width : 768px) {\n            min-width: 50%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Medium Devices, Desktops */\n        @media only screen and (min-width : 992px) {\n            min-width: 33.33%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n        /* Large Devices, Wide Screens */\n        @media only screen and (min-width : 1200px) {\n            min-width: 25%;\n            .avatar {\n                max-width: 80px;\n                max-height: 80px;\n            }\n        }\n    }\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.repos--repos{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-ms-flex:1;flex:1;-ms-flex-flow:wrap row;flex-flow:row wrap;margin-left:-15px;margin-right:-15px}.repos--repos>div{width:calc(50% - 30px - 2px)}@media screen and (max-width:690px){.repos--repos>div{width:calc(100% - 30px)}}@media screen and (max-width:380px){.repos--repos>div .repos--repo .repos--language{width:100%;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex}.repos--repos>div .repos--repo .repos--image-counters:nth-child(2){padding:0 15px 0 0}}.repos--repos .repos--repo{-ms-flex-flow:nowrap row;flex-flow:row nowrap;padding:15px}.repos--repos .repos--repo .repos--image-counters{padding:0 15px}.repos--repos .repos--repo .repos--image-counters:nth-child(2){padding:0 15px 0 30px}.repos--repos .repos--repo .fa-star,.repos--repos .repos--repo .fa-star-o{color:#eee222}.repos--repos .repos--repo .fa-code-fork{color:#2d2}.repos--repos .repos--repo .fa-binoculars{color:#3d3d22}", "", {"version":3,"sources":["/./javascripts/components/github/repos/repos.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AA4DD,eAGQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,cACC,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,mBAAA,AACI,WAAA,AACI,OAAA,AACR,uBAAA,AACI,mBAAA,AACJ,kBAAA,AACA,kBAAA,CAtDD,AAwDK,kBACF,4BAAA,CArDH,AAhCC,oCAwED,kBAeK,uBAAA,CAlDH,CACF,AAtCC,oCA2FM,gDACE,WAAA,AACA,2BAAA,AACA,2BAAA,AACA,mBAAA,CAjDP,AAmDK,mEACE,kBAAA,CAhDP,CACF,AAqBA,2BAiCG,yBAAA,AACI,qBAAA,AACJ,YAAA,CAlDH,AAeA,kDAsCK,cAAA,CAjDL,AAWA,+DA0CK,qBAAA,CAjDL,AAOA,0EA+CK,aAAA,CAjDL,AAoDG,yCACE,UAAA,CAjDL,AAFA,0CAuDK,aAAA,CAjDL","file":"repos.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         500px !default;\n$on-tablet:        940px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.repos {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  -ms-flex-flow: wrap row;\n      flex-flow: wrap row;\n  margin-left: calc(#{$spacing-unit}/-2);\n  margin-right: calc(#{$spacing-unit}/-2);\n\n  & > div {\n    width: calc(50% - #{$spacing-unit} - 2px);\n    @include max-media-query(690px) {\n      width: calc(100% - #{$spacing-unit});\n    }\n    @include max-media-query(380px) {\n      .repo {\n        .language {\n          width: 100%;\n          display: -webkit-inline-box;\n          display: -ms-inline-flexbox;\n          display: inline-flex;\n        }\n        .image-counters:nth-child(2) {\n          padding: 0 calc(#{$spacing-unit}/2) 0 0;\n        }\n      }\n    }\n  }\n\n  .repo {\n    -ms-flex-flow: nowrap row;\n        flex-flow: nowrap row;\n    padding: calc(#{$spacing-unit}/2);\n\n    .image-counters {\n      padding: 0 calc(#{$spacing-unit}/2);\n    }\n\n    .image-counters:nth-child(2) {\n      padding: 0 calc(#{$spacing-unit}/2) 0 calc(#{$spacing-unit});\n    }\n\n    :global(.fa-star),\n    :global(.fa-star-o) {\n      color: #eee222;\n    }\n\n    :global(.fa-code-fork) {\n      color: #22dd22;\n    }\n\n    :global(.fa-binoculars) {\n      color: #3d3d22;\n    }\n\n  }\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -42435,8 +42441,10 @@
 		"repos": "repos--repos",
 		"repo": "repos--repo",
 		"repo": "repos--repo",
-		"avatar": "repos--avatar",
-		"avatar": "repos--avatar"
+		"language": "repos--language",
+		"language": "repos--language",
+		"image-counters": "repos--image-counters",
+		"imageCounters": "repos--image-counters"
 	};
 
 /***/ },

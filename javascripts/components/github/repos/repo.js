@@ -30,7 +30,7 @@ const Repo = ((props) => {
                 <a href={`http://github.com/${username}`}>{username}</a>
             </div>
             <div className={styles.details}>
-                <span className={styles.language}>{language}</span>
+                <span className={styles.language}>{language || '[No defined]'}</span>
                 <span className={styles.imageCounters}>
                     <FontAwesome name="code-fork" /> {forks}
                 </span>
