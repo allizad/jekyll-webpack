@@ -1,0 +1,105 @@
+.header {
+  // border-top: 5px solid $grey-color-dark;
+  border-bottom: 1px solid $grey-color-light;
+  display: flex;
+  flex-flow: row nowrap;
+  .title {
+    display: inline-flex;
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 56px;
+    max-width: 140px;
+    flex-flow: column nowrap;
+  }
+  .menu-area {
+    display: inline-flex;
+    flex-flow: column nowrap;
+    flex-grow: 1;
+    overflow: auto;
+    .menu-icon {
+      display: none;
+      text-align: center;
+      cursor: pointer;
+      svg { 
+        width: 18px;
+        height: 15px;
+      }
+    }
+    .pages {
+      flex-flow: row nowrap;
+      &:before {
+        content: '';
+        flex-flow: column nowrap;
+        display: inline-flex;
+        width: calc(100% - 138px);
+        min-width: 10px;
+        min-height: 1px;
+      }
+      &.force-hide {
+        
+      }
+      .navigation-item {
+        flex-flow: column nowrap;
+        display: inline-flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        min-width: 10px;
+        min-height: 1px;
+        margin: 0 0 0 15px;
+      }
+    }
+  }
+}
+
+@include max-media-query($on-phone) {
+  .header {
+    flex-flow: row wrap;
+    .title {
+      display: flex;
+      flex-flow: row nowrap;
+      width: 100%;
+      font-size: 26px;
+      font-weight: 300;
+      line-height: 56px;
+    }
+    .menu-area {
+      display: flex;
+      flex-flow: row wrap;
+      width: 100%;
+      text-align: center;
+      .menu-icon {
+        display: block;
+        width: 30px;
+        position: absolute;
+        right: 15px;
+        top: 0;
+        svg { 
+          width: 18px;
+          height: 15px;
+        }
+      }
+      .pages {
+        width: 100%;
+        &:before {
+          display: none;
+        }
+        &.force-hide {
+          display: none;
+        }
+        .navigation-item {
+          flex-flow: row nowrap;
+          width: 100%;
+          margin: 0;
+          a {
+            margin: 0 auto;
+            width: 100%;
+          }
+          a:hover {
+            background-color: $brand-color;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}

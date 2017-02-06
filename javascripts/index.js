@@ -1,9 +1,19 @@
-/* global document */
+/* global document, window */
 import React from 'react';
 import { render } from 'react-dom';
-import Components from './components';
+import {
+  Components,
+  Header
+} from './components';
 
-const root = document.getElementById('root');
-if (root) {
-    render(<Components />, root);
+const container = document.getElementById('root');
+if (container) {
+    render(<Components />, container);
 }
+
+const {
+  root,
+  pages,
+  target
+} = window.$blogConfig.navigation;
+render(<Header root={root} pages={pages} />, target);

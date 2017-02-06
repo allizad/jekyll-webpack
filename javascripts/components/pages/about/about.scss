@@ -1,0 +1,23 @@
+.about {
+    h3 {
+        display: block;
+        margin: 10px 0;
+        line-height: 28px;
+    }
+    .members {
+        display: flex;
+        flex-flow: row wrap;
+        flex: 1;
+
+        .member {
+            flex-flow: column;
+            max-width: 50%;
+
+            @include max-media-query($on-tablet) {
+                max-width: 100%;
+                min-width: 100%;
+                flex-flow: row wrap;
+            }
+        }
+    }
+}

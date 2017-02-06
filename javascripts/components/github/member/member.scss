@@ -21,14 +21,32 @@
 
         background-color: var(--defaultColor);
         text-transform: uppercase;
+        
+        @include max-media-query($on-phone) {
+            text-align: center;
+        }
         a, a:visited, a:link, a:active {
             color: #ffffff;
         }
     }
 
     --avatarDimension: 150px;
+
+    @include max-media-query($on-phone) {
+        .avatar {
+            width: calc(100% - 2*var(--paddingGeneral));
+
+            img {
+                display: block;
+                border-radius: 90px;
+                margin: 0 auto;
+            }
+        }
+    }
+
     .avatar {
         display: inline-flex;
+
         img {
             max-width: var(--avatarDimension);
             max-height: var(--avatarDimension);
@@ -43,13 +61,17 @@
         width: calc(100% - var(--avatarDimension) - 3*var(--paddingGeneral));
         font-size: 0.9em;
 
+        @include max-media-query($on-phone) {
+            padding: var(--paddingGeneral) var(--paddingGeneral) 0 var(--paddingGeneral);
+            width: calc(100% - 4*var(--paddingGeneral));
+        }
+
         a, a:visited, a:link, a:active {
             color: lighten($brand-color, 15%);
         }
 
         .info {
             min-width: 100%;
-            height: var(--textHeight);
             line-height: var(--textHeight);
             overflow-x: hidden;
             text-overflow: ellipsis;
@@ -57,7 +79,7 @@
 
             :global(.fa) {
                 color: $grey-color;
-                width: 30px;
+                width: 25px;
                 text-align: center;
             }
             
@@ -66,6 +88,30 @@
 
                 &:after {
                     content: ": ";
+                }
+            }
+
+            @include max-media-query($on-phone) {
+                position: relative;
+
+                :global(.fa) {
+                    position: absolute;
+                    left: 7px;
+                    top: 7px;
+                }
+
+                span.label {
+                    display: block;
+                    text-align: center;
+                    background-color: $grey-color-light;
+
+                    &:after {
+                        content: "";
+                    }
+                }
+                span:last-child {
+                    display: block;
+                    text-align: center;
                 }
             }
         }
