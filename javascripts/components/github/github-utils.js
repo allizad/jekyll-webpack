@@ -53,6 +53,25 @@ function parseUserData(user) {
   };
 }
 
+function parsePostData(posts) {
+  return posts.filter(post => post.type === 'file')
+    .map(post => ({
+      id: post.sha,
+      name: post.name,
+      path: post.path,
+      download: post.download_url,
+      markdownContent: null
+    }));
+}
+
+function getPageLimits({ postsPerPage, currentPage, totalPosts }) {
+  const propEnd = postsPerPage * currentPage;
+  return {
+    start: postsPerPage * (currentPage - 1),
+    end: propEnd > totalPosts ? totalPosts : propEnd
+  };
+}
+
 function reposSortComparator(a, b) {
   const forks = b.forks - a.forks;
   if (forks !== 0) {
@@ -84,6 +103,8 @@ export { RemoteDataWorkflow };
 export { isValidStatus };
 export { parseRepoData };
 export { parseUserData };
+export { parsePostData };
+export { getPageLimits };
 export { reposSortComparator };
 
 export default {
@@ -91,5 +112,7 @@ export default {
   isValidStatus,
   parseRepoData,
   parseUserData,
+  parsePostData,
+  getPageLimits,
   reposSortComparator
 };

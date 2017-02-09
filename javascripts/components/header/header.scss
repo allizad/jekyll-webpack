@@ -8,8 +8,20 @@
     font-size: 26px;
     font-weight: 300;
     line-height: 56px;
-    max-width: 140px;
+    max-width: 170px;
     flex-flow: column nowrap;
+
+    a {
+      display: inline-flex;
+      width: 170px;
+    }
+    :global(.fa-code) {
+      font-size: 22px;
+      font-weight: 800;
+      width: 24px;
+      margin: auto auto auto 10px;
+      line-height: 56px;
+    }
   }
   .menu-area {
     display: inline-flex;

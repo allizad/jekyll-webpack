@@ -38896,7 +38896,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _githubAuthenticationSaga = __webpack_require__(576);
@@ -38911,12 +38911,20 @@
 	
 	var _githubFetchUsersSaga2 = _interopRequireDefault(_githubFetchUsersSaga);
 	
+	var _githubFetchPostsSaga = __webpack_require__(663);
+	
+	var _githubFetchPostsSaga2 = _interopRequireDefault(_githubFetchPostsSaga);
+	
+	var _githubFetchContentsSaga = __webpack_require__(667);
+	
+	var _githubFetchContentsSaga2 = _interopRequireDefault(_githubFetchContentsSaga);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = function (storeSection) {
-	    return [(0, _githubAuthenticationSaga2.default)(storeSection).watcher, (0, _githubFetchReposSaga2.default)(storeSection).watcher,
-	    // factoryGithubFetchRepoReadmeSaga(storeSection).watcher,
-	    (0, _githubFetchUsersSaga2.default)(storeSection).watcher];
+	  return [(0, _githubAuthenticationSaga2.default)(storeSection).watcher, (0, _githubFetchReposSaga2.default)(storeSection).watcher,
+	  // factoryGithubFetchRepoReadmeSaga(storeSection).watcher,
+	  (0, _githubFetchUsersSaga2.default)(storeSection).watcher, (0, _githubFetchPostsSaga2.default)(storeSection).watcher, (0, _githubFetchContentsSaga2.default)(storeSection).watcher];
 	};
 	// import factoryGithubFetchRepoReadmeSaga from './github-fetch-repo-readme-saga';
 
@@ -39048,21 +39056,28 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	var prefix = 'github';
 	
 	exports.default = {
-	    SET_METADATA: prefix + ':SET_METADATA',
-	    FETCH_REPOS: prefix + ':FETCH_REPOS',
-	    FETCH_USERS: prefix + ':FETCH_USERS',
-	    FETCH_REPO_README: prefix + ':FETCH_REPO_README',
-	    AUTH_USER: prefix + ':AUTH_USER',
-	    SET_REPOS: prefix + ':SET_REPOS',
-	    SET_USERS: prefix + ':SET_USERS',
-	    SET_AUTH_STATUS: prefix + ':SET_AUTH_STATUS',
-	    SET_REPOS_STATUS: prefix + ':SET_REPOS_STATUS',
-	    SET_USERS_STATUS: prefix + ':SET_USERS_STATUS'
+	  SET_METADATA: prefix + ':SET_METADATA',
+	  FETCH_REPOS: prefix + ':FETCH_REPOS',
+	  FETCH_USERS: prefix + ':FETCH_USERS',
+	  FETCH_POSTS: prefix + ':FETCH_POSTS',
+	  FETCH_CONTENTS: prefix + ':FETCH_CONTENTS',
+	  FETCH_REPO_README: prefix + ':FETCH_REPO_README',
+	  AUTH_USER: prefix + ':AUTH_USER',
+	  SET_REPOS: prefix + ':SET_REPOS',
+	  SET_USERS: prefix + ':SET_USERS',
+	  SET_POSTS: prefix + ':SET_POSTS',
+	  SET_CONTENTS: prefix + ':SET_CONTENTS',
+	  SET_PAGE: prefix + ':SET_PAGE',
+	  SET_AUTH_STATUS: prefix + ':SET_AUTH_STATUS',
+	  SET_REPOS_STATUS: prefix + ':SET_REPOS_STATUS',
+	  SET_USERS_STATUS: prefix + ':SET_USERS_STATUS',
+	  SET_POSTS_STATUS: prefix + ':SET_POSTS_STATUS',
+	  SET_CONTENTS_STATUS: prefix + ':SET_CONTENTS_STATUS'
 	};
 
 /***/ },
@@ -39072,7 +39087,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _githubConstants = __webpack_require__(578);
@@ -39082,81 +39097,136 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function onSetMetadata(metadata) {
-	    return {
-	        type: _githubConstants2.default.SET_METADATA,
-	        metadata: metadata
-	    };
+	  return {
+	    type: _githubConstants2.default.SET_METADATA,
+	    metadata: metadata
+	  };
 	}
 	
 	function onFetchRepos(owners) {
-	    return {
-	        type: _githubConstants2.default.FETCH_REPOS,
-	        owners: owners
-	    };
+	  return {
+	    type: _githubConstants2.default.FETCH_REPOS,
+	    owners: owners
+	  };
 	}
 	
 	function onFetchUsers(owners) {
-	    return {
-	        type: _githubConstants2.default.FETCH_USERS,
-	        owners: owners
-	    };
+	  return {
+	    type: _githubConstants2.default.FETCH_USERS,
+	    owners: owners
+	  };
+	}
+	
+	function onFetchPosts() {
+	  return {
+	    type: _githubConstants2.default.FETCH_POSTS
+	  };
+	}
+	
+	function onFetchContents(page) {
+	  return {
+	    type: _githubConstants2.default.FETCH_CONTENTS,
+	    page: page
+	  };
 	}
 	
 	function onSetRepos(repos) {
-	    return {
-	        type: _githubConstants2.default.SET_REPOS,
-	        repos: repos
-	    };
+	  return {
+	    type: _githubConstants2.default.SET_REPOS,
+	    repos: repos
+	  };
 	}
 	
 	function onSetUsers(users) {
-	    return {
-	        type: _githubConstants2.default.SET_USERS,
-	        users: users
-	    };
+	  return {
+	    type: _githubConstants2.default.SET_USERS,
+	    users: users
+	  };
+	}
+	
+	function onSetPosts(posts) {
+	  return {
+	    type: _githubConstants2.default.SET_POSTS,
+	    posts: posts
+	  };
+	}
+	
+	function onSetContents(contents) {
+	  return {
+	    type: _githubConstants2.default.SET_CONTENTS,
+	    contents: contents
+	  };
+	}
+	
+	function onSetPage(page) {
+	  return {
+	    type: _githubConstants2.default.SET_PAGE,
+	    page: page
+	  };
 	}
 	
 	function onSetAuthStatus(status) {
-	    return {
-	        type: _githubConstants2.default.SET_AUTH_STATUS,
-	        status: status
-	    };
+	  return {
+	    type: _githubConstants2.default.SET_AUTH_STATUS,
+	    status: status
+	  };
 	}
 	
 	function onSetUsersStatus(status) {
-	    return {
-	        type: _githubConstants2.default.SET_USERS_STATUS,
-	        status: status
-	    };
+	  return {
+	    type: _githubConstants2.default.SET_USERS_STATUS,
+	    status: status
+	  };
+	}
+	
+	function onSetPostsStatus(status) {
+	  return {
+	    type: _githubConstants2.default.SET_POSTS_STATUS,
+	    status: status
+	  };
+	}
+	
+	function onSetContentsStatus(status) {
+	  return {
+	    type: _githubConstants2.default.SET_CONTENTS_STATUS,
+	    status: status
+	  };
 	}
 	
 	function onSetReposStatus(status) {
-	    return {
-	        type: _githubConstants2.default.SET_REPOS_STATUS,
-	        status: status
-	    };
+	  return {
+	    type: _githubConstants2.default.SET_REPOS_STATUS,
+	    status: status
+	  };
 	}
 	
 	function onAuthenticate(user) {
-	    var owners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+	  var owners = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 	
-	    return {
-	        type: _githubConstants2.default.AUTH_USER,
-	        user: user,
-	        owners: owners
-	    };
+	  return {
+	    type: _githubConstants2.default.AUTH_USER,
+	    user: user,
+	    owners: owners
+	  };
 	}
 	
 	exports.default = {
-	    onSetMetadata: onSetMetadata,
-	    onFetchRepos: onFetchRepos,
-	    onFetchUsers: onFetchUsers,
-	    onSetRepos: onSetRepos,
-	    onSetUsers: onSetUsers,
-	    onSetAuthStatus: onSetAuthStatus,
-	    onSetUsersStatus: onSetUsersStatus,
-	    onSetReposStatus: onSetReposStatus,
-	    onAuthenticate: onAuthenticate
+	  onSetMetadata: onSetMetadata,
+	  onFetchRepos: onFetchRepos,
+	  onFetchUsers: onFetchUsers,
+	  onFetchPosts: onFetchPosts,
+	  onFetchContents: onFetchContents,
+	  onSetRepos: onSetRepos,
+	  onSetUsers: onSetUsers,
+	  onSetPosts: onSetPosts,
+	  onSetContents: onSetContents,
+	  onSetPage: onSetPage,
+	  onSetAuthStatus: onSetAuthStatus,
+	  onSetUsersStatus: onSetUsersStatus,
+	  onSetPostsStatus: onSetPostsStatus,
+	  onSetContentsStatus: onSetContentsStatus,
+	  onSetReposStatus: onSetReposStatus,
+	  onAuthenticate: onAuthenticate
 	};
 
 /***/ },
@@ -40839,7 +40909,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.reposSortComparator = exports.parseUserData = exports.parseRepoData = exports.isValidStatus = exports.RemoteDataWorkflow = undefined;
+	exports.reposSortComparator = exports.getPageLimits = exports.parsePostData = exports.parseUserData = exports.parseRepoData = exports.isValidStatus = exports.RemoteDataWorkflow = undefined;
 	
 	var _Immutable;
 	
@@ -40905,6 +40975,32 @@
 	  };
 	}
 	
+	function parsePostData(posts) {
+	  return posts.filter(function (post) {
+	    return post.type === 'file';
+	  }).map(function (post) {
+	    return {
+	      id: post.sha,
+	      name: post.name,
+	      path: post.path,
+	      download: post.download_url,
+	      markdownContent: null
+	    };
+	  });
+	}
+	
+	function getPageLimits(_ref) {
+	  var postsPerPage = _ref.postsPerPage,
+	      currentPage = _ref.currentPage,
+	      totalPosts = _ref.totalPosts;
+	
+	  var propEnd = postsPerPage * currentPage;
+	  return {
+	    start: postsPerPage * (currentPage - 1),
+	    end: propEnd > totalPosts ? totalPosts : propEnd
+	  };
+	}
+	
 	function reposSortComparator(a, b) {
 	  var forks = b.forks - a.forks;
 	  if (forks !== 0) {
@@ -40932,12 +41028,16 @@
 	exports.isValidStatus = isValidStatus;
 	exports.parseRepoData = parseRepoData;
 	exports.parseUserData = parseUserData;
+	exports.parsePostData = parsePostData;
+	exports.getPageLimits = getPageLimits;
 	exports.reposSortComparator = reposSortComparator;
 	exports.default = {
 	  RemoteDataWorkflow: RemoteDataWorkflow,
 	  isValidStatus: isValidStatus,
 	  parseRepoData: parseRepoData,
 	  parseUserData: parseUserData,
+	  parsePostData: parsePostData,
+	  getPageLimits: getPageLimits,
 	  reposSortComparator: reposSortComparator
 	};
 
@@ -41326,10 +41426,14 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _mapping;
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
 	var _githubConstants = __webpack_require__(578);
 	
@@ -41346,62 +41450,126 @@
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	var mapping = (_mapping = {}, _defineProperty(_mapping, _githubConstants2.default.SET_METADATA, function (state, _ref) {
-	    var metadata = _ref.metadata;
+	  var metadata = _ref.metadata;
 	
-	    if (Object.keys(metadata).length) {
-	        return {
-	            metadata: metadata
-	        };
-	    }
-	    return {};
+	  if (Object.keys(metadata).length) {
+	    return {
+	      metadata: metadata
+	    };
+	  }
+	  return {};
 	}), _defineProperty(_mapping, _githubConstants2.default.SET_REPOS, function (state, _ref2) {
-	    var repos = _ref2.repos;
+	  var repos = _ref2.repos;
 	
-	    if (repos.length) {
-	        return {
-	            repos: repos
-	        };
-	    }
-	    return {};
+	  if (repos.length) {
+	    return {
+	      repos: repos
+	    };
+	  }
+	  return {};
 	}), _defineProperty(_mapping, _githubConstants2.default.SET_USERS, function (state, _ref3) {
-	    var users = _ref3.users;
+	  var users = _ref3.users;
 	
-	    if (users.length) {
-	        return {
-	            users: users
-	        };
-	    }
-	    return {};
-	}), _defineProperty(_mapping, _githubConstants2.default.SET_AUTH_STATUS, function (_ref4, _ref5) {
-	    var authStatus = _ref4.authStatus;
-	    var status = _ref5.status;
+	  if (users.length) {
+	    return {
+	      users: users
+	    };
+	  }
+	  return {};
+	}), _defineProperty(_mapping, _githubConstants2.default.SET_POSTS, function (_ref4, _ref5) {
+	  var postsPerPage = _ref4.postsPerPage;
+	  var posts = _ref5.posts;
 	
-	    if ((0, _githubUtils.isValidStatus)(authStatus, status)) {
-	        return {
-	            authStatus: status
-	        };
-	    }
-	    return {};
-	}), _defineProperty(_mapping, _githubConstants2.default.SET_REPOS_STATUS, function (_ref6, _ref7) {
-	    var reposStatus = _ref6.reposStatus;
-	    var status = _ref7.status;
+	  if (posts.length) {
+	    return {
+	      posts: posts,
+	      totalPosts: posts.length,
+	      totalPages: Math.ceil(posts.length / postsPerPage)
+	    };
+	  }
+	  return {};
+	}), _defineProperty(_mapping, _githubConstants2.default.SET_PAGE, function (_ref6, _ref7) {
+	  var total = _ref6.total;
+	  var page = _ref7.page;
+	  return { currentPage: page };
+	}), _defineProperty(_mapping, _githubConstants2.default.SET_CONTENTS, function (_ref8, _ref9) {
+	  var posts = _ref8.posts;
+	  var contents = _ref9.contents;
 	
-	    if ((0, _githubUtils.isValidStatus)(reposStatus, status)) {
-	        return {
-	            reposStatus: status
-	        };
-	    }
-	    return {};
-	}), _defineProperty(_mapping, _githubConstants2.default.SET_USERS_STATUS, function (_ref8, _ref9) {
-	    var usersStatus = _ref8.usersStatus;
-	    var status = _ref9.status;
+	  if (contents.length && contents.filter(function (item) {
+	    return !item.isCache;
+	  }).length) {
+	    var _ret = function () {
+	      var mapContents = contents.reduce(function (map, item) {
+	        return _extends({}, map, _defineProperty({}, item.id, item));
+	      }, {});
+	      return {
+	        v: {
+	          posts: posts.map(function (post) {
+	            if (!post.markdownContent) {
+	              return _extends({}, post, {
+	                markdownContent: post.markdownContent || (mapContents[post.id] || {}).markdownContent
+	              });
+	            }
+	            return post;
+	          })
+	        }
+	      };
+	    }();
 	
-	    if ((0, _githubUtils.isValidStatus)(usersStatus, status)) {
-	        return {
-	            usersStatus: status
-	        };
-	    }
-	    return {};
+	    if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	  }
+	  return {};
+	}), _defineProperty(_mapping, _githubConstants2.default.SET_AUTH_STATUS, function (_ref10, _ref11) {
+	  var authStatus = _ref10.authStatus;
+	  var status = _ref11.status;
+	
+	  if ((0, _githubUtils.isValidStatus)(authStatus, status)) {
+	    return {
+	      authStatus: status
+	    };
+	  }
+	  return {};
+	}), _defineProperty(_mapping, _githubConstants2.default.SET_REPOS_STATUS, function (_ref12, _ref13) {
+	  var reposStatus = _ref12.reposStatus;
+	  var status = _ref13.status;
+	
+	  if ((0, _githubUtils.isValidStatus)(reposStatus, status)) {
+	    return {
+	      reposStatus: status
+	    };
+	  }
+	  return {};
+	}), _defineProperty(_mapping, _githubConstants2.default.SET_USERS_STATUS, function (_ref14, _ref15) {
+	  var usersStatus = _ref14.usersStatus;
+	  var status = _ref15.status;
+	
+	  if ((0, _githubUtils.isValidStatus)(usersStatus, status)) {
+	    return {
+	      usersStatus: status
+	    };
+	  }
+	  return {};
+	}), _defineProperty(_mapping, _githubConstants2.default.SET_POSTS_STATUS, function (_ref16, _ref17) {
+	  var postsStatus = _ref16.postsStatus;
+	  var status = _ref17.status;
+	
+	  if ((0, _githubUtils.isValidStatus)(postsStatus, status)) {
+	    return {
+	      postsStatus: status
+	    };
+	  }
+	  return {};
+	}), _defineProperty(_mapping, _githubConstants2.default.SET_CONTENTS_STATUS, function (_ref18, _ref19) {
+	  var contentsStatus = _ref18.contentsStatus;
+	  var status = _ref19.status;
+	
+	  if ((0, _githubUtils.isValidStatus)(contentsStatus, status)) {
+	    return {
+	      contentsStatus: status
+	    };
+	  }
+	  return {};
 	}), _mapping);
 	// "token": "abcdefgh12345678",
 	// "token_last_eight": "12345678",
@@ -41409,24 +41577,32 @@
 	var ACCESS_TOKEN = ['78c1c41495', 'aa3426f1d0', 'a96e671868', 'ce0b4802ad'];
 	
 	var initialState = {
-	    repos: [],
-	    users: [],
-	    reposStatus: _githubUtils.RemoteDataWorkflow.NotLoaded,
-	    usersStatus: _githubUtils.RemoteDataWorkflow.NotLoaded,
-	    metadata: {
-	        token: ACCESS_TOKEN.join(''),
-	        headers: {
-	            Authorization: 'token ' + ACCESS_TOKEN.join('')
-	        },
-	        urlMappingEndpoint: {
-	            'github/repos/get': 'https://api.github.com/users/:owner/repos',
-	            'github/repos/owner/repo/readme/get': 'https://api.github.com/repos/:owner/:repo/readme',
-	            // 'github/user/auth': 'https://:owner::token@api.github.com/user',
-	            'github/user/auth': 'https://api.github.com/authorizations/clients/:client_id',
-	            // 'github/user/auth': 'https://api.github.com/authorizations',
-	            'github/user/get': 'https://api.github.com/users/:owner'
-	        }
+	  repos: [],
+	  users: [],
+	  reposStatus: _githubUtils.RemoteDataWorkflow.NotLoaded,
+	  usersStatus: _githubUtils.RemoteDataWorkflow.NotLoaded,
+	  postsStatus: _githubUtils.RemoteDataWorkflow.NotLoaded,
+	  contentsStatus: _githubUtils.RemoteDataWorkflow.NotLoaded,
+	  postsPerPage: 5,
+	  currentPage: 1,
+	  totalPages: 0,
+	  totalPosts: 0,
+	  metadata: {
+	    token: ACCESS_TOKEN.join(''),
+	    headers: {
+	      Authorization: 'token ' + ACCESS_TOKEN.join('')
+	    },
+	    urlMappingEndpoint: {
+	      'github/blog/posts': 'https://api.github.com/repos/daniloster/daniloster.github.io/contents/_posts',
+	      'github/blog/post': 'https://raw.githubusercontent.com/daniloster/daniloster.github.io/master/:path',
+	      'github/repos/get': 'https://api.github.com/users/:owner/repos',
+	      'github/repos/owner/repo/readme/get': 'https://api.github.com/repos/:owner/:repo/readme',
+	      'github/user/auth': 'https://api.github.com/authorizations/clients/:client_id',
+	      // 'github/user/auth': 'https://:owner::token@api.github.com/user',
+	      // 'github/user/auth': 'https://api.github.com/authorizations',
+	      'github/user/get': 'https://api.github.com/users/:owner'
 	    }
+	  }
 	};
 	
 	exports.default = (0, _reducers2.default)(initialState, mapping);
@@ -43145,7 +43321,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.header--header{border-bottom:1px solid #e8e8e8;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row nowrap;flex-flow:row nowrap}.header--header .header--title{font-size:26px;font-weight:300;line-height:56px;max-width:140px}.header--header .header--menu-area,.header--header .header--title{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-ms-flex-flow:column nowrap;flex-flow:column nowrap}.header--header .header--menu-area{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;overflow:auto}.header--header .header--menu-area .header--menu-icon{display:none;text-align:center;cursor:pointer}.header--header .header--menu-area .header--menu-icon svg{width:18px;height:15px}.header--header .header--menu-area .header--pages{-ms-flex-flow:row nowrap;flex-flow:row nowrap}.header--header .header--menu-area .header--pages:before{content:\"\";width:calc(100% - 138px)}.header--header .header--menu-area .header--pages .header--navigation-item,.header--header .header--menu-area .header--pages:before{-ms-flex-flow:column nowrap;flex-flow:column nowrap;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;min-width:10px;min-height:1px}.header--header .header--menu-area .header--pages .header--navigation-item{overflow-x:auto;white-space:nowrap;margin:0 0 0 15px}@media screen and (max-width:500px){.header--header{-ms-flex-flow:row wrap;flex-flow:row wrap}.header--header .header--title{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row nowrap;flex-flow:row nowrap;width:100%;font-size:26px;font-weight:300;line-height:56px}.header--header .header--menu-area{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;width:100%;text-align:center}.header--header .header--menu-area .header--menu-icon{display:block;width:30px;position:absolute;right:15px;top:0}.header--header .header--menu-area .header--menu-icon svg{width:18px;height:15px}.header--header .header--menu-area .header--pages{width:100%}.header--header .header--menu-area .header--pages.header--force-hide,.header--header .header--menu-area .header--pages:before{display:none}.header--header .header--menu-area .header--pages .header--navigation-item{-ms-flex-flow:row nowrap;flex-flow:row nowrap;width:100%;margin:0}.header--header .header--menu-area .header--pages .header--navigation-item a{margin:0 auto;width:100%}.header--header .header--menu-area .header--pages .header--navigation-item a:hover{background-color:#0866c4;color:#fff}}", "", {"version":3,"sources":["/./javascripts/components/header/header.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AA4DD,eAGQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,gBAEC,gCAAA,AACA,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,yBAAA,AACI,oBAAA,CAvDL,AAgDA,+BAYG,eAAA,AACA,gBAAA,AACA,iBAAA,AACA,eAAA,CAnDH,AAuDC,kEAVE,2BAAA,AACA,2BAAA,AACA,oBAAA,AAKA,4BAAA,AACI,uBAAA,CAzCP,AA2CC,mCAME,mBAAA,AACI,oBAAA,AACI,YAAA,AACR,aAAA,CApDH,AAqDG,sDACE,aAAA,AACA,kBAAA,AACA,cAAA,CAlDL,AAkBA,0DAkCO,WAAA,AACA,WAAA,CAhDP,AAaA,kDAuCK,yBAAA,AACI,oBAAA,CAhDT,AAQA,yDA0CO,WAAA,AAMA,wBAAA,CA5CP,AAJA,oIA2CO,4BAAA,AACI,wBAAA,AACJ,2BAAA,AACA,2BAAA,AACA,oBAAA,AAEA,eAAA,AACA,cAAA,CAjCP,AAjBA,2EA6DO,gBAAA,AACA,mBAAA,AAGA,iBAAA,CAhDP,AAzFC,oCAgJA,gBACE,uBAAA,AACI,kBAAA,CAnDL,AAiDD,+BAII,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,yBAAA,AACI,qBAAA,AACJ,WAAA,AACA,eAAA,AACA,gBAAA,AACA,gBAAA,CAjDH,AAmDC,mCACE,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,mBAAA,AACJ,WAAA,AACA,iBAAA,CAhDH,AAiDG,sDACE,cAAA,AACA,WAAA,AACA,kBAAA,AACA,WAAA,AACA,KAAA,CA9CL,AA+CK,0DACE,WAAA,AACA,WAAA,CA5CP,AAcD,kDAkCM,UAAA,CA5CL,AAUD,8HAuCQ,YAAA,CAzCP,AA2CK,2EACE,yBAAA,AACI,qBAAA,AACJ,WAAA,AACA,QAAA,CAxCP,AAyCO,6EACE,cAAA,AACA,UAAA,CAtCT,AAVD,mFAmDU,yBAAA,AACA,UAAA,CArCT,CACF","file":"header.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         500px !default;\n$on-tablet:        940px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.header {\n  // border-top: 5px solid $grey-color-dark;\n  border-bottom: 1px solid $grey-color-light;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-flow: row nowrap;\n      flex-flow: row nowrap;\n  .title {\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    font-size: 26px;\n    font-weight: 300;\n    line-height: 56px;\n    max-width: 140px;\n    -ms-flex-flow: column nowrap;\n        flex-flow: column nowrap;\n  }\n  .menu-area {\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -ms-flex-flow: column nowrap;\n        flex-flow: column nowrap;\n    -webkit-box-flex: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n    overflow: auto;\n    .menu-icon {\n      display: none;\n      text-align: center;\n      cursor: pointer;\n      svg { \n        width: 18px;\n        height: 15px;\n      }\n    }\n    .pages {\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n      &:before {\n        content: '';\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n        display: -webkit-inline-box;\n        display: -ms-inline-flexbox;\n        display: inline-flex;\n        width: calc(100% - 138px);\n        min-width: 10px;\n        min-height: 1px;\n      }\n      &.force-hide {\n        \n      }\n      .navigation-item {\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n        display: -webkit-inline-box;\n        display: -ms-inline-flexbox;\n        display: inline-flex;\n        overflow-x: auto;\n        white-space: nowrap;\n        min-width: 10px;\n        min-height: 1px;\n        margin: 0 0 0 15px;\n      }\n    }\n  }\n}\n\n@include max-media-query($on-phone) {\n  .header {\n    -ms-flex-flow: row wrap;\n        flex-flow: row wrap;\n    .title {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n      width: 100%;\n      font-size: 26px;\n      font-weight: 300;\n      line-height: 56px;\n    }\n    .menu-area {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -ms-flex-flow: row wrap;\n          flex-flow: row wrap;\n      width: 100%;\n      text-align: center;\n      .menu-icon {\n        display: block;\n        width: 30px;\n        position: absolute;\n        right: 15px;\n        top: 0;\n        svg { \n          width: 18px;\n          height: 15px;\n        }\n      }\n      .pages {\n        width: 100%;\n        &:before {\n          display: none;\n        }\n        &.force-hide {\n          display: none;\n        }\n        .navigation-item {\n          -ms-flex-flow: row nowrap;\n              flex-flow: row nowrap;\n          width: 100%;\n          margin: 0;\n          a {\n            margin: 0 auto;\n            width: 100%;\n          }\n          a:hover {\n            background-color: $brand-color;\n            color: #ffffff;\n          }\n        }\n      }\n    }\n  }\n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".wrapper{max-width:964px;margin-right:auto;margin-left:auto;padding-right:30px;padding-left:30px}@media screen and (max-width:1024px){.wrapper{max-width:994px;padding-right:15px;padding-left:15px}}.wrapper:after{content:\"\";display:table;clear:both}.header--header{border-bottom:1px solid #e8e8e8;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row nowrap;flex-flow:row nowrap}.header--header .header--title{font-size:26px;font-weight:300;line-height:56px;max-width:170px;-ms-flex-flow:column nowrap;flex-flow:column nowrap}.header--header .header--title,.header--header .header--title a{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex}.header--header .header--title a{width:170px}.header--header .header--title .fa-code{font-size:22px;font-weight:800;width:24px;margin:auto auto auto 10px;line-height:56px}.header--header .header--menu-area{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-ms-flex-flow:column nowrap;flex-flow:column nowrap;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;overflow:auto}.header--header .header--menu-area .header--menu-icon{display:none;text-align:center;cursor:pointer}.header--header .header--menu-area .header--menu-icon svg{width:18px;height:15px}.header--header .header--menu-area .header--pages{-ms-flex-flow:row nowrap;flex-flow:row nowrap}.header--header .header--menu-area .header--pages:before{content:\"\";width:calc(100% - 138px)}.header--header .header--menu-area .header--pages .header--navigation-item,.header--header .header--menu-area .header--pages:before{-ms-flex-flow:column nowrap;flex-flow:column nowrap;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;min-width:10px;min-height:1px}.header--header .header--menu-area .header--pages .header--navigation-item{overflow-x:auto;white-space:nowrap;margin:0 0 0 15px}@media screen and (max-width:500px){.header--header{-ms-flex-flow:row wrap;flex-flow:row wrap}.header--header .header--title{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row nowrap;flex-flow:row nowrap;width:100%;font-size:26px;font-weight:300;line-height:56px}.header--header .header--menu-area{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;width:100%;text-align:center}.header--header .header--menu-area .header--menu-icon{display:block;width:30px;position:absolute;right:15px;top:0}.header--header .header--menu-area .header--menu-icon svg{width:18px;height:15px}.header--header .header--menu-area .header--pages{width:100%}.header--header .header--menu-area .header--pages.header--force-hide,.header--header .header--menu-area .header--pages:before{display:none}.header--header .header--menu-area .header--pages .header--navigation-item{-ms-flex-flow:row nowrap;flex-flow:row nowrap;width:100%;margin:0}.header--header .header--menu-area .header--pages .header--navigation-item a{margin:0 auto;width:100%}.header--header .header--menu-area .header--pages .header--navigation-item a:hover{background-color:#0866c4;color:#fff}}", "", {"version":3,"sources":["/./javascripts/components/header/header.scss"],"names":[],"mappings":"AAgFA,SACI,gBAAA,AACA,kBAAA,AACA,iBAAA,AACA,mBAAA,AACA,iBAAA,CArDH,AAeC,qCAiCF,SASQ,gBAAA,AACA,mBAAA,AACA,iBAAA,CApDL,CACF,AAwCD,eAuBQ,WAAA,AACA,cAAA,AACA,UAAA,CAvDP,AAyDA,gBAEC,gCAAA,AACA,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,yBAAA,AACI,oBAAA,CAvDL,AAwDC,+BAIE,eAAA,AACA,gBAAA,AACA,iBAAA,AACA,gBAAA,AACA,4BAAA,AACI,uBAAA,CArDP,AAuDG,gEAVA,2BAAA,AACA,2BAAA,AACA,mBAAA,CAxCH,AAgDG,iCAIE,WAAA,CApDL,AA6BA,wCA0BK,eAAA,AACA,gBAAA,AACA,WAAA,AACA,2BAAA,AACA,gBAAA,CAnDL,AAqBA,mCAkCG,2BAAA,AACA,2BAAA,AACA,oBAAA,AACA,4BAAA,AACI,wBAAA,AACJ,mBAAA,AACI,oBAAA,AACI,YAAA,AACR,aAAA,CAnDH,AASA,sDA4CK,aAAA,AACA,kBAAA,AACA,cAAA,CAjDL,AAkDK,0DACE,WAAA,AACA,WAAA,CA/CP,AAFA,kDAqDK,yBAAA,AACI,oBAAA,CA/CT,AAPA,yDAwDO,WAAA,AAMA,wBAAA,CA3CP,AAkDK,oIAZE,4BAAA,AACI,wBAAA,AACJ,2BAAA,AACA,2BAAA,AACA,oBAAA,AAEA,eAAA,AACA,cAAA,CAhCP,AAqCK,2EAME,gBAAA,AACA,mBAAA,AAGA,iBAAA,CA/CP,AAxGC,oCA8JA,gBACE,uBAAA,AACI,kBAAA,CAlDL,AAgDD,+BAII,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,yBAAA,AACI,qBAAA,AACJ,WAAA,AACA,eAAA,AACA,gBAAA,AACA,gBAAA,CAhDH,AAoCD,mCAeI,oBAAA,AACA,oBAAA,AACA,aAAA,AACA,uBAAA,AACI,mBAAA,AACJ,WAAA,AACA,iBAAA,CA/CH,AAgDG,sDACE,cAAA,AACA,WAAA,AACA,kBAAA,AACA,WAAA,AACA,KAAA,CA7CL,AAkBD,0DA6BQ,WAAA,AACA,WAAA,CA3CP,AAaD,kDAkCM,UAAA,CA3CL,AA0CG,8HAMI,YAAA,CAxCP,AACD,2EA0CQ,yBAAA,AACI,qBAAA,AACJ,WAAA,AACA,QAAA,CAvCP,AAND,6EA+CU,cAAA,AACA,UAAA,CArCT,AAuCO,mFACE,yBAAA,AACA,UAAA,CApCT,CACF","file":"header.scss","sourcesContent":["$base-font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif !default;\n$base-font-size:   16px !default;\n$base-font-weight: 400 !default;\n$small-font-size:  $base-font-size * 0.875 !default;\n$base-line-height: 1.5 !default;\n\n$spacing-unit:     30px !default;\n\n$text-color:       #222 !default;\n$sub-text-color:       #545a75 !default;\n$background-color: #fdfdfd !default;\n$brand-color:      rgb(3%, 40%, 77%) !default;\n// $brand-color:      #2a7ae2 !default;\n\n$grey-color:       #828282 !default;\n$grey-color-light: lighten($grey-color, 40%) !default;\n$grey-color-dark:  darken($grey-color, 25%) !default;\n\n// Width of the content area\n$content-width:    1024px !default;\n\n$on-phone:         500px !default;\n$on-tablet:        940px !default;\n$on-laptop:        1024px !default;\n\n/*\n// Use media queries like this:\n// @include (max|min)-media-query($on-palm) {\n//   .wrapper {\n//     padding-right: $spacing-unit / 2;\n//     padding-left: $spacing-unit / 2;\n//   }\n// }\n*/\n@mixin max-media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n\n@mixin min-media-query($device) {\n  @media screen and (min-width: $device) {\n    @content;\n  }\n}\n\n@mixin media-query($device) {\n  @media screen and (max-width: $device) {\n    @content;\n  }\n}\n/*==========  Mobile First Method  ==========*/\n\n/* Custom, iPhone Retina */ \n@include min-media-query(320px) {\n\n}\n\n/* Extra Small Devices, Phones */ \n@include min-media-query(480px) {\n\n}\n\n/* Small Devices, Tablets */\n@include min-media-query(768px) {\n\n}\n\n/* Medium Devices, Desktops */\n@include min-media-query(992px) {\n\n}\n\n/* Large Devices, Wide Screens */\n@include min-media-query(1200px) {\n\n}\n/**\n * Wrapper\n */\n:global(.wrapper) {\n    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));\n    margin-right: auto;\n    margin-left: auto;\n    padding-right: $spacing-unit;\n    padding-left: $spacing-unit;\n    @extend %clearfix;\n\n    @include media-query($on-laptop) {\n        max-width:         calc(#{$content-width} - (#{$spacing-unit}));\n        padding-right: $spacing-unit / 2;\n        padding-left: $spacing-unit / 2;\n    }\n}\n\n\n\n/**\n * Clearfix\n */\n%clearfix {\n\n    &:after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}.header {\n  // border-top: 5px solid $grey-color-dark;\n  border-bottom: 1px solid $grey-color-light;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-flow: row nowrap;\n      flex-flow: row nowrap;\n  .title {\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    font-size: 26px;\n    font-weight: 300;\n    line-height: 56px;\n    max-width: 170px;\n    -ms-flex-flow: column nowrap;\n        flex-flow: column nowrap;\n\n    a {\n      display: -webkit-inline-box;\n      display: -ms-inline-flexbox;\n      display: inline-flex;\n      width: 170px;\n    }\n    :global(.fa-code) {\n      font-size: 22px;\n      font-weight: 800;\n      width: 24px;\n      margin: auto auto auto 10px;\n      line-height: 56px;\n    }\n  }\n  .menu-area {\n    display: -webkit-inline-box;\n    display: -ms-inline-flexbox;\n    display: inline-flex;\n    -ms-flex-flow: column nowrap;\n        flex-flow: column nowrap;\n    -webkit-box-flex: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n    overflow: auto;\n    .menu-icon {\n      display: none;\n      text-align: center;\n      cursor: pointer;\n      svg { \n        width: 18px;\n        height: 15px;\n      }\n    }\n    .pages {\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n      &:before {\n        content: '';\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n        display: -webkit-inline-box;\n        display: -ms-inline-flexbox;\n        display: inline-flex;\n        width: calc(100% - 138px);\n        min-width: 10px;\n        min-height: 1px;\n      }\n      &.force-hide {\n        \n      }\n      .navigation-item {\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n        display: -webkit-inline-box;\n        display: -ms-inline-flexbox;\n        display: inline-flex;\n        overflow-x: auto;\n        white-space: nowrap;\n        min-width: 10px;\n        min-height: 1px;\n        margin: 0 0 0 15px;\n      }\n    }\n  }\n}\n\n@include max-media-query($on-phone) {\n  .header {\n    -ms-flex-flow: row wrap;\n        flex-flow: row wrap;\n    .title {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n      width: 100%;\n      font-size: 26px;\n      font-weight: 300;\n      line-height: 56px;\n    }\n    .menu-area {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -ms-flex-flow: row wrap;\n          flex-flow: row wrap;\n      width: 100%;\n      text-align: center;\n      .menu-icon {\n        display: block;\n        width: 30px;\n        position: absolute;\n        right: 15px;\n        top: 0;\n        svg { \n          width: 18px;\n          height: 15px;\n        }\n      }\n      .pages {\n        width: 100%;\n        &:before {\n          display: none;\n        }\n        &.force-hide {\n          display: none;\n        }\n        .navigation-item {\n          -ms-flex-flow: row nowrap;\n              flex-flow: row nowrap;\n          width: 100%;\n          margin: 0;\n          a {\n            margin: 0 auto;\n            width: 100%;\n          }\n          a:hover {\n            background-color: $brand-color;\n            color: #ffffff;\n          }\n        }\n      }\n    }\n  }\n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -43179,6 +43355,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _fontAwesome = __webpack_require__(630);
+	
+	var _fontAwesome2 = _interopRequireDefault(_fontAwesome);
+	
 	var _header = __webpack_require__(659);
 	
 	var _header2 = _interopRequireDefault(_header);
@@ -43195,7 +43375,8 @@
 	    _react2.default.createElement(
 	      'a',
 	      { href: link },
-	      title
+	      title,
+	      _react2.default.createElement(_fontAwesome2.default, { name: 'code' })
 	    )
 	  );
 	};
@@ -43258,6 +43439,354 @@
 	};
 	
 	exports.default = NavigationItem;
+
+/***/ },
+/* 663 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _effects = __webpack_require__(577);
+	
+	var _reduxSaga = __webpack_require__(562);
+	
+	var _githubConstants = __webpack_require__(578);
+	
+	var _githubConstants2 = _interopRequireDefault(_githubConstants);
+	
+	var _githubActions = __webpack_require__(579);
+	
+	var _githubActions2 = _interopRequireDefault(_githubActions);
+	
+	var _githubPostApi = __webpack_require__(664);
+	
+	var _githubPostApi2 = _interopRequireDefault(_githubPostApi);
+	
+	var _githubUtils = __webpack_require__(609);
+	
+	var _sagas = __webpack_require__(610);
+	
+	var _sagas2 = _interopRequireDefault(_sagas);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var MAX_ATTEMPTS = 5;
+	
+	function factoryFetchPostsSaga(storeSection) {
+	  var _marked = [onFetchPosts, watchFetchPosts].map(regeneratorRuntime.mark);
+	
+	  var getState = _sagas2.default.getter(storeSection);
+	
+	  function onFetchPosts(action) {
+	    var attempt, state, metadata, api, response, posts;
+	    return regeneratorRuntime.wrap(function onFetchPosts$(_context) {
+	      while (1) {
+	        switch (_context.prev = _context.next) {
+	          case 0:
+	            attempt = action.attempt;
+	            _context.next = 3;
+	            return (0, _effects.select)(getState);
+	
+	          case 3:
+	            state = _context.sent;
+	            metadata = state.metadata;
+	            api = new _githubPostApi2.default(metadata);
+	            _context.next = 8;
+	            return (0, _effects.call)(api.getAll);
+	
+	          case 8:
+	            response = _context.sent;
+	
+	            if (!response.error) {
+	              _context.next = 19;
+	              break;
+	            }
+	
+	            _context.next = 12;
+	            return (0, _effects.put)(_githubActions2.default.onSetPostsStatus(_githubUtils.RemoteDataWorkflow.LoadingError));
+	
+	          case 12:
+	            if (MAX_ATTEMPTS < attempt) {
+	              _context.next = 17;
+	              break;
+	            }
+	
+	            _context.next = 15;
+	            return (0, _effects.call)(_reduxSaga.delay, 1000);
+	
+	          case 15:
+	            _context.next = 17;
+	            return (0, _effects.call)(onFetchPosts, { attempt: (attempt || 0) + 1 });
+	
+	          case 17:
+	            _context.next = 26;
+	            break;
+	
+	          case 19:
+	            posts = (0, _githubUtils.parsePostData)(response.data);
+	            _context.next = 22;
+	            return (0, _effects.put)(_githubActions2.default.onSetPosts(posts));
+	
+	          case 22:
+	            _context.next = 24;
+	            return (0, _effects.put)(_githubActions2.default.onSetPostsStatus(_githubUtils.RemoteDataWorkflow.Loaded));
+	
+	          case 24:
+	            _context.next = 26;
+	            return (0, _effects.put)(_githubActions2.default.onFetchContents(1));
+	
+	          case 26:
+	          case 'end':
+	            return _context.stop();
+	        }
+	      }
+	    }, _marked[0], this);
+	  }
+	
+	  function watchFetchPosts() {
+	    return regeneratorRuntime.wrap(function watchFetchPosts$(_context2) {
+	      while (1) {
+	        switch (_context2.prev = _context2.next) {
+	          case 0:
+	            _context2.next = 2;
+	            return (0, _effects.takeEvery)(_githubConstants2.default.FETCH_POSTS, onFetchPosts);
+	
+	          case 2:
+	          case 'end':
+	            return _context2.stop();
+	        }
+	      }
+	    }, _marked[1], this);
+	  }
+	
+	  return {
+	    watcher: watchFetchPosts,
+	    handler: onFetchPosts
+	  };
+	}
+	
+	exports.default = factoryFetchPostsSaga;
+
+/***/ },
+/* 664 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _api = __webpack_require__(581);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
+	var _githubHeaders = __webpack_require__(608);
+	
+	var _githubHeaders2 = _interopRequireDefault(_githubHeaders);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var GithubPostApi = function GithubPostApi() {
+	  var _this = this;
+	
+	  var metadata = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	
+	  _classCallCheck(this, GithubPostApi);
+	
+	  this.getAll = function () {
+	    return _this.api.request({
+	      url: _this.metadata.urlMappingEndpoint['github/blog/posts'],
+	      method: 'GET',
+	      data: {
+	        ref: 'master'
+	      },
+	      headers: _extends({}, _githubHeaders2.default, _this.metadata.headers || {})
+	    });
+	  }.bind(this);
+	
+	  this.get = function (url) {
+	    return _this.api.request({
+	      url: url,
+	      method: 'GET',
+	      headers: {
+	        Accept: 'application/vnd.github.v3.raw'
+	      }
+	    });
+	  }.bind(this);
+	
+	  this.metadata = metadata;
+	  this.api = _api2.default.createApiRef();
+	};
+	
+	exports.default = GithubPostApi;
+
+/***/ },
+/* 665 */,
+/* 666 */,
+/* 667 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _effects = __webpack_require__(577);
+	
+	var _reduxSaga = __webpack_require__(562);
+	
+	var _githubConstants = __webpack_require__(578);
+	
+	var _githubConstants2 = _interopRequireDefault(_githubConstants);
+	
+	var _githubActions = __webpack_require__(579);
+	
+	var _githubActions2 = _interopRequireDefault(_githubActions);
+	
+	var _githubPostApi = __webpack_require__(664);
+	
+	var _githubPostApi2 = _interopRequireDefault(_githubPostApi);
+	
+	var _githubUtils = __webpack_require__(609);
+	
+	var _sagas = __webpack_require__(610);
+	
+	var _sagas2 = _interopRequireDefault(_sagas);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var MAX_ATTEMPTS = 5;
+	
+	function factoryFetchContentsSaga(storeSection) {
+	  var _marked = [onFetchContents, watchFetchContents].map(regeneratorRuntime.mark);
+	
+	  var getState = _sagas2.default.getter(storeSection);
+	
+	  function onFetchContents(action) {
+	    var page, attempt, state, metadata, posts, postsPerPage, totalPosts, _getPageLimits, start, end, pagePosts, api, apiResponses, hasError, contents;
+	
+	    return regeneratorRuntime.wrap(function onFetchContents$(_context) {
+	      while (1) {
+	        switch (_context.prev = _context.next) {
+	          case 0:
+	            _context.next = 2;
+	            return (0, _effects.put)(_githubActions2.default.onSetContentsStatus(_githubUtils.RemoteDataWorkflow.Loading));
+	
+	          case 2:
+	            page = action.page, attempt = action.attempt;
+	            _context.next = 5;
+	            return (0, _effects.select)(getState);
+	
+	          case 5:
+	            state = _context.sent;
+	            metadata = state.metadata, posts = state.posts, postsPerPage = state.postsPerPage, totalPosts = state.totalPosts;
+	            _getPageLimits = (0, _githubUtils.getPageLimits)({ postsPerPage: postsPerPage, currentPage: page, totalPosts: totalPosts }), start = _getPageLimits.start, end = _getPageLimits.end;
+	            pagePosts = posts.slice(start, end);
+	            api = new _githubPostApi2.default(metadata);
+	            _context.next = 12;
+	            return pagePosts.map(function (post) {
+	              if (post.markdownContent) {
+	                return Promise.resolve({
+	                  data: post.markdownContent,
+	                  isCache: true
+	                });
+	              }
+	              return (0, _effects.call)(api.get, post.download);
+	            });
+	
+	          case 12:
+	            apiResponses = _context.sent;
+	            hasError = Boolean(apiResponses.filter(function (response) {
+	              return response.error;
+	            }).length);
+	
+	            if (!hasError) {
+	              _context.next = 24;
+	              break;
+	            }
+	
+	            _context.next = 17;
+	            return (0, _effects.put)(_githubActions2.default.onSetContentsStatus(_githubUtils.RemoteDataWorkflow.LoadingError));
+	
+	          case 17:
+	            if (MAX_ATTEMPTS < attempt) {
+	              _context.next = 22;
+	              break;
+	            }
+	
+	            _context.next = 20;
+	            return (0, _effects.call)(_reduxSaga.delay, 1000);
+	
+	          case 20:
+	            _context.next = 22;
+	            return (0, _effects.call)(onFetchContents, { page: page, attempt: (attempt || 0) + 1 });
+	
+	          case 22:
+	            _context.next = 31;
+	            break;
+	
+	          case 24:
+	            contents = apiResponses.map(function (_ref, idx) {
+	              var data = _ref.data,
+	                  isCache = _ref.isCache;
+	              return {
+	                id: pagePosts[idx].id,
+	                markdownContent: data,
+	                isCache: Boolean(isCache)
+	              };
+	            });
+	            _context.next = 27;
+	            return (0, _effects.put)(_githubActions2.default.onSetContents(contents));
+	
+	          case 27:
+	            _context.next = 29;
+	            return (0, _effects.put)(_githubActions2.default.onSetPage(page));
+	
+	          case 29:
+	            _context.next = 31;
+	            return (0, _effects.put)(_githubActions2.default.onSetContentsStatus(_githubUtils.RemoteDataWorkflow.Loaded));
+	
+	          case 31:
+	          case 'end':
+	            return _context.stop();
+	        }
+	      }
+	    }, _marked[0], this);
+	  }
+	
+	  function watchFetchContents() {
+	    return regeneratorRuntime.wrap(function watchFetchContents$(_context2) {
+	      while (1) {
+	        switch (_context2.prev = _context2.next) {
+	          case 0:
+	            _context2.next = 2;
+	            return (0, _effects.takeLatest)(_githubConstants2.default.FETCH_CONTENTS, onFetchContents);
+	
+	          case 2:
+	          case 'end':
+	            return _context2.stop();
+	        }
+	      }
+	    }, _marked[1], this);
+	  }
+	
+	  return {
+	    watcher: watchFetchContents,
+	    handler: onFetchContents
+	  };
+	}
+	
+	exports.default = factoryFetchContentsSaga;
 
 /***/ }
 /******/ ]);
