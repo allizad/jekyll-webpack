@@ -1,12 +1,16 @@
 import React, {
   PropTypes
 } from 'react';
+import FontAwesome from '../font-awesome';
 
 import styles from './header.scss';
 
 const Title = (({ title, link, className }) => (
   <div className={`${styles.title} ${className}`}>
-    <a href={link}>{title}</a>
+    <a href={link}>
+      {title}
+      <FontAwesome name="code" />
+    </a>
   </div>
 ));
 

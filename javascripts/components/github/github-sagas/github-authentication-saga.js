@@ -10,7 +10,6 @@ function factoryAuthenticationSaga(storeSection) {
 
     function* onAuthenticate(action) {
         const {
-            // user,
             owners
         } = action;
         const state = yield select(getState);
@@ -26,6 +25,7 @@ function factoryAuthenticationSaga(storeSection) {
             // Both tasks run asynchronuosly
             yield put(actions.onFetchUsers(owners));
             yield put(actions.onFetchRepos(owners));
+            // yield put(actions.onFetchPosts());
         }
     }
 
