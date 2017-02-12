@@ -52,6 +52,7 @@ export default Application;
 - React
 
 What were the tricks here:
+
 - Not to use the .babelrc for test and web bundle specially because react-native must be resolved as react-native-web;
 - Configuring Istanbul;
  - Very important piece >> Have the following attributes of nyc in the package.json as false: "cache", "sourceMap", "instrument";
