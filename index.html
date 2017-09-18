@@ -1,0 +1,41 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1 class="page-heading">Howdy</h1>
+
+  <div class="post-content">
+    <p>This is the base Jekyll and Webpack boilerplate, created and maintained by <a href="https://github.com/allizad">@allizad</a>.</p>
+
+    <p>You can learn more about how this was put together in my walkthrough post here:</p>
+    <ul>
+    <li><a href="https://medium.com/allizad/">Using Webpack and React with&nbsp;Jekyll</a></li>
+    </ul>
+
+    <p>See the full series of adding search to Jekyll, for which this project was a building block, here:</p>
+    <ul>
+    <li><a href="https://blog.omc.io/elasticsearch-for-jekyll-part-1-ab456ac7c093">Elasticsearch for Jekyll, Part 1</a></li>
+    </ul>
+
+    <p>Thanks! Now go build shit!</p>
+
+    <p><img src="assets/images/cat-lappy.gif" alt="cat-lappy-image"></p>
+  </div>
+
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
+</div>
