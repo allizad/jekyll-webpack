@@ -13,3 +13,5 @@ See the full series of adding search to Jekyll, for which this project was a bui
 - [Elasticsearch for Jekyll, Part 1](https://blog.omc.io/elasticsearch-for-jekyll-part-1-ab456ac7c093)
 
 Woohoo! Now go build shit!
+
+![cat image](https://i0.wp.com/www.developermemes.com/wp-content/uploads/2015/10/Now-That-You-Have-That-Feature-Done-I-Want-It-To-Do-Something-Else-Instead-Web-Developer-Meme.jpg?resize=385%2C232)
