@@ -1,6 +1,6 @@
 ## Jekyll & Webpack, integrated
 
-So you can have your React and serve it statically, too. Plugin-free!
+So you can have your React and serve it statically, too. Plugin-free! (<- that's like saying orange juice is gluten-free, btw)
 
 Are you working with Github pages? See the gh-pages branch:
 
