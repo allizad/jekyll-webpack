@@ -4,3 +4,4 @@ _site
 public
 node_modules
 src/assets/javascripts/bundle.js
+package-lock.json
