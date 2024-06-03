@@ -3,4 +3,5 @@ _site
 .jekyll-metadata
 public
 node_modules
-src/assets/javascripts/bundle.js
+bundle.js
+bundle.js.map
