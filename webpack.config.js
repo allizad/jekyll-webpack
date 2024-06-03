@@ -25,4 +25,6 @@ module.exports = {
         ],
     },
     devtool: 'source-map',
+    mode: 'development' // Avoids a warning when running `webpack`.
+                      // Set to 'production' for minified version.
 };
